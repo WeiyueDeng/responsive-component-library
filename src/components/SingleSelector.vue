@@ -88,7 +88,6 @@
 </template>
 
 <script>
-import { useWindowSize } from '@/composables/useWindowSize.js';
 import dark_gray_arrow_down from "@/assets/icons/dark_gray_arrow_down.svg";
 import black_arrow_down from '@/assets/icons/black_arrow_down.svg'
 export default{
@@ -134,12 +133,6 @@ export default{
             default:"No data",
         }
     },
-    setup(){
-        const { width } = useWindowSize();
-        return { 
-            width 
-        };
-    },
     mounted(){
         document.addEventListener('click', (e)=>this.closeWhenClickOutsideSelector(e));
     },
@@ -183,9 +176,6 @@ export default{
             //so directly return this.options;
                 return this.options;
             }
-        },
-        web_version(){
-            return this.width > 1024 ? true : false;
         },
         show_clear_icon(){
             //both pre-requisite: clearable and has a selected_item and not disabled
