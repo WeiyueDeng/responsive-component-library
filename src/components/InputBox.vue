@@ -31,7 +31,12 @@
             <!-- input box part end -->
 
             <!-- suffix part -->
-            <div v-if = "$slots.suffix || show_clear_icon" class = "suffix-wrapper">
+            <div v-if = "$slots.suffix || show_clear_icon" 
+            :class = "[
+                'suffix-wrapper',
+                {'only-clear-icon': show_clear_icon && !$slots.suffix},
+                {'with-date-icon': type == 'date'}
+            ]">
                 <!-- clear icon part -->
                 <img src = "@/assets/icons/input_clear_icon.svg" 
                 :class = "[
@@ -204,6 +209,8 @@ export default{
     border: 1px solid #BCCCDC;
     background: #FFF;
     cursor: pointer;
+
+    position: relative;
 }
 .input-box-unit:hover{
     border: 1px solid #DEE6ED;
@@ -256,6 +263,10 @@ export default{
     line-height: 24px;
     letter-spacing: 0.5px;
 }
+.input-box::-webkit-calendar-picker-indicator {
+    background: url("@/assets/icons/black_calendar_icon.svg") no-repeat center;
+    height:24px;
+}
 .prefix-wrapper{
     flex-shrink:0;
 
@@ -277,6 +288,13 @@ export default{
     min-width:24px;
     width:fit-content;
     height:24px;
+}
+.suffix-wrapper.only-clear-icon{
+    min-width:20px;
+}
+.suffix-wrapper.with-date-icon{
+    position: absolute;
+    right:40px;
 }
 .clear-icon{
     width: 20px;
@@ -331,6 +349,9 @@ export default{
         line-height: 20px;
         letter-spacing: 0.25px;
     }
+    .input-box::-webkit-calendar-picker-indicator {
+        height:20px;
+    }
     .prefix-wrapper{
         min-width:20px;
         height:20px;
@@ -339,6 +360,9 @@ export default{
         min-width:20px;
         height:20px;
         column-gap: 0px;
+    }
+    .suffix-wrapper.with-date-icon{
+        right:32px;
     }
     .clear-icon{
         width: 36px;

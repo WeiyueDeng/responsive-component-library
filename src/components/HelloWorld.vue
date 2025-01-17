@@ -44,6 +44,10 @@
     </InputBox>
     <br />
     <InputBox type = "text" clearable v-model = "input_value" disabled placeholder = "Please input your words"/>
+    <br />
+    <InputBox type = "date" clearable v-model = "input_date_value" placeholder = "Please input your words"/>
+    <br />
+    <InputBox type = "date" clearable v-model = "input_date_value" disabled placeholder = "Please input your words"/>
   </div>
   <br />
   <div style = "width: 200px; border: 1px pink solid; border-radius: 4px; padding:10px">
@@ -101,6 +105,7 @@ export default{
   data(){
     return{
       input_value: "123",
+      input_date_value:'',
 
       single_selector_value: "123",
       single_selector_options: [
