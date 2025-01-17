@@ -47,9 +47,17 @@
     <br />
     <InputBox type = "text" clearable v-model = "input_value" disabled placeholder = "Please input your words"/>
     <br />
+    <div>type = 'date'</div> <br />
     <InputBox type = "date" clearable v-model = "input_date_value" placeholder = "Please input your words"/>
     <br />
     <InputBox type = "date" clearable v-model = "input_date_value" disabled placeholder = "Please input your words"/>
+    <br />
+    <div>type = 'password'</div> <br />
+    <InputBox :type = "hide_typed_password?'password':'text'" clearable v-model = "input_password_value" placeholder = "Enter your password">
+      <template #suffix>
+        <img :src = "dynamicPasswordSuffix" style = "width:100%; height:100%;" @click = "hide_typed_password = !hide_typed_password"/>
+      </template>
+    </InputBox>
   </div>
 
   <br />
@@ -200,6 +208,10 @@ import InputBox from '@/components/InputBox.vue';
 import SingleSelector from '@/components/SingleSelector.vue';
 import ResponsiveButton from '@/components/ResponsiveButton.vue';
 
+import eye_with_cross_icon from '@/assets/icons/eye_with_cross_icon.svg';
+import eye_icon from '@/assets/icons/eye_icon.svg';
+
+
 export default{
   props:{
     msg: String,
@@ -214,6 +226,8 @@ export default{
     return{
       input_value: "123",
       input_date_value:'',
+      input_password_value:'',
+      hide_typed_password:true,
 
       single_selector_value: "123",
       single_selector_options: [
@@ -268,6 +282,11 @@ export default{
           ]
         },
       ]
+    }
+  },
+  computed:{
+    dynamicPasswordSuffix(){
+      return this.hide_typed_password ? eye_with_cross_icon : eye_icon;
     }
   },
   watch:{
