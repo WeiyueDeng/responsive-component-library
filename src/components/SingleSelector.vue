@@ -43,12 +43,14 @@
                 @click="handleClearValue"/>
                 <!-- clear icon part end -->
                 <slot name = "suffix">
+                    <!-- default dropdown arrow part  -->
                     <img :src = "default_dropdown_arrow_src" 
                     :class = "[
                         'default-suffix-pic',
                         'rotate-0',
                         {'rotate-180':is_focus && !disabled},
                     ]"/>
+                    <!-- default dropdown arrow part end -->
                 </slot>
             </div>
             <!-- suffix part end -->
