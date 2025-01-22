@@ -1,5 +1,5 @@
 <template>
-    <div :class="['responsive-button-wrapper', width_type]" ref = "responsive-button-wrapper">
+    <div :class="['responsive-button-wrapper', width_type]" ref = "responsive-button-wrapper" v-component-loading="loading">
         <div :class = "[
             'responsive-button',
             size,
@@ -17,7 +17,7 @@
         ref = "responsive-button"
         @click = "handleClick()"
         @mouseenter="handleMouseEnterButton()" 
-        v-component-loading="loading">
+        >
             <div class = "button-content">
                 <div v-if="$slots.prefix" class="prefix-wrapper">
                     <slot name="prefix"></slot>
@@ -518,6 +518,18 @@ export default{
     width: 100%;
     height: fit-content;
 }
+.responsive-button-wrapper.fit-content{
+    width: fit-content;
+    height: fit-content;
+}
+.responsive-button-wrapper :deep(.component-loading-spinner){
+    border-radius: 4px;
+}
+.responsive-button-wrapper :deep(.component-loading-spinner)::after{
+    border-width: 2px;
+    height:25px;
+    width: 25px;
+}
 .responsive-button{
     height:fit-content;
     box-sizing: border-box;
@@ -530,14 +542,6 @@ export default{
 
     font-family: 'Roboto';
     cursor: pointer;
-}
-.responsive-button :deep(.component-loading-spinner){
-    border-radius: 4px;
-}
-.responsive-button :deep(.component-loading-spinner)::after{
-    border-width: 2px;
-    height:25px;
-    width: 25px;
 }
 .responsive-button.fit-content{
     min-width: 90px;

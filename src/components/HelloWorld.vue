@@ -107,8 +107,8 @@
     <!-- fit content -->
     <div>width-type: fit-content</div>
     <br />
-    <div @click = "$refs['target-responsive-button'].setloading(true)" style = "width:fit-content">click to loading</div>
-    <div @click = "$refs['target-responsive-button'].setloading(false)" style = "width:fit-content">click to unloading</div>
+    <div @click = "$refs['target-responsive-button'].setLoading(true)" style = "width:fit-content">click to loading</div>
+    <div @click = "$refs['target-responsive-button'].setLoading(false)" style = "width:fit-content">click to unloading</div>
     <ResponsiveButton 
     ref = "target-responsive-button"
     display_name='General Information' build_in_theme="outlined-primary" 
@@ -181,17 +181,23 @@
           </template>
     </ResponsiveButton>
     <br />
+    <div @click = "(event)=>{event.stopPropagation(); $refs['target-responsive-dropdown-button-fit'].setLoading(true)}" style = "width:fit-content">click to loading</div>
+    <div @click = "$refs['target-responsive-dropdown-button-fit'].setLoading(false)" style = "width:fit-content">click to unloading</div>
     <ResponsiveButton 
+    ref = "target-responsive-dropdown-button-fit"
     display_name='Questionnaire' build_in_theme="outlined-primary" 
     width_type="fit-content"
     :dropdown_options="test_dropdown_options"
     @click = "(display_name)=>handleRedirectButtonClick(display_name)" />
     <br />
     <ResponsiveButton 
+    ref = "target-responsive-dropdown-button"
     display_name='Fill the Questionnaire (3 min)' build_in_theme="outlined-secondary" 
     width_type="fill-whole"
     :dropdown_options="test_dropdown_options"
     @click = "(display_name)=>handleRedirectButtonClick(display_name)"/>
+    <div @click = "$refs['target-responsive-dropdown-button'].setLoading(true)" style = "width:fit-content">click to loading</div>
+    <div @click = "$refs['target-responsive-dropdown-button'].setLoading(false)" style = "width:fit-content">click to unloading</div>
     <br />
     <ResponsiveButton 
     display_name='Fill the Questionnaire 123123(3 min)' build_in_theme="filled-secondary" 
