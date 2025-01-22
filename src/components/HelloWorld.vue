@@ -1,4 +1,5 @@
 <template>
+  <div>
   <!-- Samples Display for SimplifiedNotification.vue -->
   <div style = "width: 1000px; border: 1px pink solid; border-radius: 4px; padding:10px">
     <div>Samples Display for SimplifiedNotification.vue</div> <br />
@@ -106,7 +107,10 @@
     <!-- fit content -->
     <div>width-type: fit-content</div>
     <br />
+    <div @click = "$refs['target-responsive-button'].setloading(true)" style = "width:fit-content">click to loading</div>
+    <div @click = "$refs['target-responsive-button'].setloading(false)" style = "width:fit-content">click to unloading</div>
     <ResponsiveButton 
+    ref = "target-responsive-button"
     display_name='General Information' build_in_theme="outlined-primary" 
     width_type="fit-content"
     @click = "(display_name)=>handleRedirectButtonClick(display_name)"/>
@@ -200,6 +204,7 @@
     </ResponsiveButton>
   </div>
   <br />
+</div>
 </template>
 
 <script>

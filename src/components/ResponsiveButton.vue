@@ -16,7 +16,8 @@
         ]" 
         ref = "responsive-button"
         @click = "handleClick()"
-        @mouseenter="handleMouseEnterButton()">
+        @mouseenter="handleMouseEnterButton()" 
+        v-component-loading="loading">
             <div class = "button-content">
                 <div v-if="$slots.prefix" class="prefix-wrapper">
                     <slot name="prefix"></slot>
@@ -167,6 +168,7 @@ export default{
             currently_hovered_dropdown_option_display_name:'',
             dropdown_position_data:{},
             nested_dropdown_option_button_history_stack:null,
+            loading:false,
         }
     },
     emits:[
@@ -498,8 +500,13 @@ export default{
             }
             // console.log('dynamicDropdownPosition', output);
             this.dropdown_position_data = output;
+        },
+        // expose
+        setloading(val){
+            this.loading=val;
         }
-    }
+    },
+    expose:['setloading'],
 }
 </script>
 
@@ -523,6 +530,14 @@ export default{
 
     font-family: 'Roboto';
     cursor: pointer;
+}
+.responsive-button :deep(.component-loading-spinner){
+    border-radius: 4px;
+}
+.responsive-button :deep(.component-loading-spinner)::after{
+    border-width: 2px;
+    height:25px;
+    width: 25px;
 }
 .responsive-button.fit-content{
     min-width: 90px;
