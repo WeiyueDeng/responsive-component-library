@@ -502,11 +502,11 @@ export default{
             this.dropdown_position_data = output;
         },
         // expose
-        setloading(val){
+        setLoading(val){
             this.loading=val;
         }
     },
-    expose:['setloading'],
+    expose:['setLoading'],
 }
 </script>
 
