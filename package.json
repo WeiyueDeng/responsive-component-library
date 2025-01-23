@@ -7,7 +7,7 @@
   "style": "dist/pns-component-library.css",
   "exports": {
     ".": {
-      "require": "./dist/pns-component-library.cjs.js", 
+      "require": "./dist/pns-component-library.cjs.js",
       "import": "./dist/pns-component-library.es.js",
       "umd": "./dist/pns-component-library.umd.js",
       "style": "./dist/pns-component-library.css"
