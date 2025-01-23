@@ -12,7 +12,7 @@
       "umd": "./dist/pns-component-library.umd.js"
     }
   },
-  "style": "dist/styles.css",
+  "style": "./dist/pns-component-library.css",
   "type": "module",
   "scripts": {
     "dev": "vite",
