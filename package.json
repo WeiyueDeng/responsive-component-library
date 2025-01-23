@@ -2,17 +2,14 @@
   "name": "pns-component-library",
   "private": true,
   "version": "0.0.0",
-  "main": "dist/pns-component-library.umd.js",  
+  "main": "dist/pns-component-library.umd.js",
   "module": "dist/pns-component-library.es.js",
-  "style": "dist/pns-component-library.css",
   "exports": {
     ".": {
       "require": "./dist/pns-component-library.cjs.js",
       "import": "./dist/pns-component-library.es.js",
-      "umd": "./dist/pns-component-library.umd.js",
-      "style": "./dist/pns-component-library.css"
-    },
-    "./dist/pns-component-library.css": "./dist/pns-component-library.css"
+      "umd": "./dist/pns-component-library.umd.js"
+    }
   },
   "type": "module",
   "scripts": {
@@ -25,7 +22,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
-    "vite": "^6.0.5"
+    "vite": "^6.0.5",
+    "vite-plugin-css-injected-by-js": "^3.5.2"
   },
   "files": [
     "dist",
