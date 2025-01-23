@@ -2,9 +2,9 @@
   "name": "pns-component-library",
   "private": true,
   "version": "0.0.0",
-  "main": "dist/pns-component-library.cjs.js",  
+  "main": "dist/pns-component-library.umd.js",  
   "module": "dist/pns-component-library.es.js",
-  "umd:main": "dist/pns-component-library.umd.js",
+  "style": "dist/pns-component-library.css",
   "exports": {
     ".": {
       "require": "./dist/pns-component-library.cjs.js", 
@@ -13,7 +13,6 @@
       "style": "./dist/pns-component-library.css"
     }
   },
-  "style": "dist/pns-component-library.css",
   "type": "module",
   "scripts": {
     "dev": "vite",
