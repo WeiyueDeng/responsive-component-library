@@ -526,7 +526,6 @@ export default{
     border-radius: 4px;
 }
 .responsive-button-wrapper :deep(.component-loading-spinner)::after{
-    border-width: 2px;
     height:25px;
     width: 25px;
 }

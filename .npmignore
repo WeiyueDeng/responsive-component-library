@@ -1,0 +1,35 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+*.local
+
+# Exclude source files (raw .vue, .ts, etc.)
+src/
+
+# Exclude build configuration files
+vite.config.js
+
+# Exclude version control files
+.git/
+.gitignore
+
+index.html
+public/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
