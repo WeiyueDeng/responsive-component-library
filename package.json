@@ -11,7 +11,8 @@
       "import": "./dist/pns-component-library.es.js",
       "umd": "./dist/pns-component-library.umd.js",
       "style": "./dist/pns-component-library.css"
-    }
+    },
+    "./dist/pns-component-library.css": "./dist/pns-component-library.css"
   },
   "type": "module",
   "scripts": {
