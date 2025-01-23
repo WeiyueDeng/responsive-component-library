@@ -7,6 +7,8 @@ import SingleSelector from '@/components/SingleSelector.vue';
 // directives
 import component_loading from "@/directives/component_loading.js";
 
+import '@/styles.css';
+
 // Register components for global usage
 const components = { SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector };
 
