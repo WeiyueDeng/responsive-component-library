@@ -20,16 +20,16 @@ In your main.js, import the library and use it for your app instance.
 ### Step 3
 Now you should be able to access the components, directives and icons in the library. 
 
-## Available Components:
+## Components:
 - SimplifiedNotification
 - InputBox
 - SingleSelector
 - ResponsiveButton
 
-## Available Directives:
+## Directives:
 - component-loading
 
-## Available Icons:
+## Icons:
 If  `npm install pns-component-library`, and want to use any following icons: <br>
 <pre>import { iconsMap } from "pns-component-library</pre>
 iconsMap.[iconName] is the URL or Data URI (Uniform Resource Identifier) of the corresponding svg icon.
