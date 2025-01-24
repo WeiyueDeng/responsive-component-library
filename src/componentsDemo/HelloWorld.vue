@@ -222,7 +222,6 @@ import ResponsiveButton from '@/components/ResponsiveButton.vue';
 import eye_with_cross_icon from '@/assets/icons/eye_with_cross_icon.svg';
 import eye_icon from '@/assets/icons/eye_icon.svg';
 
-
 export default{
   props:{
     msg: String,
