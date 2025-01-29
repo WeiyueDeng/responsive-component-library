@@ -8,7 +8,7 @@ import SingleSelector from '@/components/SingleSelector.vue';
 import component_loading from "@/directives/component_loading.js";
 
 //composables (functions)
-import useWindowSize from "@/composables/useWindowSize.js";
+import { useWindowSize } from '@/composables/useWindowSize.js';
 
 import '@/style.css'; 
 
