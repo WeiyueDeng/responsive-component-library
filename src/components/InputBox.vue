@@ -124,18 +124,18 @@ export default{
             this.value = newVal;
         },
         value(newVal){
-            console.log('value: ', this.clearable && newVal && !this.disabled);
+            // console.log('value: ', this.clearable && newVal && !this.disabled);
             this.$emit('update:modelValue', newVal);
             this.$emit('input', newVal);
         },
         is_focus(newVal){
             if(newVal){
                 this.$refs['input-box'].focus();
-                console.log('focus');
+                // console.log('focus');
                 this.$emit('focus');
             }else{
                 this.$refs['input-box'].blur();
-                console.log('blur');
+                // console.log('blur');
                 this.$emit('blur');
             }
         }

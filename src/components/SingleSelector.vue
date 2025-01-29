@@ -216,7 +216,7 @@ export default{
             }
         },
         is_focus(newVal){
-            console.log('is_focus change', newVal);
+            // console.log('is_focus change', newVal);
             //pass dropdown visibility to parent
             this.$emit('visible-change', newVal);
             //pass focus and blur event to parent
@@ -247,7 +247,7 @@ export default{
             return output;
         },
         handleClickSingleSelector(){
-            console.log('handleClickSingleSelector(');
+            // console.log('handleClickSingleSelector');
             if(!this.disabled){
                 this.is_focus=!this.is_focus;
             }

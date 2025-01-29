@@ -64,7 +64,7 @@ export default{
     mounted(){
         // hide_after == 0: means never automatically hide
         // if hide_after has a non-zero value: means hide after hide_after milliseconds
-        console.log('auto hide',!this.hide_after, typeof this.hide_after);
+        // console.log('auto hide',!this.hide_after, typeof this.hide_after);
         if(this.hide_after && typeof this.hide_after === 'number'){
             this.autoClose();
         }
