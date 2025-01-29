@@ -27,7 +27,6 @@
   "files": [
     "dist",
     "src/composables",
-    "src/directives",
-    "README.md"
+    "src/directives"
   ]
 }
