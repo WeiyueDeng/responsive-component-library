@@ -7,6 +7,9 @@ import SingleSelector from '@/components/SingleSelector.vue';
 // directives
 import component_loading from "@/directives/component_loading.js";
 
+//composables (functions)
+import useWindowSize from "@/composables/useWindowSize.js";
+
 import '@/style.css'; 
 
 // Register components for global usage
@@ -18,7 +21,6 @@ const install = (app) => {
   });
   app.directive('component-loading', component_loading);
 };
-
 // Default export for Vue plugin installation
 export default { install };
 
@@ -40,6 +42,8 @@ export {
   SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, 
   //directives
   component_loading ,
+  //composables
+  useWindowSize,
   //all icons
   iconsMap,
 };
