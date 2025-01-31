@@ -22,7 +22,7 @@
         <br />
         <SingleSelector v-model = "single_selector_value"
         :filterable = "true"
-        :options = "single_selector_options"
+        :options = "single_selector_options_scroll"
         :clearable = "true">
         <template #prefix>
             <img src = "@/assets/icons/black_magnifying_glass_icon.svg" style = "width:100%; height:100%;"/>
@@ -31,7 +31,7 @@
         <br />
         <SingleSelector v-model = "single_selector_value"
         :filterable = "true"
-        :options = "single_selector_options"
+        :options = "single_selector_options_scroll"
         :clearable = "true"
         disabled/>
     </div>
@@ -52,6 +52,24 @@ export default{
                 {value: "3", label: "Option 3"},
                 {value: "4", label: "Option 4"},
             ],
+            single_selector_options_scroll:[
+                {value: "1", label: "Option 1"},
+                {value: "2", label: "Option 2"},
+                {value: "3", label: "Option 3"},
+                {value: "4", label: "Option 4"},
+                {value: "11", label: "Option 1"},
+                {value: "21", label: "Option 2"},
+                {value: "31", label: "Option 3"},
+                {value: "41", label: "Option 4"},
+                {value: "12", label: "Option 1"},
+                {value: "22", label: "Option 2"},
+                {value: "32", label: "Option 3"},
+                {value: "42", label: "Option 4"},
+                {value: "13", label: "Option 1"},
+                {value: "23", label: "Option 2"},
+                {value: "33", label: "Option 3"},
+                {value: "43", label: "Option 4"},
+            ]
         }
     },
     watch:{

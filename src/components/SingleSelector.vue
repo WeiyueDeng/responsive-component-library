@@ -56,7 +56,7 @@
             <!-- suffix part end -->
 
             <!--selector dropdown part -->
-            <div v-if = "is_focus" class = "single-selector-dropdown">
+            <div v-if = "is_focus" class = "single-selector-dropdown" ref = "single-selector-dropdown">
                 <div v-if = "options_shown && options_shown.length>0" class = "options-list">
                     <div 
                     v-for="item in options_shown"
@@ -227,6 +227,11 @@ export default{
                         this.$refs['filter-input']?.focus();
                     })
                 }
+                //check overflow to set padding
+                this.$nextTick(()=>{
+                    this.checkWhetherDropdownIsOverflow();
+                })
+                
             }else{
                 this.$emit('blur');
             }
@@ -236,6 +241,13 @@ export default{
         }
     },
     methods:{
+        checkWhetherDropdownIsOverflow(){
+            if(this.$refs['single-selector-dropdown'].scrollHeight > this.$refs['single-selector-dropdown'].clientHeight){
+                this.$refs['single-selector-dropdown'].style.padding = "8px 1px 8px 8px";
+            }else{
+                this.$refs['single-selector-dropdown'].style.padding = "8px";
+            }
+        },
         findCorrespondingLabelViaValue(value){
             //if not find the corresponding label, return the value itself
             var output = value;
@@ -455,7 +467,7 @@ export default{
     width: inherit;
     height: fit-content;
     max-height: 233px;
-    padding:8px 11px;
+    padding:8px;
     box-sizing: border-box;
 
     border-radius: 4px;
@@ -467,6 +479,23 @@ export default{
     z-index: 1000;
     top:50px;
     left:0px;
+}
+.single-selector-dropdown::-webkit-scrollbar{
+    width:7px;
+}
+.single-selector-dropdown::-webkit-scrollbar-track{
+    border-radius: 10px;
+    background-color: transparent;
+}
+.single-selector-dropdown::-webkit-scrollbar-thumb{
+    background-color: transparent;
+}
+.single-selector-dropdown:hover::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    border-top: 2px solid #FFFFFF;
+    border-bottom: 2px solid #FFFFFF;
+    border-right: 2px solid #FFFFFF;
+    background-color: #c4c4c4;
 }
 .no-data-notes{
     width: 100%;
@@ -513,6 +542,15 @@ export default{
 }
 .message-container.alert{
     color: #E0961E;
+}
+@media only screen and (max-width:1024px){
+    .single-selector-dropdown::-webkit-scrollbar-thumb{
+        border-radius: 10px;
+        border-top: 2px solid #FFFFFF;
+        border-bottom: 2px solid #FFFFFF;
+        border-right: 2px solid #FFFFFF;
+        background-color: #c4c4c4;
+    }
 }
 @media only screen and (max-width:767px){
     .single-selector-unit-wrapper{
