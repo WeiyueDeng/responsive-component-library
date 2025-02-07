@@ -481,7 +481,7 @@ export default{
     left:0px;
 }
 .single-selector-dropdown::-webkit-scrollbar{
-    width:7px;
+    width:8px;
 }
 .single-selector-dropdown::-webkit-scrollbar-track{
     border-radius: 10px;
@@ -492,10 +492,13 @@ export default{
 }
 .single-selector-dropdown:hover::-webkit-scrollbar-thumb{
     border-radius: 10px;
-    border-top: 2px solid #FFFFFF;
-    border-bottom: 2px solid #FFFFFF;
-    border-right: 2px solid #FFFFFF;
+    border: 2px solid #FFFFFF;
     background-color: #c4c4c4;
+}
+.single-selector-dropdown:hover::-webkit-scrollbar-thumb:hover{
+    border-radius: 10px;
+    border: 2px solid #FFFFFF;
+    background-color: #A8A8A8;
 }
 .no-data-notes{
     width: 100%;
@@ -546,9 +549,7 @@ export default{
 @media only screen and (max-width:1024px){
     .single-selector-dropdown::-webkit-scrollbar-thumb{
         border-radius: 10px;
-        border-top: 2px solid #FFFFFF;
-        border-bottom: 2px solid #FFFFFF;
-        border-right: 2px solid #FFFFFF;
+        border: 2px solid #FFFFFF;
         background-color: #c4c4c4;
     }
 }
