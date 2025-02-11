@@ -1,13 +1,12 @@
 <template>
     <div style = "width: 200px; border: 1px pink solid; border-radius: 4px; padding:10px">
-        <div>Samples Display for SingleSelector.vue</div> <br />
-        <div>
+        <h1>Samples Display for SingleSelector.vue</h1> <br />
+        <h2>Clearable SingleSelector with operations of focus, blur, alert, error via script</h2> <br />
         <div @click = "(event)=>{$refs['target-selector'].focus(); event.stopPropagation()}">click to focus</div>
         <div @click = "(event)=>{$refs['target-selector'].blur(); event.stopPropagation()}">click to blur</div>
         <div @click = "$refs['target-selector'].alert('alert msg 2312312 312331231')">click to show alert</div>
         <div @click = "$refs['target-selector'].error('error msg 12312312 312312312313123')">click to show error</div>
         <div @click = "$refs['target-selector'].removeAlertOrErrorEffect()">click to remove alert or error</div>
-        </div>
         <br />
         <SingleSelector ref = "target-selector"
         v-model = "single_selector_value"
@@ -15,20 +14,23 @@
         clearable />
         <br />
         <br />
+        <h2>Clearable and filterable SingleSelector</h2> <br />
         <SingleSelector v-model = "single_selector_value"
         :filterable = "true"
         :options = "single_selector_options"
         :clearable = "true"/>
         <br />
+        <h3>Clearable and filterable SingleSelector with prefix</h3> <br />
         <SingleSelector v-model = "single_selector_value"
         :filterable = "true"
         :options = "single_selector_options_scroll"
         :clearable = "true">
-        <template #prefix>
-            <img src = "@/assets/icons/black_magnifying_glass_icon.svg" style = "width:100%; height:100%;"/>
-        </template>
+            <template #prefix>
+                <img src = "@/assets/icons/black_magnifying_glass_icon.svg" style = "width:100%; height:100%;"/>
+            </template>
         </SingleSelector>
         <br />
+        <h2>Disabled, clearable and filterable SingleSelector</h2> <br />
         <SingleSelector v-model = "single_selector_value"
         :filterable = "true"
         :options = "single_selector_options_scroll"

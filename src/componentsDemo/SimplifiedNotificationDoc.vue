@@ -1,6 +1,6 @@
 <template>
     <div style = "width: 1000px; border: 1px pink solid; border-radius: 4px; padding:10px">
-        <div>Samples Display for SimplifiedNotification.vue</div> <br />
+        <h1>Samples Display for SimplifiedNotification.vue</h1> <br />
         <SimplifiedNotification title="Cutomized Title" content = "Cutomized content. This is a notification that cannot close manually." :with_close_btn = "false" />
         <br />
         <SimplifiedNotification title="Cutomized Title" content = "Cutomized content. This is a notification that can close manually." build_in_theme = "yellow" :with_close_btn = "true" />
