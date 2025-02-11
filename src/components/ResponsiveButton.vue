@@ -8,6 +8,7 @@
             {'no-display-name': !display_name},
             {'has-prefix':has_prefix},
             {'has-suffix':has_suffix},
+            {'held':is_button_held},
             build_in_theme,
             customized_class,
             // only works when this button has dropdown
@@ -129,6 +130,10 @@ export default{
             type:String,
             default:''
         },
+        hold:{
+            type:Boolean,
+            default:false,
+        },
         disabled:{
             type:Boolean,
             default:false,
@@ -169,6 +174,7 @@ export default{
             dropdown_position_data:{},
             nested_dropdown_option_button_history_stack:null,
             loading:false,
+            is_button_held:this.hold,
         }
     },
     emits:[
@@ -308,6 +314,9 @@ export default{
                     this.nested_dropdown_option_button_history_stack = [];
                 }
             }
+        },
+        hold(newVal){
+            this.is_button_held = newVal;
         }
     },
     methods:{
@@ -504,9 +513,12 @@ export default{
         // expose
         setLoading(val){
             this.loading=val;
+        },
+        setHold(val){
+            this.is_button_held=val;
         }
     },
-    expose:['setLoading'],
+    expose:['setLoading', 'setHold'],
 }
 </script>
 
@@ -704,13 +716,17 @@ export default{
     background: #FFF;
     color: #1E4670;
 }
+.outlined-primary.held:hover,
 .outlined-primary:hover{
     background: #ECF2F8;
 }
+.outlined-primary.held,
+.outlined-primary.held:active,
 .outlined-primary.focused,
 .outlined-primary:active{
     background: linear-gradient(0deg, rgba(28, 27, 31, 0.08) 0%, rgba(28, 27, 31, 0.08) 100%), #ECF2F8;
 }
+.outlined-primary.held.disabled,
 .outlined-primary.disabled,
 .outlined-primary.disabled:hover,
 .outlined-primary.disabled.focused,
@@ -725,13 +741,17 @@ export default{
     background: #1E4670;
     color: #FFF;
 }
+.filled-primary.held:hover,
 .filled-primary:hover{
     background: #022A53;
 }
+.filled-primary.held,
+.filled-primary.held:active,
 .filled-primary.focused,
 .filled-primary:active{
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.08) 100%), #022A53;
 }
+.filled-primary.held.disabled,
 .filled-primary.disabled,
 .filled-primary.disabled:hover,
 .filled-primary.disabled.focused
@@ -745,13 +765,17 @@ export default{
     background: #FFF;
     color: #1E4670;
 }
+.text-primary.held:hover,
 .text-primary:hover{
     background: #ECF2F8;
 }
+.text-primary.held,
+.text-primary.held:active,
 .text-primary.focused,
 .text-primary:active{
     background: linear-gradient(0deg, rgba(28, 27, 31, 0.08) 0%, rgba(28, 27, 31, 0.08) 100%), #ECF2F8;
 }
+.text-primary.held.disabled,
 .text-primary.disabled,
 .text-primary.disabled:hover,
 .text-primary.disabled.focused,
@@ -764,13 +788,17 @@ export default{
     background: #FFF;
     color: #20A8C3;
 }
+.outlined-secondary.held:hover,
 .outlined-secondary:hover{
     background: #E8F0F4;
 }
+.outlined-secondary.held,
+.outlined-secondary.held:active,
 .outlined-secondary.focused,
 .outlined-secondary:active{
     background: linear-gradient(0deg, rgba(28, 27, 31, 0.08) 0%, rgba(28, 27, 31, 0.08) 100%), #E8F0F4;
 }
+.outlined-secondary.held.disabled,
 .outlined-secondary.disabled,
 .outlined-secondary.disabled:hover,
 .outlined-secondary.disabled.focused,
@@ -785,14 +813,18 @@ export default{
     background: #20A8C3;
     color: #FFF;
 }
+.filled-secondary.held:hover,
 .filled-secondary:hover{
     background: linear-gradient(0deg, rgba(28, 27, 31, 0.08) 0%, rgba(28, 27, 31, 0.08) 100%), #20A8C3;
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.30), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
 }
+.filled-secondary.held,
+.filled-secondary.held:active,
 .filled-secondary.focused,
 .filled-secondary:active{
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.08) 100%), #20A8C3;
 }
+.filled-secondary.held.disabled,
 .filled-secondary.disabled,
 .filled-secondary.disabled:hover,
 .filled-secondary.disabled.focused,
@@ -807,13 +839,17 @@ export default{
     background: #FFFFFF;
     color: #20A8C3;
 }
+.text-secondary.held:hover,
 .text-secondary:hover{
     background: #E8F0F4;
 }
+.text-secondary.held,
+.text-secondary.held:active,
 .text-secondary.focused,
 .text-secondary:active{
     background: linear-gradient(0deg, rgba(28, 27, 31, 0.08) 0%, rgba(28, 27, 31, 0.08) 100%), #E8F0F4;
 }
+.text-secondary.held.disabled,
 .text-secondary.disabled,
 .text-secondary.disabled:hover,
 .text-secondary.disabled.focused,
