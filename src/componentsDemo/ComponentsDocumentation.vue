@@ -14,6 +14,11 @@
   <br />
   <!-- Samples Display for ResponsiveButton.vue -->
   <ResponsiveButtonDoc />
+
+  <br />
+  <!-- Samples Display for Directives -->
+  <DirectivesDoc />
+  
   <br />
 </div>
 </template>
@@ -23,6 +28,7 @@ import SimplifiedNotificationDoc from "@/componentsDemo/SimplifiedNotificationDo
 import InputBoxDoc from '@/componentsDemo/InputBoxDoc.vue';
 import SingleSelectorDoc from '@/componentsDemo/SingleSelectorDoc.vue';
 import ResponsiveButtonDoc from '@/componentsDemo/ResponsiveButtonDoc.vue';
+import DirectivesDoc from '@/componentsDemo/DirectivesDoc.vue';
 
 
 export default{
@@ -31,6 +37,7 @@ export default{
     InputBoxDoc,
     SingleSelectorDoc,
     ResponsiveButtonDoc,
+    DirectivesDoc,
   },
 }
 </script>

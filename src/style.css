@@ -23,8 +23,87 @@
   animation: spin 2s linear infinite;
 }
 
+.whole-page-loading-mask{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.whole-page-loading-spinner-container{
+  width:123px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap:20px;
+}
+.whole-page-loading-spinner-icon-container{
+  width: 70px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.whole-page-loading-progress-circle-div{
+  content:'';
+  width: 60px;
+  height: 60px;
+  border: 5px solid #ccc;
+  border-top-color: #20A8C3;
+  border-radius: 100%;
+  animation: spin 2s linear infinite;
+}
+.whole-page-loading-hourglass-icon-div {
+  content: url('@/assets/icons/cyan_hourglass_icon.svg');
+  height: 24px;
+  width: 24px;
+  animation: flip 5s infinite;
+  position: absolute;
+  top:23px;
+  left:23px;
+}
+.whole-page-loading-text-div::after{
+/* need to use ::after, since the content property is used for pseudo-elements like ::before and ::after, not directly on a div or other HTML elements. */
+  content:"Loading";
+  color: #20A8C3;
+  font-family: 'Roboto';
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 36px;
+  animation: loading_dots 3s steps(1) infinite;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
+}
+@keyframes flip {
+  0% {
+    transform: rotate(0deg); /* Original state */
+  }
+  20% {
+    transform: rotate(180deg); /* Upside down */
+  }
+  50% {
+    transform: rotate(180deg); /* Upside down */
+  }
+  70%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(0deg);
+  }
+}
+@keyframes loading_dots {
+  0% { content: "Loading"; }
+  25% { content: "Loading."; }
+  50% { content: "Loading.."; }
+  75% { content: "Loading..."; }
 }

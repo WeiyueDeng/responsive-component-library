@@ -6,20 +6,26 @@ import SingleSelector from '@/components/SingleSelector.vue';
 
 // directives
 import component_loading from "@/directives/component_loading.js";
+import whole_page_loading from '@/directives/whole_page_loading.js';
 
 //composables (functions)
 import { useWindowSize } from '@/composables/useWindowSize.js';
 
 import '@/style.css'; 
 
-// Register components for global usage
+// Register components and directives for global usage
 const components = { SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector };
-
+const directives = {
+  'component-loading': component_loading,
+  'whole-page-loading': whole_page_loading,
+};
 const install = (app) => {
   Object.keys(components).forEach((name) => {
     app.component(name, components[name]);
   });
-  app.directive('component-loading', component_loading);
+  Object.keys(directives).forEach((name) => {
+    app.directive(name, directives[name]);
+  });
 };
 // Default export for Vue plugin installation
 export default { install };
@@ -42,6 +48,7 @@ export {
   SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, 
   //directives
   component_loading ,
+  whole_page_loading,
   //composables
   useWindowSize,
   //all icons
