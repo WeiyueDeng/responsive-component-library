@@ -95,7 +95,7 @@ import black_arrow_down from '@/assets/icons/black_arrow_down.svg'
 export default{
     props:{
         modelValue:{
-            type:[String, Number],
+            type: String,
             default:''
         },
         options:{
