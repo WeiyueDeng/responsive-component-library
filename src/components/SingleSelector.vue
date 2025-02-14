@@ -95,7 +95,7 @@ import black_arrow_down from '@/assets/icons/black_arrow_down.svg'
 export default{
     props:{
         modelValue:{
-            type:String,
+            type:[String, Number],
             default:''
         },
         options:{
@@ -255,6 +255,7 @@ export default{
                 if(item.value == value){
                     output = item.label;
                 }
+                console.log('item.value == value',item, value, item.value == value);
             }
             return output;
         },

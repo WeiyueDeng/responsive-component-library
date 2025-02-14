@@ -17,8 +17,12 @@
 
   <br />
   <!-- Samples Display for Directives -->
+  <CheckboxDoc />
+
+  <br />
+  <!-- Samples Display for Directives -->
   <DirectivesDoc />
-  
+
   <br />
 </div>
 </template>
@@ -29,6 +33,7 @@ import InputBoxDoc from '@/componentsDemo/InputBoxDoc.vue';
 import SingleSelectorDoc from '@/componentsDemo/SingleSelectorDoc.vue';
 import ResponsiveButtonDoc from '@/componentsDemo/ResponsiveButtonDoc.vue';
 import DirectivesDoc from '@/componentsDemo/DirectivesDoc.vue';
+import CheckboxDoc from "@/componentsDemo/CheckboxDoc.vue";
 
 
 export default{
@@ -38,6 +43,7 @@ export default{
     SingleSelectorDoc,
     ResponsiveButtonDoc,
     DirectivesDoc,
+    CheckboxDoc
   },
 }
 </script>
