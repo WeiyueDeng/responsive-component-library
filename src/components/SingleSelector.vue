@@ -255,7 +255,7 @@ export default{
                 if(item.value == value){
                     output = item.label;
                 }
-                console.log('item.value == value',item, value, item.value == value);
+                // console.log('item.value == value',item, value, item.value == value);
             }
             return output;
         },

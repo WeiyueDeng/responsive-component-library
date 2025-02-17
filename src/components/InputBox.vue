@@ -27,6 +27,7 @@
             ref = "input-box"
             :disabled = "disabled"
             :type="type" :placeholder="placeholder"
+            :autocomplete = "autocomplete"
             @keydown = "handleKeydown($event)">
             <!-- input box part end -->
 
@@ -86,6 +87,10 @@ export default{
         disabled:{
             type: Boolean,
             default: false
+        },
+        autocomplete:{
+            type: String,
+            default: 'off'
         }
     },
     mounted(){
