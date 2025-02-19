@@ -1,13 +1,49 @@
 <template>
     <div style = "width: 500px; border: 1px pink solid; border-radius: 4px; padding:10px">
         <h1>Samples Display for Checkbox</h1> <br />
-        <Checkbox :label = 'test_label' />
+        <h2>green theme</h2> <br />
+        <Checkbox v-model = "green_theme_checked" :label = 'test_label' 
+        :indeterminate = "is_indeterminate"/> <br />
+        <div @click = "is_indeterminate = !is_indeterminate">Click to set/unset indeterminate</div> <br />
+        <div @click = "green_theme_checked = !green_theme_checked">Click to check/uncheck</div> <br />
+        <div>***NOTES: If both indeterminate and checked, shown as indeterminate</div> <br />
+        <div>***NOTES: If the value passed to the indeterminate prop changes to be true, the checked value will be automatically set to be false</div> <br />
         <br />
-        <Checkbox :label = 'test_label'>
+        <h3>autofocus</h3> <br />
+        <Checkbox v-model = "green_theme_checked" :label = 'test_label' ref = "autofocus-target-1" :autofocus = "true"/>
+        <br />
+        <div @click = "$refs['autofocus-target-1'].focus()">Click to focus</div> <br />
+        <div @click = "$refs['autofocus-target-1'].blur()">Click to blur</div> <br />
+        <h3>disabled</h3> <br />
+        <Checkbox :disabled ="true" v-model = "checked" ref = "autofocus-target-2">
+            <div>
+                text 2 (pass label via slot), v-model control
+            </div>
+        </Checkbox>
+        <br />
+        <div @click = "$refs['autofocus-target-2'].focus()">Click to focus</div> <br />
+        <div @click = "$refs['autofocus-target-2'].blur()">Click to blur</div> <br />
+        <div @click = "checked=!checked">Click to check/uncheck</div> <br />
+        
+        
+        <br />
+        <h2>primary-blue theme</h2> <br />
+        <Checkbox :label = 'test_label' built_in_theme = "primary-blue">
                 <div>
                     text 2 (pass label via slot)
                 </div>
         </Checkbox>
+        <h2>secondary-blue theme</h2> <br />
+        <Checkbox :label = 'test_label' built_in_theme = "secondary-blue" />
+        <br />
+
+        <h2>red theme</h2> <br />
+        <Checkbox :label = 'test_label' built_in_theme = "red" />
+        <br />
+
+        <h2>disabled, secondary-blue, unchecked/checked</h2> <br />
+        <Checkbox v-model = "initial_checked_value" :label = 'test_label' built_in_theme = "secondary-blue" :disabled = "true"/>
+        <Checkbox v-model = "initial_unchecked_value" :label = 'test_label' built_in_theme = "secondary-blue" :disabled = "true"/>
         <br />
     </div>
 </template>
@@ -20,7 +56,17 @@ export default{
     },
     data(){
         return{
-            test_label: "text 1"
+            test_label: "text 1 (pass label via prop)",
+            initial_checked_value:true,
+            initial_unchecked_value:false,
+            green_theme_checked:false,
+            checked:true,
+            is_indeterminate:false,
+        }
+    },
+    methods:{
+        handleAutofocus(){
+            console.log('focus checkbox', this.$refs['autofocus-target'].focus());
         }
     }
 }
