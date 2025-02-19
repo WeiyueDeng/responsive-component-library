@@ -6,7 +6,8 @@
         show_error ? 'red': built_in_theme,
         customized_class,
         {'disabled':disabled},
-        ]">
+        ]"
+        ref = "checkbox-container">
             <div :class = "[
                 'checkbox-input',
                 {'checked':checked},
@@ -30,10 +31,12 @@
             </div>
         </label>
         <div v-if = "show_error && message_notification_text" 
+        ref = "message-container"
         :class = "[
             'message-container',
             {'error': show_error},
-        ]">
+        ]"
+        :style = "{'--message-container-width--':checkbox_container_width}">
             {{ message_notification_text }}
         </div>
     </div>
@@ -78,11 +81,19 @@ export default{
             default:false,
         }
     },
+    mounted(){
+        //initiate width used for error message if the initial value of show_error is true
+        if(this.show_error){
+            const cur_width = this.getCheckboxContainerWidth();
+            this.checkbox_container_width = cur_width ? `${cur_width}px`:'100%';
+        }
+    },
     data(){
         return{
             checked: this.modelValue,
             show_error:false,
             message_notification_text:"",
+            checkbox_container_width: '100%',
         }
     },
     emits:[
@@ -105,9 +116,18 @@ export default{
             if(newVal){
                 this.checked = false;
             }
+        },
+        show_error(newVal){
+            if(newVal){
+                const cur_width = this.getCheckboxContainerWidth();
+                this.checkbox_container_width = cur_width ? `${cur_width}px`:'100%';
+            }
         }
     },
     methods:{
+        getCheckboxContainerWidth(){
+            return this.$refs['checkbox-container']?.offsetWidth ?? 0;
+        },
         // exposes
         focus(){
             this.$refs['checkbox-input-original'].focus();
@@ -129,15 +149,11 @@ export default{
 </script>
 
 <style scoped>
-.checkbox-unit-wrapper{
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-}
 .checkbox-container{
     display: flex;
     cursor: pointer;
     width: fit-content;
+    padding:8px 0px;
 }
 .checkbox-container.disabled{
     cursor: not-allowed;
@@ -189,6 +205,9 @@ export default{
     background-color: rgba(28, 27, 31, 0.2);
     z-index: -1;
     position: absolute;
+}
+.red .checkbox-input-shown:hover::before{
+    background-color: rgba(222, 88, 63, 0.20);
 }
 .checked .checkbox-input-shown:hover::before{
     content:'';
@@ -279,6 +298,9 @@ export default{
 .checkbox-input-original:focus + .checkbox-input-shown:hover::before{
     background-color: rgba(28, 27, 31, 0.08);
 }
+.red .checkbox-input-original:focus + .checkbox-input-shown::before{
+    background-color: rgba(222, 88, 63, 0.32);
+}
 .green .checked .checkbox-input-original:focus + .checkbox-input-shown::before{
     background-color: rgba(132, 188, 59, 0.32);
 }
@@ -318,10 +340,13 @@ export default{
     border-radius: 2px;
     box-sizing: border-box;
 }
-
-.disabled .checkbox-input-shown-checkbox{
-    border-color:#979797;
+.red .checkbox-input-shown-checkbox{
+    border-color:#DE583F;
     background-color: #FFFFFF;
+}
+.disabled .checkbox-input-shown-checkbox{
+    border-color:#979797 !important;
+    background-color: #FFFFFF !important;
 }
 .disabled .indeterminate .checkbox-input-shown-checkbox,
 .disabled .checked .checkbox-input-shown-checkbox{
@@ -393,18 +418,19 @@ export default{
 }
 
 .message-container{
+    width: var(--message-container-width--, 100%);
     font-family: 'Roboto';
     font-weight: 400;
 }
 .message-container.error{
     color: #DE583F;
 }
-.small .message-container{
+.small + .message-container{
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.25px;
 }
-.medium .message-container{
+.medium + .message-container{
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0.5px;
@@ -433,7 +459,7 @@ export default{
         top:-8px;
         left:-8px;
     }
-    .medium .message-container{
+    .medium + .message-container{
         font-size: 14px;
         line-height: 20px;
         letter-spacing: 0.25px;

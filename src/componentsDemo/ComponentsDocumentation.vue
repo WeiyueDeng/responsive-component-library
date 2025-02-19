@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style = "display: flex; align-items: center; flex-direction: column;">
   <!-- Samples Display for SimplifiedNotification.vue -->
   <SimplifiedNotificationDoc />
 

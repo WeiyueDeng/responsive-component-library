@@ -3,17 +3,24 @@
         <h1>Samples Display for Checkbox</h1> <br />
         <h2>green theme</h2> <br />
         <Checkbox v-model = "green_theme_checked" :label = 'test_label' 
-        :indeterminate = "is_indeterminate"/> <br />
-        <div @click = "is_indeterminate = !is_indeterminate">Click to set/unset indeterminate</div> <br />
-        <div @click = "green_theme_checked = !green_theme_checked">Click to check/uncheck</div> <br />
+        :indeterminate = "is_indeterminate" ref = "indeterminate-target-1" /> <br />
+        <div style = "cursor:pointer" @click = "is_indeterminate = !is_indeterminate">Click to set/unset indeterminate</div> <br />
+        <div style = "cursor:pointer" @click = "green_theme_checked = !green_theme_checked">Click to check/uncheck</div> <br />
+        <div style = "cursor:pointer" @click = "$refs['indeterminate-target-1'].alert('This is a customized error message passed via the expose of the checkbox component')">Click to show error</div> <br />
+        <div style = "cursor:pointer" @click = "$refs['indeterminate-target-1'].removeAlertOrErrorEffect()">Click to remove alert</div> <br />
+        <div style = "cursor:pointer" @click = "$refs['indeterminate-target-1'].focus()">Click to focus</div> <br />
+        <div style = "cursor:pointer" @click = "$refs['indeterminate-target-1'].blur()">Click to blur</div> <br />
+
         <div>***NOTES: If both indeterminate and checked, shown as indeterminate</div> <br />
         <div>***NOTES: If the value passed to the indeterminate prop changes to be true, the checked value will be automatically set to be false</div> <br />
         <br />
         <h3>autofocus</h3> <br />
         <Checkbox v-model = "green_theme_checked" :label = 'test_label' ref = "autofocus-target-1" :autofocus = "true"/>
         <br />
-        <div @click = "$refs['autofocus-target-1'].focus()">Click to focus</div> <br />
-        <div @click = "$refs['autofocus-target-1'].blur()">Click to blur</div> <br />
+        <div style = "cursor:pointer" @click = "$refs['autofocus-target-1'].focus()">Click to focus</div> <br />
+        <div style = "cursor:pointer" @click = "$refs['autofocus-target-1'].blur()">Click to blur</div> <br />
+        <div style = "cursor:pointer" @click = "$refs['autofocus-target-1'].alert('This is a customized error message passed via the expose of the checkbox component')">Click to show error</div> <br />
+        <div style = "cursor:pointer" @click = "$refs['autofocus-target-1'].removeAlertOrErrorEffect()">Click to remove alert</div> <br />
         <h3>disabled</h3> <br />
         <Checkbox :disabled ="true" v-model = "checked" ref = "autofocus-target-2">
             <div>
@@ -21,9 +28,9 @@
             </div>
         </Checkbox>
         <br />
-        <div @click = "$refs['autofocus-target-2'].focus()">Click to focus</div> <br />
-        <div @click = "$refs['autofocus-target-2'].blur()">Click to blur</div> <br />
-        <div @click = "checked=!checked">Click to check/uncheck</div> <br />
+        <div style = "cursor:pointer" @click = "$refs['autofocus-target-2'].focus()">Click to focus</div> <br />
+        <div style = "cursor:pointer" @click = "$refs['autofocus-target-2'].blur()">Click to blur</div> <br />
+        <div style = "cursor:pointer" @click = "checked=!checked">Click to check/uncheck</div> <br />
         
         
         <br />
