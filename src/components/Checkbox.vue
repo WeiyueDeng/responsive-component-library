@@ -416,7 +416,9 @@ export default{
     line-height: 24px; /* 150% */
     letter-spacing: 0.5px;
 }
-
+.disabled .checkbox-container-label-wrapper{
+    color: #979797;
+}
 .message-container{
     width: var(--message-container-width--, 100%);
     font-family: 'Roboto';
