@@ -3,6 +3,8 @@ import SimplifiedNotification from '@/components/SimplifiedNotification.vue';
 import ResponsiveButton from '@/components/ResponsiveButton.vue';
 import InputBox from "@/components/InputBox.vue";
 import SingleSelector from '@/components/SingleSelector.vue';
+import Checkbox from '@/components/Checkbox.vue';
+import Radio from '@/components/Radio.vue';
 
 // directives
 import component_loading from "@/directives/component_loading.js";
@@ -14,7 +16,7 @@ import { useWindowSize } from '@/composables/useWindowSize.js';
 import '@/style.css'; 
 
 // Register components and directives for global usage
-const components = { SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector };
+const components = { SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio };
 const directives = {
   'component-loading': component_loading,
   'whole-page-loading': whole_page_loading,
@@ -45,7 +47,7 @@ for (const path in icons) {
 // Named exports for individual component imports
 export { 
   //components
-  SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, 
+  SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio,
   //directives
   component_loading ,
   whole_page_loading,

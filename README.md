@@ -25,6 +25,8 @@ Now you should be able to access the components, directives and icons in the lib
 - InputBox
 - SingleSelector
 - ResponsiveButton
+- Checkbox
+- Radio (support group radio)
 
 ## Directives:
 - component-loading
