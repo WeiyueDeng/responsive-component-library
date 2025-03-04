@@ -95,7 +95,7 @@ import black_arrow_down from '@/assets/icons/black_arrow_down.svg'
 export default{
     props:{
         modelValue:{
-            type: String,
+            type: [String, Number, Boolean, Object, Array],
             default:''
         },
         options:{
@@ -252,7 +252,7 @@ export default{
             //if not find the corresponding label, return the value itself
             var output = value;
             for(const item of this.options){
-                if(item.value == value){
+                if(JSON.stringify(item.value) == JSON.stringify(value)){
                     output = item.label;
                 }
                 // console.log('item.value == value',item, value, item.value == value);
@@ -266,6 +266,7 @@ export default{
             }
         },
         handleSelectOption(item){
+            // console.log('handleSelectOption',item);
             this.selected_item = item.value;
             this.selected_item_label = item.label;
             //blur after select

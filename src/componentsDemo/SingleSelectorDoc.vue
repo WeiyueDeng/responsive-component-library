@@ -15,9 +15,34 @@
         <br />
         <br />
         <h2>Clearable and filterable SingleSelector</h2> <br />
+        <h3>option value string</h3> <br />
         <SingleSelector v-model = "single_selector_value"
         :filterable = "true"
         :options = "single_selector_options"
+        :clearable = "true"/>
+        <br />
+        <h3>option value number</h3> <br />
+        <SingleSelector v-model = "single_selector_value_number"
+        :filterable = "true"
+        :options = "single_selector_options_value_number"
+        :clearable = "true"/>
+        <br />
+        <h3>option value boolean</h3> <br />
+        <SingleSelector v-model = "single_selector_value_boolean"
+        :filterable = "true"
+        :options = "single_selector_options_value_boolean"
+        :clearable = "true"/>
+        <br />
+        <h3>option value array</h3> <br />
+        <SingleSelector v-model = "single_selector_value_array"
+        :filterable = "true"
+        :options = "single_selector_options_value_array"
+        :clearable = "true"/>
+        <br />
+        <h3>option value object</h3> <br />
+        <SingleSelector v-model = "single_selector_value_object"
+        :filterable = "true"
+        :options = "single_selector_options_value_object"
         :clearable = "true"/>
         <br />
         <h3>Clearable and filterable SingleSelector with prefix</h3> <br />
@@ -47,7 +72,13 @@ export default{
     },
     data(){
         return{
-            single_selector_value: "123",
+            single_selector_value: "3",
+            single_selector_value_number: 1,
+            single_selector_value_boolean: true,
+            single_selector_value_array: [1],
+            single_selector_value_object: {
+                1:'1',
+            },
             single_selector_options: [
                 {value: "1", label: "Option 1"},
                 {value: "2", label: "Option 2"},
@@ -71,13 +102,53 @@ export default{
                 {value: "23", label: "Option 2"},
                 {value: "33", label: "Option 3"},
                 {value: "43", label: "Option 4"},
-            ]
+            ],
+            single_selector_options_value_number: [
+                {value: 1, label: "Option 1"},
+                {value: 2, label: "Option 2"},
+                {value: 3, label: "Option 3"},
+                {value: 4, label: "Option 4"},
+            ],
+            single_selector_options_value_boolean: [
+                {value: true, label: "Yes"},
+                {value: false, label: "No"},
+            ],
+            single_selector_options_value_array: [
+                {value: [1], label: "Option 1"},
+                {value: [2], label: "Option 2"},
+                {value: [3], label: "Option 3"},
+                {value: [4], label: "Option 4"},
+            ],
+            single_selector_options_value_object: [
+                {value: {1:'1'}, label: "Option 1"},
+                {value: {2:'2'}, label: "Option 2"},
+                {value: {3:'3'}, label: "Option 3"},
+                {value: {4:'4'}, label: "Option 4"},
+            ],
         }
     },
     watch:{
         single_selector_value(newVal){
-            console.log("single_selector_value: ", newVal);
-        }
+            console.log(`single_selector_value:`, newVal);
+            alert(`single_selector_value:${newVal}`);
+        },
+        single_selector_value_number(newVal){
+            console.log(`single_selector_value_number:`, newVal);
+            alert(`single_selector_value_number:${JSON.stringify(newVal)}`);
+        },
+        single_selector_value_boolean(newVal){
+            console.log(`single_selector_value_boolean:`, newVal);
+            alert(`single_selector_value_boolean:${JSON.stringify(newVal)}`);
+        },
+        single_selector_value_array(newVal){
+            console.log(`single_selector_value_array:`, newVal);
+            alert(`single_selector_value_array:${JSON.stringify(newVal)}`);
+        },
+        single_selector_value_object(newVal){
+            console.log(`single_selector_value_object:`, newVal);
+            alert(`single_selector_value_object:${JSON.stringify(newVal)}`);
+        },
+        
     }
 }
 </script>
