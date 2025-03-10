@@ -221,6 +221,9 @@ export default{
 .disabled .radio-input-shown:hover::before{
     background-color: transparent !important;
 }
+.red .radio-input-shown:hover::before{
+    background-color: #F8DED9;
+}
 .primary-blue .checked .radio-input-shown:hover::before{
     background-color: #D2DAE2;
 }
@@ -228,6 +231,9 @@ export default{
     background-color: #D2EEF3;
 }
 /* pressed */
+.red .radio-input-shown:active::before{
+    background-color: #F5CDC6;
+}
 .primary-blue .radio-input-shown:active::before{
     background-color: #BBC3CD;
 }
@@ -259,6 +265,9 @@ export default{
     width:32px;
     height:32px
 }
+.red .radio-input-original:focus + .radio-input-shown::before{
+    background-color:#F4CAC2;
+}
 .primary-blue .checked .radio-input-original:focus + .radio-input-shown::before{
     background-color:#B7C4D1;
 }
@@ -273,8 +282,8 @@ export default{
 .radio-input-original:focus + .radio-input-shown:hover::before{
     background-color: #EDEDED;
 }
-.green .checked .radio-input-original:focus + .radio-input-shown:hover::before{
-    background-color: #E6F2D8;
+.red .radio-input-original:focus + .radio-input-shown:hover::before{
+    background-color: #F8DED9;
 }
 .primary-blue .checked .radio-input-original:focus + .radio-input-shown:hover::before{
     background-color: #D2DAE2;
@@ -310,6 +319,9 @@ export default{
 .disabled .radio-input-checkmark::after{
     background-color: #979797 !important;
 }
+.red .radio-input-checkmark::after{
+    background-color: #DE583F !important;
+}
 .primary-blue .radio-input-checkmark::after{
     background-color: #1E4670;
 }
@@ -337,6 +349,9 @@ export default{
 .disabled .radio-input-shown-checkbox{
     border-color:#979797 !important;
     background-color: #FFFFFF;
+}
+.red .radio-input-shown-checkbox{
+  border-color: #DE583F;
 }
 .primary-blue .checked .radio-input-shown-checkbox{
   border-color: #1E4670;
