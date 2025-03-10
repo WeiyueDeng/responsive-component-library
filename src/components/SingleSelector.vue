@@ -60,7 +60,7 @@
                 <div v-if = "options_shown && options_shown.length>0" class = "options-list">
                     <div 
                     v-for="item in options_shown"
-                    :key="item.value"
+                    :key="`${item.label}-${JSON.parse(item.value)}`"
                     :class = "[
                         'dropdown-item',
                         {'selected':checkWhetherIsSelected(item)}
