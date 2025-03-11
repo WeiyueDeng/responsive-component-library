@@ -163,12 +163,15 @@ export default{
             if(!this.remote_search){
                 //if has filter_keyword: directly filter here.
                 if(this.filter_keyword){
-                    return this.options.filter((item)=>{
+                    this.is_loading = true;
+                    const filtered_options = this.options.filter((item)=>{
                         //return true, if the option's value or label includes the filter_keyword
                         return JSON.stringify(item.value).toLowerCase().includes(this.filter_keyword.toLowerCase())
                         ||
                         JSON.stringify(item.label).toLowerCase().includes(this.filter_keyword.toLowerCase());
                     });
+                    this.is_loading = false;
+                    return filtered_options;
                 }else{
                 //if no filter_keyword: directly return this.options
                     return this.options;
