@@ -16,7 +16,13 @@
         <br />
         <h2>Clearable and filterable SingleSelector</h2> <br />
         <h3>option value string</h3> <br />
+        <div @click = "(event)=>{$refs['target-selector-2'].focus(); event.stopPropagation()}">click to focus</div>
+        <div @click = "(event)=>{$refs['target-selector-2'].blur(); event.stopPropagation()}">click to blur</div>
+        <div @click = "$refs['target-selector-2'].alert('alert msg 2312312 312331231')">click to show alert</div>
+        <div @click = "$refs['target-selector-2'].error('error msg 12312312 312312312313123')">click to show error</div>
+        <div @click = "$refs['target-selector-2'].removeAlertOrErrorEffect()">click to remove alert or error</div>
         <SingleSelector v-model = "single_selector_value"
+        ref = "target-selector-2"
         :filterable = "true"
         :options = "single_selector_options"
         :clearable = "true"/>
