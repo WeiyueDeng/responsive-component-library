@@ -180,7 +180,8 @@ export default{
 }
 .prefix-icon-container{
     display: flex;
-    align-items: center;
+    /* align-items: center; */
+    align-items:flex-start;
 }
 .close-btn-container{
     display: flex;
