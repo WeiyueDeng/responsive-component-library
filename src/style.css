@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
+/* loading */
 .component-loading-spinner {
   position: absolute;
   top: 0;
@@ -108,3 +108,39 @@
   50% { content: "Loading.."; }
   75% { content: "Loading..."; }
 }
+/* floating notification */
+#floating-notifications-container{
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  align-items: flex-end;
+
+  height: fit-content;
+  width: 456px;
+
+  padding:94px 60px 94px 0px;
+
+  position: fixed;
+  z-index:999;
+  top:0px;
+  right:0px;
+}
+
+@media only screen and (max-width:1024px){
+  #floating-notifications-container{
+    padding:24px 16px 24px 0px;
+  }
+}
+
+@media only screen and (max-width:767px){
+  #floating-notifications-container{
+    width:100vw;
+    box-sizing: border-box;
+
+    row-gap: 12px;
+    align-items: center;
+
+    padding:12px 16px;
+  }
+}
+
