@@ -12,6 +12,7 @@ import whole_page_loading from '@/directives/whole_page_loading.js';
 
 //composables (functions)
 import { useWindowSize } from '@/composables/useWindowSize.js';
+import { FloatingNotification } from "@/composables/FloatingNotification.js";
 
 import '@/style.css'; 
 
@@ -52,7 +53,7 @@ export {
   component_loading ,
   whole_page_loading,
   //composables
-  useWindowSize,
+  useWindowSize, FloatingNotification,
   //all icons
   iconsMap,
 };
