@@ -16,16 +16,20 @@
   <ResponsiveButtonDoc />
 
   <br />
-  <!-- Samples Display for Directives -->
+  <!-- Samples Display for Checkbox -->
   <CheckboxDoc />
 
   <br />
-  <!-- Samples Display for Directives -->
+  <!-- Samples Display for Radio -->
   <RadioDoc />
 
   <br />
   <!-- Samples Display for Directives -->
   <DirectivesDoc />
+
+  <br />
+  <!-- Samples Display for WholePageErrorPopup -->
+  <WholePageErrorPopupDoc />
 
   <br />
 </div>
@@ -39,6 +43,7 @@ import ResponsiveButtonDoc from '@/componentsDemo/ResponsiveButtonDoc.vue';
 import DirectivesDoc from '@/componentsDemo/DirectivesDoc.vue';
 import CheckboxDoc from "@/componentsDemo/CheckboxDoc.vue";
 import RadioDoc from "@/componentsDemo/RadioDoc.vue";
+import WholePageErrorPopupDoc from "@/componentsDemo/WholePageErrorPopupDoc.vue";
 
 
 export default{
@@ -49,7 +54,8 @@ export default{
     ResponsiveButtonDoc,
     DirectivesDoc,
     CheckboxDoc,
-    RadioDoc
+    RadioDoc,
+    WholePageErrorPopupDoc,
   },
 }
 </script>

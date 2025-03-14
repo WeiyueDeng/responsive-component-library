@@ -1,5 +1,5 @@
 <template>
-    <div style = "width: 1000px; border: 1px pink solid; border-radius: 4px; padding:10px">
+    <div style = "max-width: 1000px; width:100%; border: 1px pink solid; border-radius: 4px; padding:10px">
         <h1>Samples Display for ResponsiveButton.vue</h1> <br />
         <!-- fit content -->
         <h2>width-type: fit-content</h2>

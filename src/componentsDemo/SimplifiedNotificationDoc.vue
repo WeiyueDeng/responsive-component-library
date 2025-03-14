@@ -1,5 +1,5 @@
 <template>
-    <div style = "width: 1000px; border: 1px pink solid; border-radius: 4px; padding:10px; box-sizing: border-box;">
+    <div style = "max-width: 1000px; width:100%; border: 1px pink solid; border-radius: 4px; padding:10px; box-sizing: border-box;">
         <h1>Samples Display for SimplifiedNotification.vue</h1> <br />
         <SimplifiedNotification title="Cutomized Title" content = "Cutomized content. This is a notification that cannot close manually." :with_close_btn = "false" />
         <br />

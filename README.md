@@ -27,9 +27,14 @@ Now you should be able to access the components, directives and icons in the lib
 - ResponsiveButton
 - Checkbox
 - Radio (support group radio)
+- WholePageErrorPopup
 
 ## Directives:
 - component-loading
+
+## Composables:
+- useWindowSize
+- FloatingNotification
 
 ## Icons:
 If  `npm install pns-component-library`, and want to use any following icons: <br>
@@ -68,6 +73,7 @@ Eg.
 - input_clear_icon
 - notification_cross_icon
 - red_notification_icon
+- red_sad_face
 - white_arrow_down
 - yellow_notification_icon
 
