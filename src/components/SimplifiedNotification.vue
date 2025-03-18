@@ -103,6 +103,10 @@ export default{
             }
         },
         manuallyClose(){
+            //trigger close event to parent component 
+            //NOTES: need to trigger before component is removed from DOM tree if mounted_programmatically
+            this.$emit('close', this.$el);
+
             if(this.mounted_programmatically){
                 //remove the element and the wrapper parent div inside the compoent;
                 // console.log('auto hide 1',this.$el, this.$el.parentElement);
@@ -129,8 +133,6 @@ export default{
                 }
                 // console.log('auto hide 2',this.$el, this.$el.parentElement);
             }
-            //trigger close event to parent component
-            this.$emit('close', this.$el);
         }
     }
 }

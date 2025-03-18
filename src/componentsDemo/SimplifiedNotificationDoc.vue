@@ -48,6 +48,10 @@ export default{
                 title: "Error",
                 build_in_theme: "red",
                 with_close_btn: true,
+                // listen to close event
+                onClose: () => { 
+                    console.log('close');
+                }
             }
         }
     },

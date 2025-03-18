@@ -1,6 +1,6 @@
 {
   "name": "pns-component-library",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "main": "dist/pns-component-library.umd.js",
   "module": "dist/pns-component-library.es.js",
   "exports": {
