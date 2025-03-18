@@ -14,12 +14,15 @@
         <br />
         <h2>Samples Display for FloatingNotification function which is based on SimplifiedNotification.vue</h2> <br />
         <div @click  = "clickToShowGlobalNotification"> click to show global floating notification </div>
+        <br />
+        <div @click  = "clickToShowCustomizedContentGlobalNotificationViaSlot"> click to show global floating notification with customized content via slot</div>
     </div>
 </template>
 
 <script>
 import SimplifiedNotification from '@/components/SimplifiedNotification.vue';
 import { FloatingNotification } from '@/composables/FloatingNotification.js';
+import { h } from 'vue';
 
 export default{
     components: {
@@ -40,10 +43,49 @@ export default{
                 hide_after: 30000,
             }
         },
+        floating_notification_props_with_slot(){
+            return {
+                title: "Error",
+                build_in_theme: "red",
+                with_close_btn: true,
+            }
+        }
     },
     methods:{
         clickToShowGlobalNotification(){
             FloatingNotification(this.floating_notification_props);
+            this.count++;
+        },
+        clickToShowCustomizedContentGlobalNotificationViaSlot(){
+            FloatingNotification(this.floating_notification_props_with_slot,{
+                content: () => h(
+                    'div',
+                    {},
+                    [
+                        h('div', {}, 'We encountered a system error while loading the order, preventing the following information from being displayed:'),
+                        h('ul', {
+                            style:{
+                                'margin': '0',
+                                'padding-inline-start':'3ch'
+                            },
+                        }, [
+                            h('li', {}, 'error 1'),
+                            h('li', {}, 'error 2'),
+                            h('li', {}, 'error 3'),
+                        ]),
+                        h('span', {
+                            style:{
+                                'margin-top': '4px',
+                                'text-decoration': 'underline',
+                                'cursor': 'pointer',
+                            },
+                            onClick: () => {
+                                console.log('click action button');
+                            }
+                        }, 'action button'),
+                    ]
+                ) 
+            });
             this.count++;
         }
     }

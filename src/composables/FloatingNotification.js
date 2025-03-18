@@ -1,9 +1,9 @@
-import { createApp } from "vue";
+import { createApp, h } from "vue";
 import SimplifiedNotification from "@/components/SimplifiedNotification.vue";
 
 const floating_notifications_instances_map = {};
 
-export function FloatingNotification(notification_props){
+export function FloatingNotification(notification_props, slots){
     // 1. first check whether we already created container div for all the global floating notifications
     var floating_notifications_container = document.getElementById('floating-notifications-container');
     //    1.1 if not: create one a div with the id named floating-notifications-container
@@ -15,11 +15,17 @@ export function FloatingNotification(notification_props){
     // 2. after we get the element referenece of the container of all global floating notifications:
     //    2.1 create the appInstance of the notification component based on the passed params notification_props
     const timestamp = Date.now(); // unique, used as id
-    const appInstance = createApp(SimplifiedNotification, {
-        ...notification_props,
-        id:timestamp,
-        notification_instances_collection: floating_notifications_instances_map,
-        mounted_programmatically:true
+    const appInstance = createApp({
+        render: () => h(
+            SimplifiedNotification, 
+            {
+                ...notification_props,
+                id:timestamp,
+                notification_instances_collection: floating_notifications_instances_map,
+                mounted_programmatically:true
+            },
+            slots
+        )
     });
     //    2.2 record the appInstance in floating_notifications_instances_map for SimplifiedNotification to unmount itself inside the component when trigger close.
     floating_notifications_instances_map[timestamp]=appInstance;
