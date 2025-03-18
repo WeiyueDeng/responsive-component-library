@@ -128,9 +128,9 @@ export default{
                     delete this.$attrs.notification_instances_collection[this.$attrs.id];
                 }
                 // console.log('auto hide 2',this.$el, this.$el.parentElement);
-            }else{
-                this.$emit('close', this.$el);
             }
+            //trigger close event to parent component
+            this.$emit('close', this.$el);
         }
     }
 }
