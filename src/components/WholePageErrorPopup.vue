@@ -60,6 +60,7 @@ export default{
 }
 .whole-page-error-popup-window{
     width: 38%;
+    min-width: 552px;
     height:fit-content;
     margin-top: 94px;
     background-color: #FFFFFF;
@@ -117,14 +118,24 @@ export default{
     letter-spacing: 0.1px;
     cursor: pointer;
 }
+@media only screen and (max-width:1024px){
+    .whole-page-error-popup-window{
+        max-width: 552px;
+        margin-top: 64px;
+        width: 54%;
+        min-width:0;
+    }
+}
 @media only screen and (max-width:767px){
     .whole-page-error-popup-container.whole-page-error-mask{
         padding:0px 16px;
         box-sizing: border-box;
     }
     .whole-page-error-popup-window{
+        max-width: none;
         width: 100%;
         margin-top: 12px;
+        min-width:0;
     }
     .error-popup-header{
         display:flex;
