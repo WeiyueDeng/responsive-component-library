@@ -278,7 +278,7 @@ export default{
         closeWhenClickOutsideSelector(e){
             // console.log('closeWhenClickOutsideSelector', e.target,this.$refs['single-selector'].contains(e.target));
             // const normalizedTarget = e.target.nodeType === Node.TEXT_NODE ? e.target.parentElement : e.target;
-            if(this.is_focus && !this.$refs['single-selector'].contains(e.target)) {
+            if(this.is_focus && this.$refs['single-selector'] && !this.$refs['single-selector'].contains(e.target)) {
                 this.is_focus = false;
             }
         },

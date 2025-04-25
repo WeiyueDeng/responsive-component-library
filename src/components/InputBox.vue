@@ -153,7 +153,7 @@ export default{
             }
         },
         blurWhenClickOutside(event){
-            if(this.is_focus && !this.$refs['input-box-unit'].contains(event.target)){
+            if(this.is_focus && this.$refs['input-box-unit'] && !this.$refs['input-box-unit'].contains(event.target)){
                 this.is_focus = false;
             }
         },

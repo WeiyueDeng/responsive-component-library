@@ -1,5 +1,5 @@
 <template>
-    <div style = "width:100px; border: 1px pink solid; box-sizing: border-box; border-radius: 4px; padding:10px; box-sizing: border-box;">
+    <div style = "max-width:1000px; width:100%; border: 1px pink solid; box-sizing: border-box; border-radius: 4px; padding:10px; box-sizing: border-box;">
         <h1>Samples Display for WholePageErrorPopup.vue</h1> <br />
         <div @click = "show_popup=true"> Click to show WholePageErrorPopup </div>
         <WholePageErrorPopup v-if = "show_popup" @retry = "hidePopup">
