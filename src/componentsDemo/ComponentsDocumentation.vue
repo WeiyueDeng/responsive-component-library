@@ -12,6 +12,10 @@
   <SingleSelectorDoc />
 
   <br />
+  <!-- Samples Display for AreaCodePhoneInput.vue -->
+  <AreaCodePhoneInputDoc />
+
+  <br />
   <!-- Samples Display for ResponsiveButton.vue -->
   <ResponsiveButtonDoc />
 
@@ -39,6 +43,7 @@
 import SimplifiedNotificationDoc from "@/componentsDemo/SimplifiedNotificationDoc.vue";
 import InputBoxDoc from '@/componentsDemo/InputBoxDoc.vue';
 import SingleSelectorDoc from '@/componentsDemo/SingleSelectorDoc.vue';
+import AreaCodePhoneInputDoc from '@/componentsDemo/AreaCodePhoneInputDoc.vue';
 import ResponsiveButtonDoc from '@/componentsDemo/ResponsiveButtonDoc.vue';
 import DirectivesDoc from '@/componentsDemo/DirectivesDoc.vue';
 import CheckboxDoc from "@/componentsDemo/CheckboxDoc.vue";
@@ -51,6 +56,7 @@ export default{
     SimplifiedNotificationDoc,
     InputBoxDoc,
     SingleSelectorDoc,
+    AreaCodePhoneInputDoc,
     ResponsiveButtonDoc,
     DirectivesDoc,
     CheckboxDoc,

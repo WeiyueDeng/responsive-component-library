@@ -54,27 +54,27 @@
                 </slot>
             </div>
             <!-- suffix part end -->
+        </div>
 
-            <!--selector dropdown part -->
-            <div v-if = "is_focus" class = "single-selector-dropdown" ref = "single-selector-dropdown">
-                <div v-if = "options_shown && options_shown.length>0" class = "options-list">
-                    <div 
-                    v-for="item in options_shown"
-                    :key="`${item.label}-${JSON.parse(item.value)}`"
-                    :class = "[
-                        'dropdown-item',
-                        {'selected':checkWhetherIsSelected(item)}
-                    ]"
-                    @click = "handleSelectOption(item)">
-                        {{ item.label }}
-                    </div>
-                </div>
-                <div v-else class = 'no-data-notes'>
-                    {{ is_loading ? loading_text : no_data_text}}
+        <!--selector dropdown part -->
+        <div v-if = "is_focus" class = "single-selector-dropdown" ref = "single-selector-dropdown">
+            <div v-if = "options_shown && options_shown.length>0" class = "options-list">
+                <div 
+                v-for="item in options_shown"
+                :key="`${item.label}-${JSON.stringify(item.value)}`"
+                :class = "[
+                    'dropdown-item',
+                    {'selected':checkWhetherIsSelected(item)}
+                ]"
+                @click = "(event)=>handleSelectOption(event, item)">
+                    {{ item.label }}
                 </div>
             </div>
-            <!--selector dropdown part end -->
+            <div v-else class = 'no-data-notes'>
+                {{ is_loading ? loading_text : no_data_text}}
+            </div>
         </div>
+        <!--selector dropdown part end -->
 
         <!-- message notification part -->
         <div v-if = "(show_alert || show_error) && message_notification_text" 
@@ -133,6 +133,16 @@ export default{
         no_data_text:{
             type:String,
             default:"No data",
+        },
+        // NOTES: filter_only_among_options_value and filter_only_among_options_label cannot be true at the same time
+        // NOTES: If both true, filter_only_among_options_value==true will override filter_only_among_options_label's logic
+        filter_only_among_options_value:{
+            type:Boolean,
+            default:false,
+        },
+        filter_only_among_options_label:{
+            type:Boolean,
+            default:false,
         }
     },
     mounted(){
@@ -165,10 +175,16 @@ export default{
                 if(this.filter_keyword){
                     this.is_loading = true;
                     const filtered_options = this.options.filter((item)=>{
-                        //return true, if the option's value or label includes the filter_keyword
-                        return JSON.stringify(item.value).toLowerCase().includes(this.filter_keyword.toLowerCase())
-                        ||
-                        JSON.stringify(item.label).toLowerCase().includes(this.filter_keyword.toLowerCase());
+                        if(this.filter_only_among_options_value){
+                            return JSON.stringify(item.value).toLowerCase().includes(this.filter_keyword.toLowerCase());
+                        }else if(this.filter_only_among_options_label){
+                            return JSON.stringify(item.label).toLowerCase().includes(this.filter_keyword.toLowerCase());
+                        }else{
+                            //return true, if the option's value or label includes the filter_keyword
+                            return JSON.stringify(item.value).toLowerCase().includes(this.filter_keyword.toLowerCase())
+                            ||
+                            JSON.stringify(item.label).toLowerCase().includes(this.filter_keyword.toLowerCase());
+                        }
                     });
                     this.is_loading = false;
                     return filtered_options;
@@ -234,8 +250,8 @@ export default{
                 this.$nextTick(()=>{
                     this.checkWhetherDropdownIsOverflow();
                 })
-                
             }else{
+                this.filter_keyword = '';
                 this.$emit('blur');
             }
         },
@@ -268,12 +284,16 @@ export default{
                 this.is_focus=!this.is_focus;
             }
         },
-        handleSelectOption(item){
+        handleSelectOption(e, item){
+            e.stopPropagation();
             // console.log('handleSelectOption',item);
             this.selected_item = item.value;
             this.selected_item_label = item.label;
-            //blur after select
-            this.is_focus = false;
+            // blur after assigning selected option's value in next tick
+            // to avoid the blur event being triggered before the value is updated
+            this.$nextTick(() =>{
+                this.is_focus = false;
+            });
         },
         closeWhenClickOutsideSelector(e){
             // console.log('closeWhenClickOutsideSelector', e.target,this.$refs['single-selector'].contains(e.target));
@@ -344,12 +364,14 @@ export default{
     display: flex;
     flex-direction: column;
     row-gap: 8px;
+
+    position: relative;
 }
 .single-selector{
     height:fit-content;
     width:100%;
     box-sizing: border-box;
-    padding:9px 12px 9px 16px;
+    padding:8px 11px 8px 15px;
 
     display: flex;
     align-items: center;
@@ -357,39 +379,40 @@ export default{
     column-gap: 12px;
 
     border-radius: 4px;
-    /* border: 1px solid #BCCCDC; */
-    box-shadow: inset 0 0 0 1px #BCCCDC;
+    border: 1px solid #BCCCDC;
+    /* box-shadow: inset 0 0 0 1px #BCCCDC; */
     /* use box-shadow instead of border, as border will occupy 2px spaces to cause dropdown is 2px less wide than the input */
     background: #FFF;
     cursor: pointer;
-
-    position: relative;
 }
 .single-selector:hover{
-    /* border: 1px solid #DEE6ED; */
-    box-shadow: inset 0 0 0 1px #DEE6ED;
+    border: 1px solid #DEE6ED;
+    /* box-shadow: inset 0 0 0 1px #DEE6ED; */
     /* use box-shadow instead of border, as border will occupy 2px spaces to cause dropdown is 2px less wide than the input */
 }
 .single-selector.has-prefix{
-    padding-left: 12px;
+    padding-left: 11px;
 }
 .single-selector.is-focus{
-    /* border: 1px solid #9BB2CA; */
-    box-shadow: inset 0 0 0 1px #9BB2CA;
+    border: 1px solid #9BB2CA;
+    /* box-shadow: inset 0 0 0 1px #9BB2CA; */
     /* use box-shadow instead of border, as border will occupy 2px spaces to cause dropdown is 2px less wide than the input */
 }
 .single-selector.error{
-    box-shadow: inset 0 0 0 1px #DE583F;
+    border: 1px solid #DE583F;
+    /* box-shadow: inset 0 0 0 1px #DE583F; */
 }
 .single-selector.alert{
-    box-shadow: inset 0 0 0 1px #E0961E;
+    border:1px solid #E0961E;
+    /* box-shadow: inset 0 0 0 1px #E0961E; */
 }
 .single-selector.disabled{
     background: #F2F2F2;
     cursor: not-allowed;
 }
 .single-selector.disabled:hover{
-    box-shadow: inset 0 0 0 1px #BCCCDC;
+    border: 1px solid #BCCCDC;
+    /* box-shadow: inset 0 0 0 1px #BCCCDC; */
 }
 .selected-content{
     /* width:100%; */
@@ -564,7 +587,7 @@ export default{
     }
     .single-selector{
         column-gap: 8px;
-        padding:8px 12px 8px 14px;
+        padding:7px 11px 7px 13px;
     }
     .selected-content{
         font-size: 14px;
