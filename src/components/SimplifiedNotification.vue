@@ -132,6 +132,12 @@ export default{
                     delete this.$attrs.notification_instances_collection[this.$attrs.id];
                 }
                 // console.log('auto hide 2',this.$el, this.$el.parentElement);
+                
+                // Check whether the floating-notifications-container is empty, if yes, remove it from DOM tree
+                // const floating_notifications_container = document.getElementById('floating-notifications-container');
+                if(floating_notifications_container && floating_notifications_container.children.length === 0){
+                    floating_notifications_container.remove();
+                }
             }
         }
     }
