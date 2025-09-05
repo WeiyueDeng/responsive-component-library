@@ -61,13 +61,21 @@
         <div style = "cursor:pointer" @click = "$refs['no-label-target-1'].removeAlertOrErrorEffect()">Click to remove alert</div> <br />
         <br />
     </div>
+
+    <GroupCheckbox v-model = "current_checked_values">
+        <Checkbox v-for = "item in checkbox_group_values" :key = "item" :label = "item" />
+    </GroupCheckbox>
+    <div @click = "current_checked_values=['checkbox1', 'checkbox2']">update checked values to ['checkbox1', 'checkbox2'] (different v-model reference )</div>
+    <div @click = "current_checked_values.push('checkbox3')">add 'checkbox3' to checked values (same v-model reference)</div>
 </template>
 
 <script>
 import Checkbox from "@/components/Checkbox.vue";
+import GroupCheckbox from "@/components/GroupCheckbox.vue";
 export default{
     components:{
-        Checkbox
+        Checkbox,
+        GroupCheckbox
     },
     data(){
         return{
@@ -78,6 +86,17 @@ export default{
             checked:true,
             is_indeterminate:false,
             indeterminate_target_1_disabled:false,
+            
+            current_checked_values:["checkbox1"],
+            checkbox_group_values:["checkbox1", "checkbox2", "checkbox3", "checkbox4"],
+        }
+    },
+    watch:{
+        current_checked_values:{
+            deep: true,
+            handler(newVal){
+                console.log('current_checked_values', newVal);
+            }
         }
     },
     methods:{

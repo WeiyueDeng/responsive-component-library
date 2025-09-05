@@ -82,6 +82,13 @@ export default{
             default:false,
         }
     },
+    created(){
+        if(this.groupCheckboxContext){
+            this.checked = this.whether_checked_in_group_checkbox;
+        }else{
+            this.checked = this.modelValue;
+        }
+    },
     mounted(){
         //initiate width used for error message if the initial value of show_error is true
         if(this.show_error){
@@ -91,10 +98,18 @@ export default{
     },
     data(){
         return{
-            checked: this.modelValue,
+            checked: false,
             show_error:false,
             message_notification_text:"",
             checkbox_container_width: '100%',
+        }
+    },
+    inject:{
+        toggleCheckbox: {
+            default: null
+        },
+        groupCheckboxContext: {
+            default: null
         }
     },
     emits:[
@@ -103,6 +118,11 @@ export default{
         //triggered when the checkbox is checked or unchecked
         'change'
     ],
+    computed:{
+        whether_checked_in_group_checkbox(){
+            return this.groupCheckboxContext?.[this.label];
+        },
+    },
     watch:{
         modelValue(newVal){
             this.checked = newVal;
@@ -112,6 +132,9 @@ export default{
             this.$emit('update:modelValue', newVal);
             this.$emit('change', newVal);
             this.$refs['checkbox-input-original']?.blur();
+            if(this.groupCheckboxContext){
+                this.toggleCheckbox(this.label, newVal);
+            }
         },
         indeterminate(newVal){
             if(newVal){
@@ -122,6 +145,11 @@ export default{
             if(newVal){
                 const cur_width = this.getCheckboxContainerWidth();
                 this.checkbox_container_width = cur_width ? `${cur_width}px`:'100%';
+            }
+        },
+        whether_checked_in_group_checkbox(newVal){
+            if(this.groupCheckboxContext){
+                this.checked = newVal;
             }
         }
     },
