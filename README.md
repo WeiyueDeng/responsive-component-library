@@ -82,10 +82,10 @@ Customizable checkbox with multiple themes and validation support.
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|------|---------|
-| model-value / v-model | binding value - `true` when checked, `false` when unchecked | `boolean` | `false` |
+| v-model / modelValue | binding value - `true` when checked, `false` when unchecked | `boolean` | `false` |
 | label | checkbox label | `string` | — |
 | size | checkbox size | `'small' \| 'medium'` | `'medium'` |
-| built-in-theme | color theme | `'green' \| 'primary-blue' \| 'secondary-blue' \| 'red'` | `'green'` |
+| built_in_theme | color theme | `'green' \| 'primary-blue' \| 'secondary-blue' \| 'red'` | `'green'` |
 | disabled | whether checkbox is disabled | `boolean` | `false` |
 | indeterminate | whether checkbox is indeterminate | `boolean` | `false` |
 
@@ -122,7 +122,7 @@ Container for managing multiple related checkboxes as a group.
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|------|---------|
-| model-value / v-model | binding value - array of selected checkbox labels from child Checkbox components | `array` | `[]` |
+| v-model / modelValue | binding value - array of selected checkbox labels from child Checkbox components | `array` | `[]` |
 
 ##### Events
 
@@ -150,10 +150,10 @@ International phone number input with country selection and area code handling.
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|------|---------|
-| model-value / v-model | binding value - object containing `area_code` (country code like "+1") and `phone_number` (local number) | `{area_code: string, phone_number: string}` | `{area_code: '', phone_number: ''}` |
-| country-options | custom country list | `array` | — |
-| enable-backup-country-options | use built-in country list | `boolean` | `true` |
-| country-filterable | enable country search | `boolean` | `false` |
+| v-model / modelValue | binding value - object containing `area_code` (country code like "+1") and `phone_number` (local number) | `{area_code: string, phone_number: string}` | `{area_code: '', phone_number: ''}` |
+| country_options | custom country list | `array` | — |
+| enable_backup_country_options | use built-in country list | `boolean` | `true` |
+| country_filterable | enable country search | `boolean` | `true` |
 | disabled | whether input is disabled | `boolean` | `false` |
 
 ##### Events
@@ -182,7 +182,7 @@ Versatile input field component with validation and styling options.
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|------|---------|
-| model-value / v-model | binding value - the current input text value | `string` | — |
+| v-model / modelValue | binding value - the current input text value | `string` | — |
 | type | input type | `string` | `'text'` |
 | placeholder | placeholder text | `string` | — |
 | clearable | whether to show clear button | `boolean` | `false` |
@@ -235,13 +235,13 @@ Radio button component for single selection from multiple options.
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|------|---------|
-| model-value / v-model | binding value - the `value` of the currently selected radio button in the group | `string` | — |
+| v-model / modelValue | binding value - the `value` of the currently selected radio button in the group | `string` | — |
 | value | radio value | `string` | — |
 | label | radio label | `string` | — |
 | name | group name for radio group | `string` | — |
 | size | radio size | `'small' \| 'medium'` | `'medium'` |
-| built-in-theme | color theme | `'primary-blue' \| 'secondary-blue' \| 'red'` | `'primary-blue'` |
-| customized-class | custom CSS class | `string` | — |
+| built_in_theme | color theme | `'primary-blue' \| 'secondary-blue' \| 'red'` | `'primary-blue'` |
+| customized_class | custom CSS class | `string` | — |
 | disabled | whether radio is disabled | `boolean` | `false` |
 | autofocus | whether to auto focus | `boolean` | `false` |
 
@@ -276,16 +276,16 @@ Dropdown selector component with filtering and search capabilities.
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|------|---------|
-| model-value / v-model | binding value - the `value` property of the selected option from the options array | `string \| number \| boolean \| object \| array` | — |
+| v-model / modelValue | binding value - the `value` property of the selected option from the options array | `string \| number \| boolean \| object \| array` | — |
 | options | options array | `Array<{value: any, label: string}>` | `[]` |
 | filterable | whether to enable filtering | `boolean` | `false` |
-| remote-search | whether to enable remote search | `boolean` | `false` |
+| remote_search | whether to enable remote search | `boolean` | `false` |
 | disabled | whether selector is disabled | `boolean` | `false` |
 | placeholder | placeholder text | `string` | `'Select'` |
 | clearable | whether to show clear button | `boolean` | `false` |
 | loading | loading state | `boolean` | `false` |
-| loading-text | loading text | `string` | `'Loading'` |
-| no-data-text | no data text | `string` | `'No data'` |
+| loading_text | loading text | `string` | `'Loading'` |
+| no_data_text | no data text | `string` | `'No data'` |
 
 ##### Events
 
@@ -340,15 +340,15 @@ Feature-rich button component with responsive behavior and multiple states.
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|------|---------|
-| display-name | button text | `string` | `'button'` |
+| display_name | button text | `string` | `'button'` |
 | size | button size | `'xsmall' \| 'small' \| 'medium' \| 'large'` | `'small'` |
-| width-type | button width type | `'fill-whole' \| 'fit-content'` | `'fit-content'` |
-| build-in-theme | color theme | `'outlined-primary' \| 'filled-primary' \| 'text-primary' \| 'outlined-secondary' \| 'filled-secondary' \| 'text-secondary'` | `'outlined-primary'` |
-| customized-class | custom CSS class | `string` | — |
+| width_type | button width type | `'fill-whole' \| 'fit-content'` | `'fit-content'` |
+| build_in_theme | color theme | `'outlined-primary' \| 'filled-primary' \| 'text-primary' \| 'outlined-secondary' \| 'filled-secondary' \| 'text-secondary'` | `'outlined-primary'` |
+| customized_class | custom CSS class | `string` | — |
 | hold | whether button is in hold state | `boolean` | `false` |
 | disabled | whether button is disabled | `boolean` | `false` |
-| dropdown-options | dropdown menu options | `array` | `[]` |
-| is-dropdown-option | whether this is a dropdown item | `boolean` | `false` |
+| dropdown_options | dropdown menu options | `array` | `[]` |
+| is_dropdown_option | whether this is a dropdown item | `boolean` | `false` |
 
 ##### Events
 
@@ -394,13 +394,13 @@ Toast notification component for user feedback.
 | Attribute | Description | Type | Default |
 |-----------|-------------|------|---------|
 | content | notification content | `string` | — |
-| build-in-theme | color theme | `'blue' \| 'red' \| 'yellow' \| 'green'` | `'blue'` |
+| build_in_theme | color theme | `'blue' \| 'red' \| 'yellow' \| 'green'` | `'blue'` |
 | title | notification title | `string` | — |
-| customized-alert-icon-src | custom icon URL | `string` | — |
-| customized-class | custom CSS class | `string` | — |
-| with-close-btn | whether to show close button | `boolean` | `true` |
-| mounted-programmatically | whether mounted programmatically | `boolean` | `false` |
-| hide-after | auto-hide after milliseconds (0 = never) | `number` | `0` |
+| customized_alert_icon_src | custom icon URL | `string` | — |
+| customized_class | custom CSS class | `string` | — |
+| with_close_btn | whether to show close button | `boolean` | `true` |
+| mounted_programmatically | whether mounted programmatically | `boolean` | `false` |
+| hide_after | auto-hide after milliseconds (0 = never) | `number` | `0` |
 
 ##### Events
 
