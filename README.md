@@ -331,7 +331,7 @@ Dropdown selector component with filtering and search capabilities.
 </SingleSelector>
 ```
 
-### Layout Components
+### Interactive Components
 
 #### ResponsiveButton
 Feature-rich button component with responsive behavior and multiple states.
@@ -367,19 +367,24 @@ Feature-rich button component with responsive behavior and multiple states.
 | suffix | content after button text |
 
 ```vue
-<ResponsiveButton 
-  display_name="Save Changes"
-  size="medium"
-  build_in_theme="filled-primary"
-  @click="handleSave"
->
-  <template #prefix>
-    <Icon name="save" />
-  </template>
-</ResponsiveButton>
+<script setup>
+import { iconsMap } from 'pns-component-library';
+</script>
+<template>
+  <ResponsiveButton 
+    display_name="Save Changes"
+    size="medium"
+    build_in_theme="filled-primary"
+    @click="handleSave"
+  >
+    <template #prefix>
+      <img :src="iconsMap['eye_icon']" alt="eye" />
+    </template>
+  </ResponsiveButton>
+</template>
 ```
 
-### Utility Components
+### Feedback Components
 
 #### SimplifiedNotification
 Toast notification component for user feedback.
@@ -410,8 +415,8 @@ Toast notification component for user feedback.
 | content | custom notification content |
 
 ```vue
-<SimplifiedNotification 
-  title="Success!"
+<SimplifiedNotification
+  title="Success"
   content="Operation completed successfully"
   build_in_theme="green"
   :hide_after="3000"
@@ -576,7 +581,7 @@ The library provides multiple built-in themes:
 
 ```vue
 <Checkbox built_in_theme="primary-blue" />
-<ResponsiveButton variant="secondary-blue" />
+<ResponsiveButton built_in_theme="outlined-primary" />
 ```
 
 ## 📱 Responsive Design
