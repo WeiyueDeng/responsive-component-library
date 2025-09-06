@@ -148,8 +148,10 @@ const handleSelectCountry = () => {
     }
 }
 const handleClickClearIcon = () => {
-    clear();
-    emits('clear');
+    if(!props.disabled){
+        clear();
+        emits('clear');
+    }
 };
 const focus = () => {
     //if empty selected_country: auto focus the country selector
@@ -216,7 +218,7 @@ const concate_phone_number = computed(() => {
     return `${area_code.value}-${phone_number.value}`;
 });
 const show_clear_icon = computed(() => {
-    return (selected_country.value || phone_number.value) && !props.disabled.value && (is_hovered.value || is_focus.value);
+    return (selected_country.value || phone_number.value) && !props.disabled && (is_hovered.value || is_focus.value);
 });
 const is_focus = computed(() => {
     return is_country_area_code_selector_focused.value || is_phone_number_input_focused.value;
