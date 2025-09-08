@@ -89,6 +89,7 @@ export default{
             default: false
         },
         autocomplete:{
+            //ENUM: the values of the raw input tag work
             type: String,
             default: 'off'
         }

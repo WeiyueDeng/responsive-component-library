@@ -86,7 +86,9 @@ Customizable checkbox with multiple themes and validation support.
 | label | checkbox label | `string` | — |
 | size | checkbox size | `'small' \| 'medium'` | `'medium'` |
 | built_in_theme | color theme | `'green' \| 'primary-blue' \| 'secondary-blue' \| 'red'` | `'green'` |
+| customized_class | custom CSS class | `string` | — |
 | disabled | whether checkbox is disabled | `boolean` | `false` |
+| autofocus | whether to auto focus | `boolean` | `false` |
 | indeterminate | whether checkbox is indeterminate | `boolean` | `false` |
 
 ##### Events
@@ -184,9 +186,10 @@ Versatile input field component with validation and styling options.
 |-----------|-------------|------|---------|
 | v-model / modelValue | binding value - the current input text value | `string` | — |
 | type | input type | `string` | `'text'` |
-| placeholder | placeholder text | `string` | — |
+| placeholder | placeholder text | `string` | `'Enter'` |
 | clearable | whether to show clear button | `boolean` | `false` |
 | disabled | whether input is disabled | `boolean` | `false` |
+| autocomplete | autocomplete attribute for input, raw input tag values work | `string` | `'off'` |
 
 ##### Events
 
@@ -286,6 +289,10 @@ Dropdown selector component with filtering and search capabilities.
 | loading | loading state | `boolean` | `false` |
 | loading_text | loading text | `string` | `'Loading'` |
 | no_data_text | no data text | `string` | `'No data'` |
+| filter_only_among_options_value | filter only among option values | `boolean` | `false` |
+| filter_only_among_options_label | filter only among option labels | `boolean` | `false` |
+
+> **Note**: `filter_only_among_options_value` and `filter_only_among_options_label` cannot be true at the same time. If both are true, `filter_only_among_options_value=true` will override `filter_only_among_options_label`'s logic.
 
 ##### Events
 
