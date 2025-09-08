@@ -23,6 +23,10 @@ vite.config.js
 index.html
 public/
 
+# Documentation files
+README.md
+AI_DOCUMENTATION_GUIDE.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
