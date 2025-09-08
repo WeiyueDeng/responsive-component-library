@@ -75,76 +75,6 @@ const handleClick = () => {
 
 ### Form Components
 
-#### Checkbox
-Customizable checkbox with multiple themes and validation support.
-
-##### Attributes
-
-| Attribute | Description | Type | Default |
-|-----------|-------------|------|---------|
-| v-model / modelValue | binding value - `true` when checked, `false` when unchecked | `boolean` | `false` |
-| label | checkbox label | `string` | — |
-| size | checkbox size | `'small' \| 'medium'` | `'medium'` |
-| built_in_theme | color theme | `'green' \| 'primary-blue' \| 'secondary-blue' \| 'red'` | `'green'` |
-| customized_class | custom CSS class | `string` | — |
-| disabled | whether checkbox is disabled | `boolean` | `false` |
-| autofocus | whether to auto focus | `boolean` | `false` |
-| indeterminate | whether checkbox is indeterminate | `boolean` | `false` |
-
-##### Events
-
-| Event | Description | Parameters |
-|-------|-------------|------------|
-| change | triggers when the binding value changes | `(value: boolean)` |
-
-##### Exposes
-
-| Method | Description | Type |
-|--------|-------------|------|
-| focus | focus the checkbox | `() => void` |
-| blur | blur the checkbox | `() => void` |
-| alert | show error message | `(message: string) => void` |
-| removeAlertOrErrorEffect | clear error state | `() => void` |
-
-```vue
-<template>
-  <Checkbox 
-    v-model="agreed" 
-    label="I agree to terms" 
-    built_in_theme="primary-blue"
-    @change="handleChange"
-  />
-</template>
-```
-
-#### GroupCheckbox
-Container for managing multiple related checkboxes as a group.
-
-##### Attributes
-
-| Attribute | Description | Type | Default |
-|-----------|-------------|------|---------|
-| v-model / modelValue | binding value - array of selected checkbox labels from child Checkbox components | `array` | `[]` |
-
-##### Events
-
-| Event | Description | Parameters |
-|-------|-------------|------------|
-| change | triggers when the binding value changes | `(value: array)` |
-
-```vue
-<template>
-  <GroupCheckbox v-model="selectedItems">
-    <Checkbox v-for="item in options" :key="item" :label="item" />
-  </GroupCheckbox>
-</template>
-
-<script setup>
-const selectedItems = ref(['option1'])
-const options = ['option1', 'option2', 'option3']
-</script>
-```
-
 #### AreaCodePhoneInput
 International phone number input with country selection and area code handling.
 
@@ -231,47 +161,6 @@ Versatile input field component with validation and styling options.
 </InputBox>
 ```
 
-#### Radio
-Radio button component for single selection from multiple options.
-
-##### Attributes
-
-| Attribute | Description | Type | Default |
-|-----------|-------------|------|---------|
-| v-model / modelValue | binding value - the `value` of the currently selected radio button in the group | `string` | — |
-| value | radio value | `string` | — |
-| label | radio label | `string` | — |
-| name | group name for radio group | `string` | — |
-| size | radio size | `'small' \| 'medium'` | `'medium'` |
-| built_in_theme | color theme | `'primary-blue' \| 'secondary-blue' \| 'red'` | `'primary-blue'` |
-| customized_class | custom CSS class | `string` | — |
-| disabled | whether radio is disabled | `boolean` | `false` |
-| autofocus | whether to auto focus | `boolean` | `false` |
-
-##### Events
-
-| Event | Description | Parameters |
-|-------|-------------|------------|
-| change | triggers when the binding value changes | `(value: string)` |
-
-##### Exposes
-
-| Method | Description | Type |
-|--------|-------------|------|
-| focus | focus the radio | `() => void` |
-| blur | blur the radio | `() => void` |
-| alert | show alert message | `(message: string) => void` |
-| removeAlertOrErrorEffect | clear alert/error state | `() => void` |
-
-```vue
-<!-- Radio Group -->
-<Radio v-model="selected" value="option1" name="group1" label="Option 1" />
-<Radio v-model="selected" value="option2" name="group1" label="Option 2" />
-
-<!-- Single Radio -->
-<Radio v-model="single" value="yes" label="Agree to terms" />
-```
-
 #### SingleSelector
 Dropdown selector component with filtering and search capabilities.
 
@@ -336,6 +225,117 @@ Dropdown selector component with filtering and search capabilities.
     <Icon name="search" />
   </template>
 </SingleSelector>
+```
+
+#### Checkbox
+Customizable checkbox with multiple themes and validation support.
+
+##### Attributes
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|------|---------|
+| v-model / modelValue | binding value - `true` when checked, `false` when unchecked | `boolean` | `false` |
+| label | checkbox label | `string` | — |
+| size | checkbox size | `'small' \| 'medium'` | `'medium'` |
+| built_in_theme | color theme | `'green' \| 'primary-blue' \| 'secondary-blue' \| 'red'` | `'green'` |
+| customized_class | custom CSS class | `string` | — |
+| disabled | whether checkbox is disabled | `boolean` | `false` |
+| autofocus | whether to auto focus | `boolean` | `false` |
+| indeterminate | whether checkbox is indeterminate | `boolean` | `false` |
+
+##### Events
+
+| Event | Description | Parameters |
+|-------|-------------|------------|
+| change | triggers when the binding value changes | `(value: boolean)` |
+
+##### Exposes
+
+| Method | Description | Type |
+|--------|-------------|------|
+| focus | focus the checkbox | `() => void` |
+| blur | blur the checkbox | `() => void` |
+| alert | show error message | `(message: string) => void` |
+| removeAlertOrErrorEffect | clear error state | `() => void` |
+
+```vue
+<template>
+  <Checkbox 
+    v-model="agreed" 
+    label="I agree to terms" 
+    built_in_theme="primary-blue"
+    @change="handleChange"
+  />
+</template>
+```
+
+#### GroupCheckbox
+Container for managing multiple related checkboxes as a group.
+
+##### Attributes
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|------|---------|
+| v-model / modelValue | binding value - array of selected checkbox labels from child Checkbox components | `array` | `[]` |
+
+##### Events
+
+| Event | Description | Parameters |
+|-------|-------------|------------|
+| change | triggers when the binding value changes | `(value: array)` |
+
+```vue
+<template>
+  <GroupCheckbox v-model="selectedItems">
+    <Checkbox v-for="item in options" :key="item" :label="item" />
+  </GroupCheckbox>
+</template>
+
+<script setup>
+const selectedItems = ref(['option1'])
+const options = ['option1', 'option2', 'option3']
+</script>
+```
+
+#### Radio
+Radio button component for single selection from multiple options.
+
+##### Attributes
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|------|---------|
+| v-model / modelValue | binding value - the `value` of the currently selected radio button in the group | `string` | — |
+| value | radio value | `string` | — |
+| label | radio label | `string` | — |
+| name | group name for radio group | `string` | — |
+| size | radio size | `'small' \| 'medium'` | `'medium'` |
+| built_in_theme | color theme | `'primary-blue' \| 'secondary-blue' \| 'red'` | `'primary-blue'` |
+| customized_class | custom CSS class | `string` | — |
+| disabled | whether radio is disabled | `boolean` | `false` |
+| autofocus | whether to auto focus | `boolean` | `false` |
+
+##### Events
+
+| Event | Description | Parameters |
+|-------|-------------|------------|
+| change | triggers when the binding value changes | `(value: string)` |
+
+##### Exposes
+
+| Method | Description | Type |
+|--------|-------------|------|
+| focus | focus the radio | `() => void` |
+| blur | blur the radio | `() => void` |
+| alert | show alert message | `(message: string) => void` |
+| removeAlertOrErrorEffect | clear alert/error state | `() => void` |
+
+```vue
+<!-- Radio Group -->
+<Radio v-model="selected" value="option1" name="group1" label="Option 1" />
+<Radio v-model="selected" value="option2" name="group1" label="Option 2" />
+
+<!-- Single Radio -->
+<Radio v-model="single" value="yes" label="Agree to terms" />
 ```
 
 ### Interactive Components
