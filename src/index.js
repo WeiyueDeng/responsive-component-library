@@ -6,6 +6,8 @@ import SingleSelector from '@/components/SingleSelector.vue';
 import Checkbox from '@/components/Checkbox.vue';
 import Radio from '@/components/Radio.vue';
 import WholePageErrorPopup from '@/components/WholePageErrorPopup.vue';
+import AreaCodePhoneInput from '@/components/AreaCodePhoneInput.vue';
+import GroupCheckbox from '@/components/GroupCheckbox.vue';
 
 // directives
 import component_loading from "@/directives/component_loading.js";
@@ -18,7 +20,7 @@ import { FloatingNotification } from "@/composables/FloatingNotification.js";
 import '@/style.css'; 
 
 // Register components and directives for global usage
-const components = { SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio, WholePageErrorPopup };
+const components = { SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio, WholePageErrorPopup, AreaCodePhoneInput, GroupCheckbox };
 const directives = {
   'component-loading': component_loading,
   'whole-page-loading': whole_page_loading,
@@ -49,7 +51,7 @@ for (const path in icons) {
 // Named exports for individual component imports
 export { 
   //components
-  SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio, WholePageErrorPopup,
+  SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio, WholePageErrorPopup, AreaCodePhoneInput, GroupCheckbox,
   //directives
   component_loading ,
   whole_page_loading,
