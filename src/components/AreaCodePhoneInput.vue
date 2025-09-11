@@ -150,7 +150,10 @@ const handleSelectCountry = () => {
 const handleClickClearIcon = () => {
     if(!props.disabled){
         clear();
-        emits('clear');
+        emits('clear', {
+            area_code: area_code.value,
+            phone_number: phone_number.value
+        });
     }
 };
 const focus = () => {
@@ -267,9 +270,15 @@ watch(is_phone_number_input_focused, (newVal) => {
 });
 watch(is_focus, (newVal) => {
     if(newVal){
-        emits('focus');
+        emits('focus', {
+            area_code: area_code.value,
+            phone_number: phone_number.value
+        });
     }else{
-        emits('blur');
+        emits('blur', {
+            area_code: area_code.value,
+            phone_number: phone_number.value
+        });
     }
 })
 

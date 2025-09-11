@@ -76,26 +76,37 @@ const handleClick = () => {
 ### Form Components
 
 #### AreaCodePhoneInput
-International phone number input with country selection and area code handling.
+International phone number input with country selection and area code handling. Features automatic country flag display, smart focus management, and a clear button that appears on hover/focus.
 
 ##### Attributes
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|------|---------|
-| v-model / modelValue | binding value - object containing `area_code` (country code like "+1") and `phone_number` (local number) | `{area_code: string, phone_number: string}` | `{area_code: '', phone_number: ''}` |
-| country_options | custom country list | `array` | — |
-| enable_backup_country_options | use built-in country list | `boolean` | `true` |
-| country_filterable | enable country search | `boolean` | `true` |
+| v-model / modelValue | binding value - object containing `area_code` (string) and `phone_number` (string) | `{area_code: string, phone_number: string}` | `{}` |
+| country_options | custom country list with `country_name` and `country_code` properties | `Array<{country_name: string, country_code: string}>` | `[]` |
+| enable_backup_country_options | use built-in country list when no custom options provided | `boolean` | `true` |
+| country_filterable | enable country search/filtering in dropdown | `boolean` | `true` |
 | disabled | whether input is disabled | `boolean` | `false` |
 
 ##### Events
 
 | Event | Description | Parameters |
 |-------|-------------|------------|
-| change | triggers when the binding value changes | `(value: object)` |
-| focus | triggers when input is focused | `(event: FocusEvent)` |
-| blur | triggers when input is blurred | `(event: FocusEvent)` |
-| clear | triggers when clear button is clicked | — |
+| change | triggers when the binding value changes | `{area_code: string, phone_number: string}` |
+| focus | triggers when any part of the input gains focus | `{area_code: string, phone_number: string}` |
+| blur | triggers when the entire input loses focus | `{area_code: string, phone_number: string}` |
+| clear | triggers when clear button is clicked | `{area_code: string, phone_number: string}` |
+
+##### Exposes
+
+| Method | Description | Type |
+|--------|-------------|------|
+| focus | focus the appropriate input (country selector if no country selected, phone input if country selected) | `() => void` |
+| blur | blur both country selector and phone input | `() => void` |
+| clear | clear both country selection and phone number | `() => void` |
+| alert | show alert message below the input | `(message: string) => void` |
+| error | show error message below the input | `(message: string) => void` |
+| removeAlertOrErrorEffect | clear alert/error state and message | `() => void` |
 
 ```vue
 <template>
