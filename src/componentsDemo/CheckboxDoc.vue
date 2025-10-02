@@ -1,12 +1,12 @@
 <template>
-    <div style = "width: 500px; border: 1px pink solid; border-radius: 4px; padding:10px; background-color: pink;">
+    <div style = "width: 500px; border: 1px pink solid; border-radius: 4px; padding:10px;">
         <h1>Samples Display for Checkbox</h1> <br />
         <h2>green theme</h2> <br />
         <Checkbox v-model = "green_theme_checked" :label = 'test_label' 
         :indeterminate = "is_indeterminate" ref = "indeterminate-target-1" :disabled = "indeterminate_target_1_disabled" /> <br />
         <div style = "cursor:pointer" @click = "is_indeterminate = !is_indeterminate">Click to set/unset indeterminate</div> <br />
         <div style = "cursor:pointer" @click = "green_theme_checked = !green_theme_checked">Click to check/uncheck</div> <br />
-        <div style = "cursor:pointer" @click = "$refs['indeterminate-target-1'].alert('This is a customized error message passed via the expose of the checkbox component')">Click to show error</div> <br />
+        <div style = "cursor:pointer" @click = "$refs['indeterminate-target-1'].error('This is a customized error message passed via the expose of the checkbox component')">Click to show error</div> <br />
         <div style = "cursor:pointer" @click = "$refs['indeterminate-target-1'].removeAlertOrErrorEffect()">Click to remove alert</div> <br />
         <div style = "cursor:pointer" @click = "$refs['indeterminate-target-1'].focus()">Click to focus</div> <br />
         <div style = "cursor:pointer" @click = "$refs['indeterminate-target-1'].blur()">Click to blur</div> <br />
@@ -20,7 +20,7 @@
         <br />
         <div style = "cursor:pointer" @click = "$refs['autofocus-target-1'].focus()">Click to focus</div> <br />
         <div style = "cursor:pointer" @click = "$refs['autofocus-target-1'].blur()">Click to blur</div> <br />
-        <div style = "cursor:pointer" @click = "$refs['autofocus-target-1'].alert('This is a customized error message passed via the expose of the checkbox component')">Click to show error</div> <br />
+        <div style = "cursor:pointer" @click = "$refs['autofocus-target-1'].error('This is a customized error message passed via the expose of the checkbox component')">Click to show error</div> <br />
         <div style = "cursor:pointer" @click = "$refs['autofocus-target-1'].removeAlertOrErrorEffect()">Click to remove alert</div> <br />
         <h3>disabled</h3> <br />
         <Checkbox :disabled ="true" v-model = "checked" ref = "autofocus-target-2">
@@ -57,7 +57,7 @@
 
         <h2>secondary-blue, unchecked/checked, no label</h2> <br />
         <Checkbox v-model = "initial_checked_value" built_in_theme = "secondary-blue" ref = 'no-label-target-1'/>
-        <div style = "cursor:pointer" @click = "$refs['no-label-target-1'].alert('This is a customized error message passed via the expose of the checkbox component')">Click to show error</div> <br />
+        <div style = "cursor:pointer" @click = "$refs['no-label-target-1'].error('This is a customized error message passed via the expose of the checkbox component')">Click to show error</div> <br />
         <div style = "cursor:pointer" @click = "$refs['no-label-target-1'].removeAlertOrErrorEffect()">Click to remove alert</div> <br />
         <br />
     </div>
