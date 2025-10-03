@@ -287,7 +287,7 @@ Customizable checkbox with multiple themes and validation support.
     customized_theme_color="var(--primary-blue)"
     @change="handleChange"
   />
-  <!-- Theme color can be any form of CSS color value. Since if the theme color isn't empty, it will override the built-in theme color. The background color of the checked and indeterminate state, and the mask color of the interaction effects of the checkbox will be the theme color, while the border color of unchecked checkbox will always be HSL(220, 3%, 10%) -->
+  <!-- Theme color can be any form of CSS color value. Since if the theme color isn't empty, it will override the built-in theme color. The background color of the checked and indeterminate state, and the mask color of the interaction effects of the checkbox will be the theme color, while the border color of unchecked checkbox will always be hsl(226, 8%, 10%) -->
   <Checkbox 
     v-model="agreed" 
     label="I agree to terms" 

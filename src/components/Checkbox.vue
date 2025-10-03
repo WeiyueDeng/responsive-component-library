@@ -71,7 +71,7 @@ export default{
             // NOTES: Can be any valid CSS color value
             // NOTES: When both built_in_theme and customized_theme_color are used, customized_theme_color will override the built_in_theme
             // NOTES: The theme color is the color used for the checkbox background when it is checked or indeterminate and the interaction effects
-            // NOTES: When the theme color is used, the unchecked checkbox's border color is always HSL(220, 3%, 10%).
+            // NOTES: When the theme color is used, the unchecked checkbox's border color is always hsl(226, 8%, 10%).
             type:String,
             default:''
         },
@@ -342,7 +342,7 @@ export default{
     height: 100%;
     border-radius: 2px;
     box-sizing: border-box;
-    border: 2px solid HSL(220, 3%, 10%);
+    border: 2px solid hsl(226, 8%, 10%);
 }
 .checked .checkbox-input-original:focus + .checkbox-input-shown .checkbox-input-shown-checkbox::after,
 .checked .checkbox-input-shown:hover .checkbox-input-shown-checkbox::after{
@@ -361,13 +361,13 @@ export default{
     border-color:var(--checkbox-theme-color--);
 }
 .disabled .checkbox-input-shown-checkbox::after{
-    border-color:#979797 !important;
+    border-color:var(--disabled-color--) !important;
 }
 
 .disabled .indeterminate .checkbox-input-shown-checkbox::after,
 .disabled .checked .checkbox-input-shown-checkbox::after{
-    border-color:#979797 !important;
-    background: #979797 !important;
+    border-color:var(--disabled-color--) !important;
+    background: var(--disabled-color--) !important;
 }
 
 .checked .checkbox-input-original:focus + .checkbox-input-shown .checkbox-input-shown-checkbox::after,
@@ -410,7 +410,7 @@ export default{
 }
  /* label */
 .small .checkbox-container-label-wrapper{
-    color: hsl(220, 3%, 10%);
+    color: hsl(226, 8%, 10%);
     font-family: 'Roboto';
     font-size: 14px;
     font-weight: 400;
@@ -418,7 +418,7 @@ export default{
     letter-spacing: 0.25px;
 }
 .medium .checkbox-container-label-wrapper{
-    color: hsl(220, 3%, 10%);
+    color: hsl(226, 8%, 10%);
     font-family: 'Roboto';
     font-size: 16px;
     font-weight: 400;
@@ -426,7 +426,7 @@ export default{
     letter-spacing: 0.5px;
 }
 .disabled .checkbox-container-label-wrapper{
-    color: #979797;
+    color: var(--disabled-color--);
 }
 /* error / alert message */
 .message-container{
@@ -472,7 +472,7 @@ export default{
         left: 5px;
     }
     .medium .checkbox-container-label-wrapper{
-        color: hsl(220, 3%, 10%);
+        color: hsl(226, 8%, 10%);
         font-family: 'Roboto';
         font-size: 14px;
         font-weight: 400;

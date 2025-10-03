@@ -6,6 +6,7 @@
     --secondary-color--: hsl(217, 40%, 40%);
     --semantic-success-color--: hsl(86, 52%, 48%);
     --semantic-error-color--: hsl(3, 71%, 40%);
+    --disabled-color--: hsl(226, 8%, 60%);
 } 
 
 /* loading */
