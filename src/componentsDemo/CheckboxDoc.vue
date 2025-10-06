@@ -45,8 +45,8 @@
         <Checkbox :label = 'test_label' built_in_theme = "secondary-blue" />
         <br />
 
-        <h2>red theme</h2> <br />
-        <Checkbox :label = 'test_label' built_in_theme = "red" />
+        <h2>Error mode for all themes</h2> <br />
+        <Checkbox :label = 'test_label' ref = 'error-target-1'/>
         <br />
 
         <h2>disabled, secondary-blue, unchecked/checked</h2> <br />
@@ -76,6 +76,9 @@ export default{
     components:{
         Checkbox,
         GroupCheckbox
+    },
+    mounted(){
+        this.$refs['error-target-1'].error('This is a customized error message passed via the expose of the checkbox component');
     },
     data(){
         return{

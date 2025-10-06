@@ -248,7 +248,7 @@ Customizable checkbox with multiple themes and validation support.
 | v-model / modelValue | binding value - `true` when checked, `false` when unchecked | `boolean` | `false` |
 | label | checkbox label | `string` | — |
 | size | checkbox size | `'small' \| 'medium'` | `'medium'` |
-| built_in_theme | built-in color theme | `'green' \| 'primary-blue' \| 'secondary-blue' \| 'red'` (auto used when .error() is called)| `'green'` |
+| built_in_theme | built-in color theme | `'green' \| 'primary-blue' \| 'secondary-blue'` | `'green'` |
 | customized_theme_color | custom theme color (overrides built_in_theme) | `string`（any valid CSS color value） | `''` |
 | customized_class | custom CSS class | `string` | — |
 | disabled | whether checkbox is disabled | `boolean` | `false` |
@@ -267,7 +267,7 @@ Customizable checkbox with multiple themes and validation support.
 |--------|-------------|------|
 | focus | focus the checkbox | `() => void` |
 | blur | blur the checkbox | `() => void` |
-| error | show error message | `(message: string) => void` |
+| error | show error message, will automatically use the error theme | `(message: string) => void` |
 | removeAlertOrErrorEffect | clear error state | `() => void` |
 
 ```vue
@@ -284,22 +284,14 @@ Customizable checkbox with multiple themes and validation support.
   <Checkbox 
     v-model="agreed" 
     label="I agree to terms" 
-    customized_theme_color="var(--primary-blue)"
+    customized_theme_color="var(--primary-color--)"
     @change="handleChange"
   />
-  <!-- Theme color can be any form of CSS color value. Since if the theme color isn't empty, it will override the built-in theme color. The background color of the checked and indeterminate state, and the mask color of the interaction effects of the checkbox will be the theme color, while the border color of unchecked checkbox will always be hsl(226, 8%, 10%) -->
+  <!-- Theme color can be any form of CSS color value. Since if the theme color isn't empty, it will override the built-in theme color. The background color of the checked and indeterminate state, and the mask color of the interaction effects of the checkbox will be the theme color, while the border color of unchecked checkbox will always be hsl(226, 8%, 10%). But when the checkbox is in error state, the theme will be error theme (the border color of unchecked checkbox, the background color of the checked and indeterminate state, and the mask color of the interaction effects of the checkbox will always be --semantic-error-color--) -->
   <Checkbox 
     v-model="agreed" 
     label="I agree to terms" 
-    built_in_theme="red"
     customized_theme_color="hsl(3, 71%, 40%)"
-    @change="handleChange"
-  />
-  <!-- For red theme (call .error() method), the border color of unchecked checkbox, the background color of the checked and indeterminate state, and the mask color of the interaction effects of the checkbox will always be --semantic-error-color--.-->
-  <Checkbox 
-    v-model="agreed" 
-    label="I agree to terms" 
-    built_in_theme="red"
     @change="handleChange"
   />
 </template>

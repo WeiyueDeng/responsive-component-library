@@ -3,14 +3,14 @@
         <label :class = "[
         'checkbox-container',
         size,
-        {'red':show_error || (built_in_theme === 'red' && !customized_theme_color)},
+        {'error': show_error},
         customized_class,
-        {'disabled':disabled},
+        {'disabled': disabled},
         ]"
         ref = "checkbox-container">
             <div :class = "[
                 'checkbox-input',
-                {'checked':checked},
+                {'checked': checked},
                 {'indeterminate': indeterminate},
             ]">
                 <input type = 'checkbox' v-model = "checked" 
@@ -61,8 +61,7 @@ export default{
             default:'medium'
         },
         built_in_theme:{
-            // ENUM: green, primary-blue, secondary-blue, red
-            // NOTES: red theme is the one used if show_error is true (.error())
+            // ENUM: green, primary-blue, secondary-blue
             type:String,
             default:"green"
         },
@@ -186,8 +185,6 @@ export default{
                     return 'var(--primary-color--)';
                 case 'secondary-blue':
                     return 'var(--secondary-color--)';
-                case 'red':
-                    return 'var(--semantic-error-color--)';
             }
             
         },
@@ -357,7 +354,7 @@ export default{
     /* unchecked checkbox-input-shown-checkbox has transparent background when hover or focus */
     background-color: transparent;
 }
-.red .checkbox-input-shown-checkbox::after{
+.error .checkbox-input-shown-checkbox::after{
     border-color:var(--checkbox-theme-color--);
 }
 .disabled .checkbox-input-shown-checkbox::after{
