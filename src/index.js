@@ -19,6 +19,9 @@ import { FloatingNotification } from "@/composables/FloatingNotification.js";
 
 import '@/style.css'; 
 
+// utils
+import { parseColorToHsl, toHslString, toHsl } from '@/utils/color.js';
+
 // Register components and directives for global usage
 const components = { SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio, WholePageErrorPopup, AreaCodePhoneInput, GroupCheckbox };
 const directives = {
@@ -57,6 +60,8 @@ export {
   whole_page_loading,
   //composables
   useWindowSize, FloatingNotification,
+  //utils
+  parseColorToHsl, toHslString, toHsl,
   //all icons
   iconsMap,
 };

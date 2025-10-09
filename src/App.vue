@@ -1,9 +1,11 @@
 <script setup>
 import ComponentsDocumentation from '@/componentsDemo/ComponentsDocumentation.vue'
+import OutdatedComponentsDocumentation from '@/outdatedComponentsDemo/OutdatedComponentsDocumentation.vue'
 </script>
 
 <template>
   <ComponentsDocumentation />
+  <OutdatedComponentsDocumentation />
 </template>
 
 <style scoped>

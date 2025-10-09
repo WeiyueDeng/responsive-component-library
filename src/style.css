@@ -2,11 +2,19 @@
 
 /* predefined colors */
 :root{
-    --primary-color--: hsl(217, 90%, 40%);
-    --secondary-color--: hsl(217, 40%, 40%);
-    --semantic-success-color--: hsl(86, 52%, 48%);
-    --semantic-error-color--: hsl(3, 71%, 40%);
-    --disabled-color--: hsl(226, 8%, 60%);
+  /* P-40, S-40, T-40 */
+  --primary-color--: hsl(217, 90%, 40%);
+  --secondary-color--: hsl(217, 40%, 40%);
+  --tertiary-color--: hsl(307, 50%, 40%);
+
+  /* P-90, S-90, T-90 */
+  --primary-container-color--: hsl(217, 90%, 90%);
+  --secondary-container-color--: hsl(217, 40%, 90%);
+  --tertiary-container-color--: hsl(307, 50%, 90%);
+
+  --semantic-success-color--: hsl(86, 52%, 48%);
+  --semantic-error-color--: hsl(3, 71%, 40%);
+  --disabled-color--: hsl(226, 8%, 60%);
 } 
 
 /* loading */

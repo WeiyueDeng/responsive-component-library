@@ -118,6 +118,8 @@ International phone number input with country selection and area code handling. 
 </template>
 ```
 
+
+
 #### InputBox
 Versatile input field component with validation and styling options.
 
@@ -416,6 +418,90 @@ import { iconsMap } from 'pns-component-library';
       <img :src="iconsMap['eye_icon']" alt="eye" />
     </template>
   </ResponsiveButton>
+</template>
+```
+
+#### FloatingActionButton
+Mobile-only floating action button that anchors to the bottom-right of the viewport on small screens. It supports three sizes, built-in themes or a custom theme color, named slots for icons, and an optional one-level options menu. The button is automatically hidden on wide screens (when `window.width > 1024`).
+
+##### Attributes
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|------|---------|
+| display_name | button text | `string` | `'button'` |
+| size | button size | `'small' \| 'medium' \| 'large'` | `'small'` |
+| build_in_theme | built-in color theme | `'primary' \| 'secondary' \| 'tertiary' \| 'primary-container' \| 'secondary-container' \| 'tertiary-container'` | `'primary'` |
+| customized_theme_color | custom theme color (overrides built_in_theme). Accepts any valid CSS color string (e.g., `#3d5c8f`, `rgb(61, 92, 143)`, `hsl(217, 40%, 40%)`, or `var(--primary-color--)`). | `string` | `''` |
+| customized_class | custom CSS class for the outer container | `string` | `''` |
+| options | optional menu options (one level). Each item is `{ value: any, label: string, prefix?: string, suffix?: string }`. `prefix`/`suffix` are icon URLs for the option. | `array` | `[]` |
+
+> Notes
+> - When `options` is non-empty, clicking the FAB toggles the options menu. A cross button is provided to close the menu.
+> - The component is hidden on wide screens (`width > 1024`) by design to target mobile usage.
+
+##### Events
+
+| Event | Description | Parameters |
+|-------|-------------|------------|
+| floating-action-button-click | emitted when the floating action button is clicked. If `options` is provided, this also toggles the menu visibility. | — |
+| option-click | emitted when a menu option is clicked | `(value: any)` |
+
+##### Slots
+
+| Name | Description |
+|------|-------------|
+| prefix | content rendered before the button text. Commonly used for an icon. |
+| default | default slot for button label content. Falls back to `display_name` when empty. |
+| suffix | content rendered after the button text. Commonly used for an icon. |
+
+```vue
+<script setup>
+const quickCreateOptions = [
+  { value: 'photo', label: 'New Photo' },
+  { value: 'video', label: 'New Video' },
+  { value: 'doc', label: 'New Doc' },
+]
+
+const handleFabClick = () => {
+  console.log('FAB clicked')
+}
+
+const handleOptionClick = (val) => {
+  console.log('Option clicked:', val)
+}
+</script>
+
+<template>
+  <!-- Will only be visible on small screens (hidden on width > 1024) -->
+  <FloatingActionButton
+    display_name="New"
+    size="small"
+    build_in_theme="tertiary"
+    :options="quickCreateOptions"
+    @floating-action-button-click="handleFabClick"
+    @option-click="handleOptionClick"
+  >
+    <template #prefix>
+      <!-- Example icon (uses currentColor to adapt) -->
+      <!-- Pros of using inline SVG:
+           - Inherits currentColor automatically, so it adapts to theme/text color without extra CSS
+           - Reacts naturally to hover/active color-mix effects used by the component
+           - No additional network request for external assets
+         Using a regular <img src="..."> is also fine if you prefer image assets;
+         just note that <img> won't inherit currentColor by default (you'd need pre-colored assets or additional CSS). -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M6 16L10 12.95L14 16L12.5 11.05L16.5 8.2H11.6L10 3L8.4 8.2H3.5L7.5 11.05L6 16ZM10 20C8.61667 20 7.31667 19.7375 6.1 19.2125C4.88333 18.6875 3.825 17.975 2.925 17.075C2.025 16.175 1.3125 15.1167 0.7875 13.9C0.2625 12.6833 0 11.3833 0 10C0 8.61667 0.2625 7.31667 0.7875 6.1C1.3125 4.88333 2.025 3.825 2.925 2.925C3.825 2.025 4.88333 1.3125 6.1 0.7875C7.31667 0.2625 8.61667 0 10 0C11.3833 0 12.6833 0.2625 13.9 0.7875C15.1167 1.3125 16.175 2.025 17.075 2.925C17.975 3.825 18.6875 4.88333 19.2125 6.1C19.7375 7.31667 20 8.61667 20 10C20 11.3833 19.7375 12.6833 19.2125 13.9C18.6875 15.1167 17.975 16.175 17.075 17.075C16.175 17.975 15.1167 18.6875 13.9 19.2125C12.6833 19.7375 11.3833 20 10 20Z" fill="currentColor"/>
+      </svg>
+    </template>
+  </FloatingActionButton>
+
+  <!-- Custom theme color overrides built-in theme -->
+  <FloatingActionButton
+    display_name="Custom"
+    size="medium"
+    customized_theme_color="hsl(217, 40%, 40%)"
+    @floating-action-button-click="handleFabClick"
+  />
 </template>
 ```
 

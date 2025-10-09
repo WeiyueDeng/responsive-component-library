@@ -1,5 +1,7 @@
 <template>
-  <div style = "display: flex; align-items: center; flex-direction: column;">
+<div style = "display: flex; align-items: center; flex-direction: column;">
+  <h1>Components Documentation</h1>
+  <br />
   <!-- Samples Display for SimplifiedNotification.vue -->
   <SimplifiedNotificationDoc />
 
@@ -36,6 +38,8 @@
   <WholePageErrorPopupDoc />
 
   <br />
+  <!-- Samples Display for FloatingActionButton -->
+  <FloatingActionButtonDoc />
 </div>
 </template>
 
@@ -49,6 +53,7 @@ import DirectivesDoc from '@/componentsDemo/DirectivesDoc.vue';
 import CheckboxDoc from "@/componentsDemo/CheckboxDoc.vue";
 import RadioDoc from "@/componentsDemo/RadioDoc.vue";
 import WholePageErrorPopupDoc from "@/componentsDemo/WholePageErrorPopupDoc.vue";
+import FloatingActionButtonDoc from "@/componentsDemo/FloatingActionButtonDoc.vue";
 
 
 export default{
@@ -62,6 +67,7 @@ export default{
     CheckboxDoc,
     RadioDoc,
     WholePageErrorPopupDoc,
+    FloatingActionButtonDoc,
   },
 }
 </script>
