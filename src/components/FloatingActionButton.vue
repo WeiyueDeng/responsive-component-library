@@ -63,6 +63,13 @@ const props = defineProps({
         default: 'primary'
     },
     customized_theme_color:{
+        // custom theme color, will override build_in_theme
+        // Any valid CSS color value is accepted
+        // e.g. 'hsl(217, 40%, 40%)', '#ff0000', 'rgb(255, 0, 0)', 'rgba(255, 0, 0, 0.5)', 'hsla(217, 40%, 40%, 0.5)'
+        // If customized_theme_color is not provided, build_in_theme will be used
+        // We use dynamic color calculation to calculate the color of the floating action button and all the other parts based on the customized_theme_color
+        // If use customized_theme_color, the color will be directly used as the background color of the floating action button
+        // and for the mask of the interaction effects and all the other part's color, e.g. text color, inline svg color, menu cross button color, menu child button color, etc., the color will be calculated based on the customized_theme_color
         type: String,
         default: ''
     },

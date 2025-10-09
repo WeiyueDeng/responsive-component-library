@@ -438,6 +438,11 @@ Mobile-only floating action button that anchors to the bottom-right of the viewp
 > Notes
 > - When `options` is non-empty, clicking the FAB toggles the options menu. A cross button is provided to close the menu.
 > - The component is hidden on wide screens (`width > 1024`) by design to target mobile usage.
+> - `customized_theme_color` overrides `build_in_theme`. If it is not provided (empty string), the `build_in_theme` color will be used instead.
+> - `customized_theme_color` accepts any valid CSS color value: e.g. `hsl(217, 40%, 40%)`, `#ff0000`, `rgb(255, 0, 0)`, `rgba(255, 0, 0, 0.5)`, `hsla(217, 40%, 40%, 0.5)`, or `var(--primary-color--)`.
+> - When using `customized_theme_color`:
+>   - The FAB background color uses the provided value directly.
+>   - Related colors (text color, inline SVG color via currentColor, menu cross button colors, menu child button colors, and interaction masks) are dynamically calculated based on the `customized_theme_color` to ensure contrast and visual harmony.
 
 ##### Events
 
