@@ -1,81 +1,104 @@
 <template>
-    <div style = "width: 500px; border: 1px pink solid; border-radius: 4px; padding:10px;">
-        <h1>Samples Display for Checkbox</h1> <br />
-        <h2>green theme</h2> <br />
-        <Checkbox v-model = "green_theme_checked" :label = 'test_label' 
-        :indeterminate = "is_indeterminate" ref = "indeterminate-target-1" :disabled = "indeterminate_target_1_disabled" /> <br />
-        <div style = "cursor:pointer" @click = "is_indeterminate = !is_indeterminate">Click to set/unset indeterminate</div> <br />
-        <div style = "cursor:pointer" @click = "green_theme_checked = !green_theme_checked">Click to check/uncheck</div> <br />
-        <div style = "cursor:pointer" @click = "$refs['indeterminate-target-1'].error('This is a customized error message passed via the expose of the checkbox component')">Click to show error</div> <br />
-        <div style = "cursor:pointer" @click = "$refs['indeterminate-target-1'].removeAlertOrErrorEffect()">Click to remove alert</div> <br />
-        <div style = "cursor:pointer" @click = "$refs['indeterminate-target-1'].focus()">Click to focus</div> <br />
-        <div style = "cursor:pointer" @click = "$refs['indeterminate-target-1'].blur()">Click to blur</div> <br />
-        <div style = "cursor:pointer" @click = "indeterminate_target_1_disabled=!indeterminate_target_1_disabled">Click to disable/enable checkbox</div> <br />
+  <div class="component-doc">
+    <h2>Checkbox</h2>
+    <DemoBlock id="cb-green" title="Green Theme: Basic, Indeterminate, Exposed Methods" :code="greenThemeCode">
+      <div class="live">
+        <Checkbox v-model="green_theme_checked" :label="test_label"
+          :indeterminate="is_indeterminate" ref="indeterminate-target-1" :disabled="indeterminate_target_1_disabled" />
+        <div class="actions">
+          <button @click="is_indeterminate = !is_indeterminate">Toggle indeterminate</button>
+          <button @click="green_theme_checked = !green_theme_checked">Toggle checked</button>
+          <button @click="$refs['indeterminate-target-1'].error('This is a customized error message passed via the expose of the checkbox component')">Show error</button>
+          <button @click="$refs['indeterminate-target-1'].removeAlertOrErrorEffect()">Clear</button>
+          <button @click="$refs['indeterminate-target-1'].focus()">Focus</button>
+          <button @click="$refs['indeterminate-target-1'].blur()">Blur</button>
+          <button @click="indeterminate_target_1_disabled=!indeterminate_target_1_disabled">Toggle disabled</button>
+        </div>
+        <div class="note">Notes: If both indeterminate and checked, shown as indeterminate. When indeterminate becomes true, checked resets to false.</div>
+      </div>
+    </DemoBlock>
 
-        <div>***NOTES: If both indeterminate and checked, shown as indeterminate</div> <br />
-        <div>***NOTES: If the value passed to the indeterminate prop changes to be true, the checked value will be automatically set to be false</div> <br />
-        <br />
-        <h3>autofocus</h3> <br />
-        <Checkbox v-model = "green_theme_checked" :label = 'test_label' ref = "autofocus-target-1" :autofocus = "true"/>
-        <br />
-        <div style = "cursor:pointer" @click = "$refs['autofocus-target-1'].focus()">Click to focus</div> <br />
-        <div style = "cursor:pointer" @click = "$refs['autofocus-target-1'].blur()">Click to blur</div> <br />
-        <div style = "cursor:pointer" @click = "$refs['autofocus-target-1'].error('This is a customized error message passed via the expose of the checkbox component')">Click to show error</div> <br />
-        <div style = "cursor:pointer" @click = "$refs['autofocus-target-1'].removeAlertOrErrorEffect()">Click to remove alert</div> <br />
-        <h3>disabled</h3> <br />
-        <Checkbox :disabled ="true" v-model = "checked" ref = "autofocus-target-2">
-            <div>
-                text 2 (pass label via slot), v-model control
-            </div>
+    <DemoBlock id="cb-autofocus" title="Autofocus" :code="autofocusCode">
+      <div class="live">
+        <Checkbox v-model="green_theme_checked" :label="test_label" ref="autofocus-target-1" :autofocus="true"/>
+        <div class="actions">
+          <button @click="$refs['autofocus-target-1'].focus()">Focus</button>
+          <button @click="$refs['autofocus-target-1'].blur()">Blur</button>
+          <button @click="$refs['autofocus-target-1'].error('This is a customized error message passed via the expose of the checkbox component')">Show error</button>
+          <button @click="$refs['autofocus-target-1'].removeAlertOrErrorEffect()">Clear</button>
+        </div>
+      </div>
+    </DemoBlock>
+
+    <DemoBlock id="cb-disabled-slot" title="Disabled with Slot Label" :code="disabledSlotCode">
+      <div class="live">
+        <Checkbox :disabled="true" v-model="checked" ref="autofocus-target-2">
+          <div>text 2 (pass label via slot), v-model control</div>
         </Checkbox>
-        <br />
-        <div style = "cursor:pointer" @click = "$refs['autofocus-target-2'].focus()">Click to focus</div> <br />
-        <div style = "cursor:pointer" @click = "$refs['autofocus-target-2'].blur()">Click to blur</div> <br />
-        <div style = "cursor:pointer" @click = "checked=!checked">Click to check/uncheck</div> <br />
-        
-        
-        <br />
-        <h2>primary-blue theme</h2> <br />
-        <Checkbox :label = 'test_label' built_in_theme = "primary-blue">
-                <div>
-                    text 2 (pass label via slot)
-                </div>
+        <div class="actions">
+          <button @click="$refs['autofocus-target-2'].focus()">Focus</button>
+          <button @click="$refs['autofocus-target-2'].blur()">Blur</button>
+          <button @click="checked=!checked">Toggle checked</button>
+        </div>
+      </div>
+    </DemoBlock>
+
+    <DemoBlock id="cb-themes" title="Themes" :code="themesCode">
+      <div class="live">
+        <Checkbox :label="test_label" built_in_theme="primary-blue">
+          <div>text 2 (pass label via slot)</div>
         </Checkbox>
-        <h2>secondary-blue theme</h2> <br />
-        <Checkbox :label = 'test_label' built_in_theme = "secondary-blue" />
-        <br />
+        <Checkbox :label="test_label" built_in_theme="secondary-blue" />
+      </div>
+    </DemoBlock>
 
-        <h2>Error mode for all themes</h2> <br />
-        <Checkbox :label = 'test_label' ref = 'error-target-1'/>
-        <br />
+    <DemoBlock id="cb-error" title="Error Mode (All Themes)" :code="errorCode">
+      <div class="live">
+        <Checkbox :label="test_label" ref="error-target-1"/>
+      </div>
+    </DemoBlock>
 
-        <h2>disabled, secondary-blue, unchecked/checked</h2> <br />
-        <Checkbox v-model = "initial_unchecked_value" :label = 'test_label' built_in_theme = "secondary-blue" :disabled = "true"/>
-        <Checkbox v-model = "initial_checked_value" :label = 'test_label' built_in_theme = "secondary-blue" :disabled = "true"/>
-        <Checkbox v-model = "initial_unchecked_value" :label = 'test_label' built_in_theme = "secondary-blue" :disabled = "true" indeterminate/>
-        <br />
+    <DemoBlock id="cb-disabled-variants" title="Disabled Variants" :code="disabledVariantsCode">
+      <div class="live">
+        <Checkbox v-model="initial_unchecked_value" :label="test_label" built_in_theme="secondary-blue" :disabled="true"/>
+        <Checkbox v-model="initial_checked_value" :label="test_label" built_in_theme="secondary-blue" :disabled="true"/>
+        <Checkbox v-model="initial_unchecked_value" :label="test_label" built_in_theme="secondary-blue" :disabled="true" indeterminate/>
+      </div>
+    </DemoBlock>
 
-        <h2>secondary-blue, unchecked/checked, no label</h2> <br />
-        <Checkbox v-model = "initial_checked_value" built_in_theme = "secondary-blue" ref = 'no-label-target-1'/>
-        <div style = "cursor:pointer" @click = "$refs['no-label-target-1'].error('This is a customized error message passed via the expose of the checkbox component')">Click to show error</div> <br />
-        <div style = "cursor:pointer" @click = "$refs['no-label-target-1'].removeAlertOrErrorEffect()">Click to remove alert</div> <br />
-        <br />
-    </div>
+    <DemoBlock id="cb-no-label" title="No Label" :code="noLabelCode">
+      <div class="live">
+        <Checkbox v-model="initial_checked_value" built_in_theme="secondary-blue" ref='no-label-target-1'/>
+        <div class="actions">
+          <button @click="$refs['no-label-target-1'].error('This is a customized error message passed via the expose of the checkbox component')">Show error</button>
+          <button @click="$refs['no-label-target-1'].removeAlertOrErrorEffect()">Clear</button>
+        </div>
+      </div>
+    </DemoBlock>
 
-    <GroupCheckbox v-model = "current_checked_values">
-        <Checkbox v-for = "item in checkbox_group_values" :key = "item" :label = "item" />
-    </GroupCheckbox>
-    <div @click = "current_checked_values=['checkbox1', 'checkbox2']">update checked values to ['checkbox1', 'checkbox2'] (different v-model reference )</div>
-    <div @click = "current_checked_values.push('checkbox3')">add 'checkbox3' to checked values (same v-model reference)</div>
+    <DemoBlock id="cb-group" title="GroupCheckbox" :code="groupCode">
+      <div class="live">
+        <GroupCheckbox v-model="current_checked_values">
+          <Checkbox v-for="item in checkbox_group_values" :key="item" :label="item" />
+        </GroupCheckbox>
+        <div class="actions">
+          <button @click="current_checked_values=['checkbox1', 'checkbox2']">Set checked to ['checkbox1','checkbox2']</button>
+          <button @click="current_checked_values.push('checkbox3')">Push 'checkbox3'</button>
+        </div>
+      </div>
+    </DemoBlock>
+  </div>
 </template>
 
 <script>
 import Checkbox from "@/components/Checkbox.vue";
 import GroupCheckbox from "@/components/GroupCheckbox.vue";
+import DemoBlock from '@/componentsDemo/DemoBlock.vue';
 export default{
     components:{
         Checkbox,
-        GroupCheckbox
+        GroupCheckbox,
+        DemoBlock
     },
     mounted(){
         this.$refs['error-target-1'].error('This is a customized error message passed via the expose of the checkbox component');
@@ -102,13 +125,39 @@ export default{
             }
         }
     },
-    methods:{
-        handleAutofocus(){
-            console.log('focus checkbox', this.$refs['autofocus-target'].focus());
-        }
-    }
+    computed:{
+      greenThemeCode(){
+        return `<template>\n  <Checkbox v-model=\"checked\" :label=\"'text 1'\" :indeterminate=\"indeterminate\" ref=\"cb\" :disabled=\"disabled\"/>\n  <button @click=\"() => (indeterminate = !indeterminate)\">Toggle indeterminate</button>\n  <button @click=\"() => (checked = !checked)\">Toggle checked</button>\n  <button @click=\"() => cb.error('Custom error')\">Show error</button>\n  <button @click=\"() => cb.removeAlertOrErrorEffect()\">Clear</button>\n  <button @click=\"() => cb.focus()\">Focus</button>\n  <button @click=\"() => cb.blur()\">Blur</button>\n  <button @click=\"() => (disabled = !disabled)\">Toggle disabled</button>\n</template>\n\n<script setup>\nimport { ref } from 'vue'\nimport { Checkbox } from 'pns-component-library'\nconst checked = ref(false)\nconst indeterminate = ref(false)\nconst disabled = ref(false)\nconst cb = ref(null)\n<\/script>`
+      },
+      autofocusCode(){
+        return `<template>\n  <Checkbox v-model=\"checked\" :label=\"'text 1'\" :autofocus=\"true\" ref=\"cb\"/>\n</template>\n\n<script setup>\nimport { ref } from 'vue'\nimport { Checkbox } from 'pns-component-library'\nconst checked = ref(false)\nconst cb = ref(null)\n<\/script>`
+      },
+      disabledSlotCode(){
+        return `<template>\n  <Checkbox :disabled=\"true\" v-model=\"checked\">\n    <div>text 2 (pass label via slot), v-model control</div>\n  </Checkbox>\n</template>\n\n<script setup>\nimport { ref } from 'vue'\nimport { Checkbox } from 'pns-component-library'\nconst checked = ref(true)\n<\/script>`
+      },
+      themesCode(){
+        return `<template>\n  <Checkbox :label=\"'text 1'\" built_in_theme=\"'primary-blue'\">\n    <div>text 2 (pass label via slot)</div>\n  </Checkbox>\n  <Checkbox :label=\"'text 1'\" built_in_theme=\"'secondary-blue'\"/>\n</template>`
+      },
+      errorCode(){
+        return `<template>\n  <Checkbox :label=\"'text 1'\" ref=\"cb\"/>\n</template>\n\n<script setup>\nimport { onMounted, ref } from 'vue'\nimport { Checkbox } from 'pns-component-library'\nconst cb = ref(null)\nonMounted(() => cb.value?.error('Custom error'))\n<\/script>`
+      },
+      disabledVariantsCode(){
+        return `<template>\n  <Checkbox v-model=\"unchecked\" :label=\"'text 1'\" built_in_theme=\"'secondary-blue'\" :disabled=\"true\"/>\n  <Checkbox v-model=\"checked\" :label=\"'text 1'\" built_in_theme=\"'secondary-blue'\" :disabled=\"true\"/>\n  <Checkbox v-model=\"unchecked\" :label=\"'text 1'\" built_in_theme=\"'secondary-blue'\" :disabled=\"true\" indeterminate/>\n</template>\n\n<script setup>\nimport { ref } from 'vue'\nconst checked = ref(true)\nconst unchecked = ref(false)\n<\/script>`
+      },
+      noLabelCode(){
+        return `<template>\n  <Checkbox v-model=\"checked\" built_in_theme=\"'secondary-blue'\" ref=\"cb\"/>\n</template>\n\n<script setup>\nimport { ref } from 'vue'\nimport { Checkbox } from 'pns-component-library'\nconst checked = ref(true)\nconst cb = ref(null)\n<\/script>`
+      },
+      groupCode(){
+        return `<template>\n  <GroupCheckbox v-model=\"checkedValues\">\n    <Checkbox v-for=\"item in items\" :key=\"item\" :label=\"item\"/>\n  </GroupCheckbox>\n</template>\n\n<script setup>\nimport { ref } from 'vue'\nimport { Checkbox, GroupCheckbox } from 'pns-component-library'\nconst items = ['checkbox1','checkbox2','checkbox3','checkbox4']\nconst checkedValues = ref(['checkbox1'])\n<\/script>`
+      }
+    },
+    methods:{}
 }
 </script>
 
 <style scoped>
+.component-doc{ max-width: 900px; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; }
+.live{ border: 1px dashed #e5e7eb; padding: 12px; border-radius: 8px; background: #fff; display: flex; flex-direction: column; gap: 8px; }
+.actions{ display:flex; gap:8px; flex-wrap:wrap; }
+.note{ color: #374151; }
 </style>

@@ -1,46 +1,136 @@
 <template>
-<div style = "display: flex; align-items: center; flex-direction: column;">
-  <h1>Components Documentation</h1>
-  <br />
-  <!-- Samples Display for SimplifiedNotification.vue -->
-  <SimplifiedNotificationDoc />
+  <div class="docs-layout">
+    <aside class="docs-sidebar">
+      <div class="sidebar-title">Components</div>
+      <nav>
+        <a
+          v-for="s in sections"
+          :key="s.id"
+          :href="`#${s.id}`"
+          :class="['sidebar-link', { active: activeSection === s.id }]"
+          @click.prevent="scrollTo(s.id)"
+        >{{ s.title }}</a>
+      </nav>
+    </aside>
 
-  <br />
-  <!-- Samples Display for InputBox.vue -->
-  <InputBoxDoc />
+    <main class="docs-content">
+      <h1>Components Documentation (Latest Version and Usage Examples)</h1>
+      <div class="intro-panel">
+        <p>
+          This page contains the <strong>most up-to-date, actively maintained</strong> demos for all
+          components in <code>src/components/</code>.
+        </p>
+        <ul>
+          <li>Recommended for integration and reference in new features.</li>
+          <li>APIs, behaviors, and styles reflect the current library version.</li>
+          <li>
+            For legacy usage, see <code>src/outdatedComponentsDemo/OutdatedComponentsDocumentation.vue</code>.
+          </li>
+        </ul>
+      </div>
 
-  <br />
-  <!-- Samples Display for SingleSelector.vue -->
-  <SingleSelectorDoc />
+      <!-- SimplifiedNotification -->
+      <section id="simplified-notification" class="doc-section" data-title="SimplifiedNotification">
+        <h2>SimplifiedNotification</h2>
+        <p class="section-desc">
+          Toast-style feedback with optional title, theme, and auto-hide. Use the composable
+          <code>FloatingNotification</code> for programmatic triggers.
+        </p>
+        <SimplifiedNotificationDoc />
+      </section>
 
-  <br />
-  <!-- Samples Display for AreaCodePhoneInput.vue -->
-  <AreaCodePhoneInputDoc />
+      <!-- InputBox -->
+      <section id="input-box" class="doc-section" data-title="InputBox">
+        <h2>InputBox</h2>
+        <p class="section-desc">
+          A versatile text input with clearable icon, validation helpers, and prefix/suffix slots.
+        </p>
+        <InputBoxDoc />
+      </section>
 
-  <br />
-  <!-- Samples Display for ResponsiveButton.vue -->
-  <ResponsiveButtonDoc />
+      <!-- SingleSelector -->
+      <section id="single-selector" class="doc-section" data-title="SingleSelector">
+        <h2>SingleSelector</h2>
+        <p class="section-desc">
+          A dropdown selector supporting filtering, remote search patterns, and common UX affordances.
+        </p>
+        <SingleSelectorDoc />
+      </section>
 
-  <br />
-  <!-- Samples Display for Checkbox -->
-  <CheckboxDoc />
+      <!-- AreaCodePhoneInput -->
+      <section id="area-code-phone-input" class="doc-section" data-title="AreaCodePhoneInput">
+        <h2>AreaCodePhoneInput</h2>
+        <p class="section-desc">
+          International phone input with country selection. Includes smart focus behavior and clear button.
+        </p>
+        <AreaCodePhoneInputDoc />
+      </section>
 
-  <br />
-  <!-- Samples Display for Radio -->
-  <RadioDoc />
+      <!-- ResponsiveButton -->
+      <section id="responsive-button" class="doc-section" data-title="ResponsiveButton">
+        <h2>ResponsiveButton</h2>
+        <p class="section-desc">
+          Feature-rich button with multiple themes, dropdown support, and responsive sizing.
+        </p>
+        <ResponsiveButtonDoc />
+      </section>
 
-  <br />
-  <!-- Samples Display for Directives -->
-  <DirectivesDoc />
+      <!-- Checkbox -->
+      <section id="checkbox" class="doc-section" data-title="Checkbox">
+        <h2>Checkbox</h2>
+        <p class="section-desc">
+          Customizable checkbox with themes and error/alert helpers. Works standalone or in groups.
+        </p>
+        <CheckboxDoc />
+      </section>
 
-  <br />
-  <!-- Samples Display for WholePageErrorPopup -->
-  <WholePageErrorPopupDoc />
+      <!-- Radio -->
+      <section id="radio" class="doc-section" data-title="Radio">
+        <h2>Radio</h2>
+        <p class="section-desc">
+          Single-select control with group naming support and theme customization.
+        </p>
+        <RadioDoc />
+      </section>
 
-  <br />
-  <!-- Samples Display for FloatingActionButton -->
-  <FloatingActionButtonDoc />
-</div>
+      <!-- Directives -->
+      <section id="directives" class="doc-section" data-title="Directives">
+        <h2>Directives</h2>
+        <p class="section-desc">
+          Utility directives for common UI states like loading overlays, showcased with practical patterns.
+        </p>
+        <DirectivesDoc />
+      </section>
+
+      <!-- Composables -->
+      <section id="composables" class="doc-section" data-title="Composables">
+        <h2>Composables</h2>
+        <p class="section-desc">
+          Reusable Vue composables used across the library. For FloatingNotification, see the SimplifiedNotification section above.
+        </p>
+        <ComposablesDoc />
+      </section>
+
+      <!-- WholePageErrorPopup -->
+      <section id="whole-page-error-popup" class="doc-section" data-title="WholePageErrorPopup">
+        <h2>WholePageErrorPopup</h2>
+        <p class="section-desc">
+          Full-screen error banner for critical failures with a retry callback.
+        </p>
+        <WholePageErrorPopupDoc />
+      </section>
+
+      <!-- FloatingActionButton -->
+      <section id="floating-action-button" class="doc-section" data-title="FloatingActionButton">
+        <h2>FloatingActionButton</h2>
+        <p class="section-desc">
+          Mobile-only anchored FAB with built-in themes and optional options menu. Hides automatically on
+          wide screens.
+        </p>
+        <FloatingActionButtonDoc />
+      </section>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -54,6 +144,7 @@ import CheckboxDoc from "@/componentsDemo/CheckboxDoc.vue";
 import RadioDoc from "@/componentsDemo/RadioDoc.vue";
 import WholePageErrorPopupDoc from "@/componentsDemo/WholePageErrorPopupDoc.vue";
 import FloatingActionButtonDoc from "@/componentsDemo/FloatingActionButtonDoc.vue";
+import ComposablesDoc from "@/componentsDemo/ComposablesDoc.vue";
 
 
 export default{
@@ -68,12 +159,115 @@ export default{
     RadioDoc,
     WholePageErrorPopupDoc,
     FloatingActionButtonDoc,
+    ComposablesDoc,
   },
+  data(){
+    return{
+      sections: [
+        { id: 'simplified-notification', title: 'SimplifiedNotification' },
+        { id: 'input-box', title: 'InputBox' },
+        { id: 'single-selector', title: 'SingleSelector' },
+        { id: 'area-code-phone-input', title: 'AreaCodePhoneInput' },
+        { id: 'responsive-button', title: 'ResponsiveButton' },
+        { id: 'checkbox', title: 'Checkbox' },
+        { id: 'radio', title: 'Radio' },
+        { id: 'directives', title: 'Directives' },
+        { id: 'composables', title: 'Composables' },
+        { id: 'whole-page-error-popup', title: 'WholePageErrorPopup' },
+        { id: 'floating-action-button', title: 'FloatingActionButton' },
+      ],
+      activeSection: 'simplified-notification'
+    }
+  },
+  mounted(){
+    // Smooth scroll behavior
+    if('scrollBehavior' in document.documentElement.style){
+      document.documentElement.style.scrollBehavior = 'smooth';
+    }
+    // Observe sections for active highlight
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if(entry.isIntersecting){
+          const id = entry.target.getAttribute('id');
+          if(id){
+            this.activeSection = id;
+          }
+        }
+      })
+    }, { rootMargin: '0px 0px -70% 0px', threshold: 0.1 });
+
+    this.$el.querySelectorAll('.doc-section').forEach((el) => observer.observe(el));
+  },
+  methods:{
+    scrollTo(id){
+      const el = this.$el.querySelector(`#${id}`);
+      if(el){
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }
 }
 </script>
 
 <style scoped>
-.read-the-docs {
-  color: #888;
+.docs-layout{
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.docs-sidebar{
+  position: sticky;
+  top: 16px;
+  height: calc(100vh - 32px);
+  overflow: auto;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+}
+.sidebar-title{
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.sidebar-link{
+  display: block;
+  padding: 6px 8px;
+  color: #374151;
+  text-decoration: none;
+  border-radius: 6px;
+  margin: 2px 0;
+}
+.sidebar-link:hover{
+  background: #f3f4f6;
+}
+.sidebar-link.active{
+  background: #eef2ff;
+  color: #3730a3;
+  font-weight: 600;
+}
+
+.docs-content{
+  max-width: 1000px;
+}
+.intro-panel{
+  padding: 12px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fafafa;
+  color: #111;
+  margin-bottom: 16px;
+}
+.intro-panel ul{ margin: 0; padding-left: 18px; }
+
+.doc-section{
+  padding-top: 8px;
+  margin-bottom: 24px;
+  scroll-margin-top: 80px;
+}
+.section-desc{
+  color: #4b5563;
+  margin-top: 4px; margin-bottom: 12px;
 }
 </style>
