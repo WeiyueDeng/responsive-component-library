@@ -182,9 +182,11 @@ export default{
                 case 'green':
                     return 'var(--semantic-success-color--)';
                 case 'primary-blue':
-                    return 'var(--primary-color--)';
+                    return 'var(--Schemes-primary)';
                 case 'secondary-blue':
-                    return 'var(--secondary-color--)';
+                    return 'var(--Schemes-Secondary)';
+                default:
+                    return 'var(--semantic-success-color--)';
             }
             
         },

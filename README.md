@@ -286,7 +286,7 @@ Customizable checkbox with multiple themes and validation support.
   <Checkbox 
     v-model="agreed" 
     label="I agree to terms" 
-    customized_theme_color="var(--primary-color--)"
+    customized_theme_color="var(--Schemes-primary)"
     @change="handleChange"
   />
   <!-- Theme color can be any form of CSS color value. Since if the theme color isn't empty, it will override the built-in theme color. The background color of the checked and indeterminate state, and the mask color of the interaction effects of the checkbox will be the theme color, while the border color of unchecked checkbox will always be hsl(226, 8%, 10%). But when the checkbox is in error state, the theme will be error theme (the border color of unchecked checkbox, the background color of the checked and indeterminate state, and the mask color of the interaction effects of the checkbox will always be --semantic-error-color--) -->
@@ -431,7 +431,7 @@ Mobile-only floating action button that anchors to the bottom-right of the viewp
 | display_name | button text | `string` | `'button'` |
 | size | button size | `'small' \| 'medium' \| 'large'` | `'small'` |
 | build_in_theme | built-in color theme | `'primary' \| 'secondary' \| 'tertiary' \| 'primary-container' \| 'secondary-container' \| 'tertiary-container'` | `'primary'` |
-| customized_theme_color | custom theme color (overrides built_in_theme). Accepts any valid CSS color string (e.g., `#3d5c8f`, `rgb(61, 92, 143)`, `hsl(217, 40%, 40%)`, or `var(--primary-color--)`). | `string` | `''` |
+| customized_theme_color | custom theme color (overrides built_in_theme). Accepts any valid CSS color string (e.g., `#3d5c8f`, `rgb(61, 92, 143)`, `hsl(217, 40%, 40%)`, or `var(--Schemes-primary)`). | `string` | `''` |
 | customized_class | custom CSS class for the outer container | `string` | `''` |
 | options | optional menu options (one level). Each item is `{ value: any, label: string, prefix?: string, suffix?: string }`. `prefix`/`suffix` are icon URLs for the option. | `array` | `[]` |
 
@@ -439,7 +439,7 @@ Mobile-only floating action button that anchors to the bottom-right of the viewp
 > - When `options` is non-empty, clicking the FAB toggles the options menu. A cross button is provided to close the menu.
 > - The component is hidden on wide screens (`width > 1024`) by design to target mobile usage.
 > - `customized_theme_color` overrides `build_in_theme`. If it is not provided (empty string), the `build_in_theme` color will be used instead.
-> - `customized_theme_color` accepts any valid CSS color value: e.g. `hsl(217, 40%, 40%)`, `#ff0000`, `rgb(255, 0, 0)`, `rgba(255, 0, 0, 0.5)`, `hsla(217, 40%, 40%, 0.5)`, or `var(--primary-color--)`.
+> - `customized_theme_color` accepts any valid CSS color value: e.g. `hsl(217, 40%, 40%)`, `#ff0000`, `rgb(255, 0, 0)`, `rgba(255, 0, 0, 0.5)`, `hsla(217, 40%, 40%, 0.5)`, or `var(--Schemes-primary)`.
 > - When using `customized_theme_color`:
 >   - The FAB background color uses the provided value directly.
 >   - Related colors (text color, inline SVG color via currentColor, menu cross button colors, menu child button colors, and interaction masks) are dynamically calculated based on the `customized_theme_color` to ensure contrast and visual harmony.

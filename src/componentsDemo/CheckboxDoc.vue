@@ -45,10 +45,26 @@
 
     <DemoBlock id="cb-themes" title="Themes" :code="themesCode">
       <div class="live">
-        <Checkbox :label="test_label" built_in_theme="primary-blue">
-          <div>text 2 (pass label via slot)</div>
-        </Checkbox>
-        <Checkbox :label="test_label" built_in_theme="secondary-blue" />
+        <div class="note">
+          <strong>Built-in themes</strong>
+          <ul>
+            <li><code>green</code> (default) — success/affirmative tone.</li>
+            <li><code>primary-blue</code> — primary brand blue.</li>
+            <li><code>secondary-blue</code> — lighter/accent blue.</li>
+          </ul>
+          You can also set <code>customized_theme_color</code> to any valid CSS color string. When provided, it overrides <code>built_in_theme</code>.
+        </div>
+
+        <!-- Default (green) -->
+        <Checkbox :label="'Default (green)'" />
+        <!-- Primary blue -->
+        <Checkbox :label="'Primary blue'" built_in_theme="primary-blue" />
+        <!-- Secondary blue -->
+        <Checkbox :label="'Secondary blue'" built_in_theme="secondary-blue" />
+        <!-- Customized via CSS variable (overrides built_in_theme) -->
+        <Checkbox :label="'Customized: var(--Schemes-primary)'" customized_theme_color="var(--Schemes-primary)" />
+        <!-- Customized via HEX (overrides built_in_theme) -->
+        <Checkbox :label="'Customized: #FF6B6B'" customized_theme_color="#FF6B6B" />
       </div>
     </DemoBlock>
 
@@ -136,7 +152,16 @@ export default{
         return `<template>\n  <Checkbox :disabled=\"true\" v-model=\"checked\">\n    <div>text 2 (pass label via slot), v-model control</div>\n  </Checkbox>\n</template>\n\n<script setup>\nimport { ref } from 'vue'\nimport { Checkbox } from 'pns-component-library'\nconst checked = ref(true)\n<\/script>`
       },
       themesCode(){
-        return `<template>\n  <Checkbox :label=\"'text 1'\" built_in_theme=\"'primary-blue'\">\n    <div>text 2 (pass label via slot)</div>\n  </Checkbox>\n  <Checkbox :label=\"'text 1'\" built_in_theme=\"'secondary-blue'\"/>\n</template>`
+        return `<template>
+  <!-- Built-in themes -->
+  <Checkbox :label="'Default (green)'" />
+  <Checkbox :label="'Primary blue'" built_in_theme="'primary-blue'" />
+  <Checkbox :label="'Secondary blue'" built_in_theme="'secondary-blue'" />
+
+  <!-- Customized theme color (overrides built_in_theme) -->
+  <Checkbox :label="'Customized: var(--Schemes-primary)'" customized_theme_color="var(--Schemes-primary)" />
+  <Checkbox :label="'Customized: #FF6B6B'" customized_theme_color="#FF6B6B" />
+</template>`
       },
       errorCode(){
         return `<template>\n  <Checkbox :label=\"'text 1'\" ref=\"cb\"/>\n</template>\n\n<script setup>\nimport { onMounted, ref } from 'vue'\nimport { Checkbox } from 'pns-component-library'\nconst cb = ref(null)\nonMounted(() => cb.value?.error('Custom error'))\n<\/script>`

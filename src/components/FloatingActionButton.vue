@@ -106,19 +106,19 @@ const button_background_color_hsl_obj = computed(() => {
     
     switch (props.build_in_theme) {
         case 'primary':
-            return parseColorToHsl('var(--primary-color--)');
+            return parseColorToHsl('var(--Schemes-primary)');
         case 'secondary':
-            return parseColorToHsl('var(--secondary-color--)');
+            return parseColorToHsl('var(--Schemes-Secondary)');
         case 'tertiary':
-            return parseColorToHsl('var(--tertiary-color--)');
+            return parseColorToHsl('var(--Schemes-Tertiary)');
         case 'primary-container':
-            return parseColorToHsl('var(--primary-container-color--)');
+            return parseColorToHsl('var(--Schemes-Primary-Container)');
         case 'secondary-container':
-            return parseColorToHsl('var(--secondary-container-color--)');
+            return parseColorToHsl('var(--Schemes-Secondary-Container)');
         case 'tertiary-container':
-            return parseColorToHsl('var(--tertiary-container-color--)');
+            return parseColorToHsl('var(--Schemes-Tertiary-Container)');
         default:
-            return parseColorToHsl('var(--primary-color--)');
+            return parseColorToHsl('var(--Schemes-primary)');
     }
 })
 const button_text_color_hsl_obj = computed(() => {
