@@ -51,7 +51,7 @@ async function copyCode(){
 .btn:hover{ background: #f3f4f6; }
 .note{ color:#374151; margin: 6px 0 8px; }
 .live{ border: 1px dashed #e5e7eb; padding: 12px; border-radius: 8px; background: #fff; }
-.code{ background: #0b1020; color: #e5e7eb; border-radius: 8px; padding: 12px; overflow:auto; margin-top:8px; }
+.code{ background: #fafafa; color: #111827; border-radius: 8px; padding: 12px; overflow:auto; margin-top:8px; border: 1px solid #e5e7eb; }
 
 .collapse-enter-active, .collapse-leave-active { transition: max-height .22s ease, opacity .22s ease; }
 .collapse-enter-from, .collapse-leave-to { max-height: 0; opacity: 0; }

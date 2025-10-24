@@ -129,6 +129,8 @@
         </p>
         <FloatingActionButtonDoc />
       </section>
+
+      
     </main>
   </div>
 </template>
@@ -145,7 +147,6 @@ import RadioDoc from "@/componentsDemo/RadioDoc.vue";
 import WholePageErrorPopupDoc from "@/componentsDemo/WholePageErrorPopupDoc.vue";
 import FloatingActionButtonDoc from "@/componentsDemo/FloatingActionButtonDoc.vue";
 import ComposablesDoc from "@/componentsDemo/ComposablesDoc.vue";
-
 
 export default{
   components: {
