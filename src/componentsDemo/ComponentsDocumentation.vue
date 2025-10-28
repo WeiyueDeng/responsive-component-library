@@ -93,6 +93,15 @@
         <RadioDoc />
       </section>
 
+      <!-- Badge -->
+      <section id="badge" class="doc-section" data-title="Badge">
+        <h2>Badge</h2>
+        <p class="section-desc">
+          Notification badge with customizable size, position, themes, and content display.
+        </p>
+        <BadgeDoc />
+      </section>
+
       <!-- Directives -->
       <section id="directives" class="doc-section" data-title="Directives">
         <h2>Directives</h2>
@@ -144,6 +153,7 @@ import DynamicColorResponsiveButtonDoc from '@/componentsDemo/DynamicColorRespon
 import DirectivesDoc from '@/componentsDemo/DirectivesDoc.vue';
 import CheckboxDoc from "@/componentsDemo/CheckboxDoc.vue";
 import RadioDoc from "@/componentsDemo/RadioDoc.vue";
+import BadgeDoc from "@/componentsDemo/BadgeDoc.vue";
 import WholePageErrorPopupDoc from "@/componentsDemo/WholePageErrorPopupDoc.vue";
 import FloatingActionButtonDoc from "@/componentsDemo/FloatingActionButtonDoc.vue";
 import ComposablesDoc from "@/componentsDemo/ComposablesDoc.vue";
@@ -158,6 +168,7 @@ export default{
     DirectivesDoc,
     CheckboxDoc,
     RadioDoc,
+    BadgeDoc,
     WholePageErrorPopupDoc,
     FloatingActionButtonDoc,
     ComposablesDoc,
@@ -172,6 +183,7 @@ export default{
         { id: 'dynamic-color-responsive-button', title: 'DynamicColorResponsiveButton' },
         { id: 'checkbox', title: 'Checkbox' },
         { id: 'radio', title: 'Radio' },
+        { id: 'badge', title: 'Badge' },
         { id: 'directives', title: 'Directives' },
         { id: 'composables', title: 'Composables' },
         { id: 'whole-page-error-popup', title: 'WholePageErrorPopup' },

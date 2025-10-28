@@ -4,7 +4,7 @@ A comprehensive Vue 3 component library built with modern development practices,
 
 ## 🚀 Features
 
-- **9 Production-Ready Components** - Form controls, layout components, and utility components
+- **10 Production-Ready Components** - Form controls, layout components, and utility components
 - **2 Powerful Composables** - Reusable logic for common patterns
 - **2 Custom Directives** - Loading states and UI enhancements
 - **Vue 3 Composition API** - Modern, performant, and type-safe
@@ -426,6 +426,93 @@ Radio button component for single selection from multiple options.
 
 <!-- Single Radio -->
 <Radio v-model="single" value="yes" label="Agree to terms" />
+```
+
+#### Badge
+Notification badge component with customizable size, position, themes, and content display. Features automatic text color calculation for optimal contrast.
+
+##### Attributes
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|------|---------|
+| content | badge content (number or text) | `string \| number` | `''` |
+| size | badge size | `'small' \| 'medium' \| 'large'` | `'small'` |
+| position_type | badge position relative to content | `'top-right' \| 'center-right'` | `'top-right'` |
+| built_in_theme | color theme | `'primary' \| 'secondary'` | `'primary'` |
+| customized_theme_color | custom background color (any valid CSS color) | `string` | `''` |
+| customized_class | custom CSS class | `string` | `''` |
+
+##### Size Specifications
+
+| Size | Web (px) | Mobile ≤767px (px) | With Content |
+|------|----------|-------------------|--------------|
+| small | 6×6 | 6×6 | auto-sized |
+| medium | 8×8 | 6×6 | auto-sized |
+| large | 16×16 | 16×16 | auto-sized |
+
+> **Note**: When badge has content, it automatically becomes large with padding (min-width: 20px, height: 20px).
+
+##### Position Types
+
+| Position | Behavior |
+|----------|----------|
+| top-right | Positioned absolutely at top-right corner (0, 0) |
+| center-right | Inline-flex aligned at right side with 4px gap |
+
+> **Note**: Use padding on the wrapper div to control badge position. The badge positions relative to the wrapper's content.
+
+##### Built-in Themes
+
+| Theme | Background | Text Color |
+|-------|-----------|------------|
+| primary | #AF251D (red) | #FFFFFF (white) |
+| secondary | #CFE0FC (light blue) | #083D91 (dark blue) |
+
+##### Custom Theme Color
+
+When using `customized_theme_color`, the text color is automatically calculated based on the background lightness:
+- Light backgrounds (lightness > 50%) → dark text
+- Dark backgrounds (lightness ≤ 50%) → light text
+
+The algorithm adjusts lightness by ±60 while preserving hue and saturation for optimal contrast and color harmony.
+
+```vue
+<template>
+  <!-- Basic badge with sizes -->
+  <Badge size="small">
+    <div style="padding: 4px;">
+      <div>Icon</div>
+    </div>
+  </Badge>
+
+  <!-- Badge with content -->
+  <Badge content="5">
+    <div style="padding: 8px;">
+      <div>Icon</div>
+    </div>
+  </Badge>
+
+  <!-- Badge with position types -->
+  <Badge position_type="top-right" content="3">
+    <div style="padding: 8px;">
+      <div>Icon</div>
+    </div>
+  </Badge>
+
+  <!-- Badge with custom color -->
+  <Badge customized_theme_color="#10B981" content="New">
+    <div style="padding: 8px;">
+      <div>Icon</div>
+    </div>
+  </Badge>
+
+  <!-- Dark background example -->
+  <Badge customized_theme_color="hsl(220, 70%, 25%)" content="Dark">
+    <div style="padding: 8px;">
+      <div>Icon</div>
+    </div>
+  </Badge>
+</template>
 ```
 
 ### Interactive Components
