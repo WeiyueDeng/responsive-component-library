@@ -1,4 +1,5 @@
 <template>
+    <!-- Outdated -->
     <div :class="['responsive-button-wrapper', width_type]" ref = "responsive-button-wrapper" v-component-loading="loading">
         <div :class = "[
             'responsive-button',

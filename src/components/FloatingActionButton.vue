@@ -252,6 +252,19 @@ const handleFloatingActionButtonClick = () => {
 .floating-action-button .suffix{
     box-sizing: border-box;
 }
+/* prefix and suffix wrapper */
+/* Note: slotted content (like inline <svg>) isn't affected by scoped CSS selectors
+   unless you use :deep(). These rules ensure icons fill the wrapper size. */
+:deep(.prefix > svg),
+:deep(.suffix > svg){
+    width: 100%;
+    height: 100%;
+}
+:deep(.prefix > img),
+:deep(.suffix > img){
+    width: 100%;
+    height: 100%;
+}
 .small .floating-action-button .prefix,
 .small .floating-action-button .suffix{
     width: 24px;

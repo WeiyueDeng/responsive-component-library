@@ -66,13 +66,13 @@
         <AreaCodePhoneInputDoc />
       </section>
 
-      <!-- ResponsiveButton -->
-      <section id="responsive-button" class="doc-section" data-title="ResponsiveButton">
-        <h2>ResponsiveButton</h2>
+      <!-- DynamicColorResponsiveButton -->
+      <section id="dynamic-color-responsive-button" class="doc-section" data-title="DynamicColorResponsiveButton">
+        <h2>DynamicColorResponsiveButton</h2>
         <p class="section-desc">
-          Feature-rich button with multiple themes, dropdown support, and responsive sizing.
+          Modern button with dynamic color logic (filled/outlined/text/elevated), responsive widths, sizes, and icon-only mode.
         </p>
-        <ResponsiveButtonDoc />
+        <DynamicColorResponsiveButtonDoc />
       </section>
 
       <!-- Checkbox -->
@@ -140,7 +140,7 @@ import SimplifiedNotificationDoc from "@/componentsDemo/SimplifiedNotificationDo
 import InputBoxDoc from '@/componentsDemo/InputBoxDoc.vue';
 import SingleSelectorDoc from '@/componentsDemo/SingleSelectorDoc.vue';
 import AreaCodePhoneInputDoc from '@/componentsDemo/AreaCodePhoneInputDoc.vue';
-import ResponsiveButtonDoc from '@/componentsDemo/ResponsiveButtonDoc.vue';
+import DynamicColorResponsiveButtonDoc from '@/componentsDemo/DynamicColorResponsiveButtonDoc.vue';
 import DirectivesDoc from '@/componentsDemo/DirectivesDoc.vue';
 import CheckboxDoc from "@/componentsDemo/CheckboxDoc.vue";
 import RadioDoc from "@/componentsDemo/RadioDoc.vue";
@@ -154,7 +154,7 @@ export default{
     InputBoxDoc,
     SingleSelectorDoc,
     AreaCodePhoneInputDoc,
-    ResponsiveButtonDoc,
+    DynamicColorResponsiveButtonDoc,
     DirectivesDoc,
     CheckboxDoc,
     RadioDoc,
@@ -169,7 +169,7 @@ export default{
         { id: 'input-box', title: 'InputBox' },
         { id: 'single-selector', title: 'SingleSelector' },
         { id: 'area-code-phone-input', title: 'AreaCodePhoneInput' },
-        { id: 'responsive-button', title: 'ResponsiveButton' },
+        { id: 'dynamic-color-responsive-button', title: 'DynamicColorResponsiveButton' },
         { id: 'checkbox', title: 'Checkbox' },
         { id: 'radio', title: 'Radio' },
         { id: 'directives', title: 'Directives' },

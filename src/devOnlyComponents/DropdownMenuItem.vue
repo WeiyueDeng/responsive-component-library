@@ -17,7 +17,7 @@
                 <!-- Priority: prefix slot > prefix slot raw html content prop > prefix prop -->
                 <div v-else-if = "$slots.prefix || prefix_slot_raw_html_content || prefix" :class = "['prefix-wrapper']">
                     <slot name = "prefix">
-                        <div v-if = "prefix_slot_raw_html_content" v-html = "prefix_slot_raw_html_content" />
+                        <div class = "prefix-raw-html-slot" v-if = "prefix_slot_raw_html_content" v-html = "prefix_slot_raw_html_content" />
                         <img v-else :src = "prefix" />
                     </slot>
                 </div>
@@ -28,9 +28,9 @@
             <div v-if = "$slots.suffix || suffix_slot_raw_html_content || suffix || has_dropdown" :class = "['suffix-wrapper']">
                 <!-- Priority: suffix slot > suffix slot raw html content prop > suffix prop > default dropdown icon -->
                 <slot name = "suffix">
-                    <div v-if = "suffix_slot_raw_html_content" v-html = "suffix_slot_raw_html_content" />
+                    <div class = "suffix-raw-html-slot" v-if = "suffix_slot_raw_html_content" v-html = "suffix_slot_raw_html_content" />
                     <img v-else-if = "suffix" :src = "suffix" />
-                    <svg v-else-if = "has_dropdown && !show_dropdown" 
+                    <svg v-else-if = "has_dropdown && (is_web_version || (!is_web_version && !show_dropdown))" 
                     :class = "['dropdown-icon']" 
                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M10 17V7L15 12L10 17Z" fill="#434956"/>
@@ -417,14 +417,26 @@ const handleUpdateShownNestedDropdown = (target_item_props) => {
 .disabled .suffix-wrapper{
     color: var(--disabled-color--) !important;
 }
-.prefix-wrapper > img{
+.prefix-raw-html-slot,
+.suffix-raw-html-slot{
     width: 100%;
     height: 100%;
 }
-.suffix-wrapper > img{
-    width:100%;
+/* prefix and suffix wrapper */
+/* Note: slotted content (like inline <svg>) isn't affected by scoped CSS selectors
+   unless you use :deep(). These rules ensure icons fill the wrapper size. */
+:deep(.prefix-wrapper > svg),
+:deep(.suffix-wrapper > svg),
+:deep(.prefix-raw-html-slot > svg),
+:deep(.suffix-raw-html-slot > svg),
+:deep(.prefix-wrapper > img),
+:deep(.suffix-wrapper > img),
+:deep(.prefix-raw-html-slot > img),
+:deep(.suffix-raw-html-slot > img){
+    width: 100%;
     height: 100%;
 }
+
 .dropdown-icon{
     width: 100%;
     height: 100%;

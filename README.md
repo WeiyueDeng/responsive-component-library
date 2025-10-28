@@ -17,6 +17,8 @@ A comprehensive Vue 3 component library built with modern development practices,
 ```bash
 npm install pns-component-library
 ```
+
+
 or
 
 ```bash
@@ -52,7 +54,15 @@ app.mount('#app')
     <!-- Phone input with country selection -->
     <AreaCodePhoneInput v-model="phoneData" />
     
-    <!-- Responsive button -->
+    <!-- Dynamic color responsive button (Recommended) -->
+    <DynamicColorResponsiveButton 
+      display_name="Click me" 
+      button_type="filled" 
+      built_in_theme="primary"
+      @click-button="handleClick"
+    />
+
+    <!-- Legacy button (Deprecated but still works; not maintained). New projects should migrate to DynamicColorResponsiveButton. -->
     <ResponsiveButton @click="handleClick">
       Click me
     </ResponsiveButton>
@@ -118,7 +128,57 @@ International phone number input with country selection and area code handling. 
 </template>
 ```
 
+### Deprecated Components
 
+> Note: Deprecated components still work and are supported for backward compatibility, but they are no longer maintained. For new development, please migrate to the recommended replacements.
+
+#### ResponsiveButton (Deprecated, still works)
+Legacy feature-rich button component superseded by `DynamicColorResponsiveButton`.
+
+##### Attributes
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|------|---------|
+| display_name | button text | `string` | `'button'` |
+| size | button size | `'xsmall' \| 'small' \| 'medium' \| 'large'` | `'small'` |
+| width_type | button width type | `'fill-whole' \| 'fit-content'` | `'fit-content'` |
+| build_in_theme | color theme | `'outlined-primary' \| 'filled-primary' \| 'text-primary' \| 'outlined-secondary' \| 'filled-secondary' \| 'text-secondary'` | `'outlined-primary'` |
+| customized_class | custom CSS class | `string` | — |
+| hold | whether button is in hold state | `boolean` | `false` |
+| disabled | whether button is disabled | `boolean` | `false` |
+| dropdown_options | dropdown menu options | `array` | `[]` |
+| is_dropdown_option | whether this is a dropdown item | `boolean` | `false` |
+
+##### Events
+
+| Event | Description | Parameters |
+|-------|-------------|------------|
+| click | triggers when button is clicked | `(event: MouseEvent)` |
+| update-currently-hovered-dropdown-option | triggers when dropdown option is hovered | `(option: object)` |
+| add-nested-dropdown-history-stack | triggers when nested dropdown is navigated | `(option: object)` |
+| remove-nested-dropdown-history-stack | triggers when navigating back in nested dropdown | — |
+
+##### Slots
+
+| Name | Description |
+|------|-------------|
+| prefix | content before button text |
+| suffix | content after button text |
+
+```vue
+<template>
+  <ResponsiveButton 
+    display_name="Save Changes"
+    size="medium"
+    build_in_theme="filled-primary"
+    @click="handleSave"
+  >
+    <template #prefix>
+      <img :src="iconsMap['eye_icon']" alt="eye" />
+    </template>
+  </ResponsiveButton>
+</template>
+```
 
 #### InputBox
 Versatile input field component with validation and styling options.
@@ -370,55 +430,70 @@ Radio button component for single selection from multiple options.
 
 ### Interactive Components
 
-#### ResponsiveButton
-Feature-rich button component with responsive behavior and multiple states.
+#### DynamicColorResponsiveButton
+Modern button with dynamic color logic and responsive behavior.
 
 ##### Attributes
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|------|---------|
-| display_name | button text | `string` | `'button'` |
-| size | button size | `'xsmall' \| 'small' \| 'medium' \| 'large'` | `'small'` |
-| width_type | button width type | `'fill-whole' \| 'fit-content'` | `'fit-content'` |
-| build_in_theme | color theme | `'outlined-primary' \| 'filled-primary' \| 'text-primary' \| 'outlined-secondary' \| 'filled-secondary' \| 'text-secondary'` | `'outlined-primary'` |
-| customized_class | custom CSS class | `string` | — |
-| hold | whether button is in hold state | `boolean` | `false` |
-| disabled | whether button is disabled | `boolean` | `false` |
-| dropdown_options | dropdown menu options | `array` | `[]` |
-| is_dropdown_option | whether this is a dropdown item | `boolean` | `false` |
+| button_type | button style variant | `'filled' \| 'outlined' \| 'text' \| 'elevated'` | `'filled'` |
+| button_border_radius | CSS border-radius value | `string` | `'100px'` |
+| built_in_theme | built-in color theme | `'primary' \| 'secondary' \| 'tertiary' \| 'primary-container' \| 'secondary-container' \| 'tertiary-container'` | `'primary'` |
+| customized_theme_color | overrides built_in_theme with any CSS color (e.g., `#3d5c8f`, `rgb(...)`, `hsl(...)`, `var(--Schemes-primary)`) | `string` | `''` |
+| customized_class | custom CSS class for outer container | `string` | `''` |
+| width_type | width mode | `'fill-whole' \| 'fit-content'` (auto-handles icon-only with `narrow`/`wide`) | `'fit-content'` |
+| button_id | explicit id used in emitted event; falls back to `display_name` | `string` | `''` |
+| display_name | button text (used when default slot empty) | `string` | `'button name'` |
+| prefix | image url for prefix when not using slot | `string` | `''` |
+| suffix | image url for suffix when not using slot | `string` | `''` |
+| prefix_slot_raw_html_content | raw html for prefix (when not using named slot) | `string` | `''` |
+| suffix_slot_raw_html_content | raw html for suffix (when not using named slot) | `string` | `''` |
+| disabled | disable interaction | `boolean` | `false` |
+| size | size (Web/Tablet enum) | `'small' \| 'medium' \| 'large' \| 'xlarge'` | `'small'` |
 
 ##### Events
 
 | Event | Description | Parameters |
 |-------|-------------|------------|
-| click | triggers when button is clicked | `(event: MouseEvent)` |
-| update-currently-hovered-dropdown-option | triggers when dropdown option is hovered | `(option: object)` |
-| add-nested-dropdown-history-stack | triggers when nested dropdown is navigated | `(option: object)` |
-| remove-nested-dropdown-history-stack | triggers when navigating back in nested dropdown | — |
+| click-button | emitted on button click | `(button_id: string, display_name: string)` |
+
+##### Exposes
+
+| Method | Description | Type |
+|--------|-------------|------|
+| handleFocusButton | programmatically apply focus style | `() => void` |
+| handleBlurButton | remove focus style | `() => void` |
 
 ##### Slots
 
 | Name | Description |
 |------|-------------|
-| prefix | content before button text |
-| suffix | content after button text |
+| prefix | content before the label (e.g., icon) |
+| default | label content; falls back to `display_name` |
+| suffix | content after the label (e.g., icon) |
 
 ```vue
-<script setup>
-import { iconsMap } from 'pns-component-library';
-</script>
 <template>
-  <ResponsiveButton 
+  <DynamicColorResponsiveButton 
+    button_id="save-changes"
     display_name="Save Changes"
-    size="medium"
-    build_in_theme="filled-primary"
-    @click="handleSave"
+    button_type="filled"
+    built_in_theme="primary"
+    width_type="fit-content"
+    @click-button="onSave"
   >
     <template #prefix>
-      <img :src="iconsMap['eye_icon']" alt="eye" />
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h14v2H5z"/></svg>
     </template>
-  </ResponsiveButton>
+  </DynamicColorResponsiveButton>
 </template>
+
+<script setup>
+function onSave(id, name){
+  console.log('clicked:', id, name)
+}
+</script>
 ```
 
 #### FloatingActionButton
@@ -707,7 +782,7 @@ The library provides multiple built-in themes:
 
 ```vue
 <Checkbox built_in_theme="primary-blue" />
-<ResponsiveButton built_in_theme="outlined-primary" />
+<DynamicColorResponsiveButton button_type="filled" built_in_theme="primary" />
 ```
 
 ## 📱 Responsive Design
