@@ -251,7 +251,7 @@
 </template>
 
 <script>
-import DynamicColorResponsiveButton from '@/components/DyamicColorResponsiveButton.vue'
+import DynamicColorResponsiveButton from '@/components/DynamicColorResponsiveButton.vue'
 import DemoBlock from '@/componentsDemo/DemoBlock.vue';
 import redNotificationIcon from '@/assets/icons/red_notification_icon.svg';
 import blackMagnifyingGlassIcon from '@/assets/icons/black_magnifying_glass_icon.svg';

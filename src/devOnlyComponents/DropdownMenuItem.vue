@@ -22,7 +22,7 @@
                     </slot>
                 </div>
 
-                <div :class = "['text']">{{ label }}</div>
+                <div :class = "['text', {'wrap-text': wrap_menu_item_text}]">{{ label }}</div>
             </div>
             
             <div v-if = "$slots.suffix || suffix_slot_raw_html_content || suffix || has_dropdown" :class = "['suffix-wrapper']">
@@ -68,7 +68,7 @@
 
 <script setup>
 import { ref, computed, useAttrs, watch } from 'vue';
-import DropdownMenu from '@/devOnlyComponents/DropdownMenu.vue';
+import DropdownMenu from '@/components/DropdownMenu.vue';
 import { useWindowSize } from '@/composables/useWindowSize.js';
 
 const props = defineProps({
@@ -142,7 +142,7 @@ const props = defineProps({
         // }
         type: Array,
         default: () => [],
-    }
+    },
 });
 
 const emit = defineEmits([
@@ -166,6 +166,9 @@ const has_dropdown = computed(() => {
 });
 const nested_dropdown_history_stack = computed(() => {
     return attrs.nested_dropdown_history_stack || [];
+});
+const wrap_menu_item_text = computed(() => {
+    return attrs.parent_dropdown_menu_with_type == 'fill-whole';
 });
 const show_menu_item = computed(() => {
     // if web version: no matter what, always show the menu item
@@ -247,9 +250,9 @@ const handleMouseEnter = () => {
     }
     // if web version, show the dropdown
     if(is_web_version.value){
-        if(has_dropdown.value){
+        if(has_dropdown.value && !show_dropdown.value){
             emit('add-new-shown-nested-dropdown', props, 'hover');
-        }else{
+        }else if(!has_dropdown.value){
             // trigger when hover an option without dropdown in web version
             // For the event, the parent DropdownMenu.vue will clear the nested dropdown history stack after the clicked dropdown level index
             // BUT WON'T ADD this option to the nested dropdown history stack
@@ -267,8 +270,8 @@ const getDropdownPositionData = () => {
             const menu_item_right_edge_to_window_right_edge = window.innerWidth - dropdown_menu_item.value.getBoundingClientRect().right;
             const menu_item_left_edge_to_window_left_edge = dropdown_menu_item.value.getBoundingClientRect().left;
             const dropdown_width = dropdown_menu_item_dropdown_wrapper.value.offsetWidth;
-
             if(menu_item_right_edge_to_window_right_edge > dropdown_width + 4){
+                console.log('Show at right', menu_item_right_edge_to_window_right_edge, dropdown_width);
                 // Show at right
                 style_output.left = 'calc(100% + 4px)';
                 // Set the width to fit-content since the available space is enough to fit the original width of the nested dropdown menu 
@@ -276,6 +279,7 @@ const getDropdownPositionData = () => {
                 // Set the width type to fit-content, since we don't want the text inside the dropdown menu item to be wrapped to multiple lines while the space is enough
                 dropdown_menu_item_dropdown_width_type.value = 'fit-content';
             }else if(menu_item_left_edge_to_window_left_edge > dropdown_width + 4){
+                console.log('Show at left', menu_item_left_edge_to_window_left_edge, dropdown_width);
                 // Show at left
                 style_output.right = 'calc(100% + 4px)';
                 // Set the width to fit-content since the available space is enough to fit the original width of the nested dropdown menu 
@@ -321,6 +325,7 @@ const getDropdownPositionData = () => {
         style_output.width = '100%';
         dropdown_menu_item_dropdown_width_type.value = 'fill-whole';
     }
+    console.log(style_output);
     return style_output;
 }
 const handleDropdownMenuSelect = (value, in_dropdown_level) => {
@@ -464,5 +469,12 @@ const handleUpdateShownNestedDropdown = (target_item_props) => {
     width: 100%;
     height: 1px;
     background: var(--Schemes-Outline-Variant, #C6CAD2);
+}
+.text{
+    white-space: nowrap;
+}
+.text.wrap-text{
+    white-space: normal; /* was 'wrap' (invalid). 'normal' allows wrapping */
+    word-break: break-all;
 }
 </style>

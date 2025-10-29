@@ -8,6 +8,10 @@ import Radio from '@/components/Radio.vue';
 import WholePageErrorPopup from '@/components/WholePageErrorPopup.vue';
 import AreaCodePhoneInput from '@/components/AreaCodePhoneInput.vue';
 import GroupCheckbox from '@/components/GroupCheckbox.vue';
+import DropdownMenu from '@/components/DropdownMenu.vue';
+import Badge from '@/components/Badge.vue';
+import FloatingActionButton from '@/components/FloatingActionButton.vue';
+import DynamicColorResponsiveButton from '@/components/DynamicColorResponsiveButton.vue';
 
 // directives
 import component_loading from "@/directives/component_loading.js";
@@ -23,7 +27,7 @@ import '@/style.css';
 import { parseColorToHsl, toHslString, toHsl } from '@/utils/color.js';
 
 // Register components and directives for global usage
-const components = { SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio, WholePageErrorPopup, AreaCodePhoneInput, GroupCheckbox };
+const components = { SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio, WholePageErrorPopup, AreaCodePhoneInput, GroupCheckbox, DropdownMenu, Badge, FloatingActionButton, DynamicColorResponsiveButton };
 const directives = {
   'component-loading': component_loading,
   'whole-page-loading': whole_page_loading,
@@ -54,7 +58,7 @@ for (const path in icons) {
 // Named exports for individual component imports
 export { 
   //components
-  SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio, WholePageErrorPopup, AreaCodePhoneInput, GroupCheckbox,
+  SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio, WholePageErrorPopup, AreaCodePhoneInput, GroupCheckbox, DropdownMenu, Badge, FloatingActionButton, DynamicColorResponsiveButton,
   //directives
   component_loading ,
   whole_page_loading,

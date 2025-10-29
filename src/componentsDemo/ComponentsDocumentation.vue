@@ -75,6 +75,15 @@
         <DynamicColorResponsiveButtonDoc />
       </section>
 
+      <!-- DropdownMenu -->
+      <section id="dropdown-menu" class="doc-section" data-title="DropdownMenu">
+        <h2>DropdownMenu</h2>
+        <p class="section-desc">
+          A public dropdown menu primitive with nested dropdown support, responsive behavior (web vs. mobile), and click-outside handling.
+        </p>
+        <DropdownMenuDoc />
+      </section>
+
       <!-- Checkbox -->
       <section id="checkbox" class="doc-section" data-title="Checkbox">
         <h2>Checkbox</h2>
@@ -150,6 +159,7 @@ import InputBoxDoc from '@/componentsDemo/InputBoxDoc.vue';
 import SingleSelectorDoc from '@/componentsDemo/SingleSelectorDoc.vue';
 import AreaCodePhoneInputDoc from '@/componentsDemo/AreaCodePhoneInputDoc.vue';
 import DynamicColorResponsiveButtonDoc from '@/componentsDemo/DynamicColorResponsiveButtonDoc.vue';
+import DropdownMenuDoc from '@/componentsDemo/DropdownMenuDoc.vue';
 import DirectivesDoc from '@/componentsDemo/DirectivesDoc.vue';
 import CheckboxDoc from "@/componentsDemo/CheckboxDoc.vue";
 import RadioDoc from "@/componentsDemo/RadioDoc.vue";
@@ -165,6 +175,7 @@ export default{
     SingleSelectorDoc,
     AreaCodePhoneInputDoc,
     DynamicColorResponsiveButtonDoc,
+    DropdownMenuDoc,
     DirectivesDoc,
     CheckboxDoc,
     RadioDoc,
@@ -181,6 +192,7 @@ export default{
         { id: 'single-selector', title: 'SingleSelector' },
         { id: 'area-code-phone-input', title: 'AreaCodePhoneInput' },
         { id: 'dynamic-color-responsive-button', title: 'DynamicColorResponsiveButton' },
+        { id: 'dropdown-menu', title: 'DropdownMenu' },
         { id: 'checkbox', title: 'Checkbox' },
         { id: 'radio', title: 'Radio' },
         { id: 'badge', title: 'Badge' },

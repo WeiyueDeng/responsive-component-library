@@ -4,13 +4,32 @@ A comprehensive Vue 3 component library built with modern development practices,
 
 ## 🚀 Features
 
-- **10 Production-Ready Components** - Form controls, layout components, and utility components
+- **11 Production-Ready Components** - Form controls, layout components, and utility components
 - **2 Powerful Composables** - Reusable logic for common patterns
 - **2 Custom Directives** - Loading states and UI enhancements
 - **Vue 3 Composition API** - Modern, performant, and type-safe
 - **Fully Responsive UI & UX** - Components automatically adapt to all screen sizes with optimized mobile-first design and touch-friendly interactions
 - **Accessibility** - ARIA attributes and keyboard navigation support
 - **Customizable Themes** - Multiple built-in color schemes
+
+> Newly released public components: `DropdownMenu`, `Badge`, `FloatingActionButton`, `DynamicColorResponsiveButton`.
+
+## 🆕 What's New
+
+### 2025-10-28
+
+- Public release of:
+  - `DropdownMenu`
+  - `Badge`
+  - `FloatingActionButton`
+  - `DynamicColorResponsiveButton`
+
+Import options:
+
+- Global (plugin):
+  - `app.use(PnsComponentLibrary)` then use components directly in templates.
+- Named import:
+  - `import { DropdownMenu, Badge, FloatingActionButton, DynamicColorResponsiveButton } from 'pns-component-library'`
 
 ## 📦 Installation
 
@@ -385,7 +404,85 @@ Container for managing multiple related checkboxes as a group.
 const selectedItems = ref(['option1'])
 const options = ['option1', 'option2', 'option3']
 </script>
+
+#### DropdownMenu
+Public dropdown menu primitive with nested dropdown support and responsive behavior (web vs. mobile). The companion `DropdownMenuItem` remains internal and is not exposed publically.
+
+##### Attributes
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|------|---------|
+| options | menu options tree (see schema below) | `Array<Option>` | `[]` |
+| size | menu item sizing | `'small' \| 'medium' \| 'large'` | `'small'` |
+| width_type | width behavior | `'fill-whole' \| 'fit-content'` | `'fill-whole'` |
+| with_box_shadow | whether the menu container has a shadow | `boolean` | `true` |
+
+Option schema (recursive):
+
 ```
+type Option = {
+  value: string,
+  label: string,
+  // Optional visuals (priority: slot > raw HTML > image URL handled inside items)
+  prefix?: string,
+  suffix?: string,
+  prefix_slot_raw_html_content?: string,
+  suffix_slot_raw_html_content?: string,
+  // Nesting
+  options?: Option[],
+  // Visual divider hint for the following item
+  has_divider?: boolean,
+  // Disabled state
+  disabled?: boolean,
+}
+```
+
+Behavior notes:
+
+- On wide screens (width > 1024), nested dropdowns open as side menus on hover/click with smart positioning.
+- On small screens (≤ 1024), a single column flow is used; nested levels replace the list view using an internal history stack and a back affordance.
+- The component emits a click-outside event when the user clicks outside of the root dropdown.
+
+##### Events
+
+| Event | Description | Parameters |
+|-------|-------------|------------|
+| select-dropdown-option | emitted when an option without further nesting is selected | `(value: string, in_dropdown_level: number)` |
+| click-outside-dropdown-menu | emitted when clicking outside the root menu | `—` |
+
+##### Usage
+
+```vue
+<template>
+  <DropdownMenu
+    :options="options"
+    :size="'small'"
+    :width_type="'fill-whole'"
+    @click-outside-dropdown-menu="onOutside"
+    @select-dropdown-option="onSelect"
+  />
+</template>
+
+<script setup>
+import { DropdownMenu } from 'pns-component-library'
+
+const options = [
+  {
+    value: 'option1',
+    label: 'Option 1',
+    options: [
+      { value: 'option1.1', label: 'Option 1.1' },
+      { value: 'option1.2', label: 'Option 1.2', options: [
+        { value: 'option1.2.1', label: 'Option 1.2.1' },
+      ]},
+    ],
+  },
+  { value: 'option2', label: 'Option 2' },
+]
+
+function onOutside(){ /* handle outside click */ }
+function onSelect(value, level){ /* handle select */ }
+</script>
 
 #### Radio
 Radio button component for single selection from multiple options.

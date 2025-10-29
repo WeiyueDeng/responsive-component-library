@@ -3,7 +3,7 @@
         <h2>DropdownMenu</h2>
         <p class="section-desc">
             A versatile dropdown menu primitive with nested dropdown support and responsive behavior.
-            This is a dev-only foundation and is not exported to end users.
+            This component is now part of the public API and can be used directly.
         </p>
 
         
@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import DropdownMenu from '@/devOnlyComponents/DropdownMenu.vue';
+import DropdownMenu from '@/components/DropdownMenu.vue';
 import DemoBlock from '@/componentsDemo/DemoBlock.vue';
 
 export default{
@@ -245,7 +245,7 @@ export default{
         playgroundCode(){
             const optionsJson = JSON.stringify(this.options, null, 2)
               .replace(/<\/script>/g, '<\\/script>');
-            return `<template>\n  <DropdownMenu\n    :options="options"\n    :size="'${this.size}'"\n    :width_type="'${this.width_type}'"\n    @click-outside-dropdown-menu="onOutside"\n    @select-dropdown-option="onSelect"\n  />\n</template>\n\n<script>\nimport DropdownMenu from '@/devOnlyComponents/DropdownMenu.vue'\n\nexport default {\n  components: { DropdownMenu },\n  data(){\n    return {\n      options: ${optionsJson}\n    }\n  },\n  methods: {\n    onOutside(){ /* handle outside click */ },\n    onSelect(value, level){ /* handle select */ }\n  }\n}\n<\/script>`
+            return `<template>\n  <DropdownMenu\n    :options="options"\n    :size="'${this.size}'"\n    :width_type="'${this.width_type}'"\n    @click-outside-dropdown-menu="onOutside"\n    @select-dropdown-option="onSelect"\n  />\n</template>\n\n<script>\nimport DropdownMenu from '@/components/DropdownMenu.vue'\n\nexport default {\n  components: { DropdownMenu },\n  data(){\n    return {\n      options: ${optionsJson}\n    }\n  },\n  methods: {\n    onOutside(){ /* handle outside click */ },\n    onSelect(value, level){ /* handle select */ }\n  }\n}\n<\/script>`
         },
     },
     mounted(){

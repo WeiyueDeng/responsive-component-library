@@ -10,6 +10,7 @@
         :in_dropdown_level = "dropdown_level"
         :nested_dropdown_history_stack = "dropdown_level == 0 ? nested_dropdown_history_stack : $attrs.outest_nested_dropdown_history_stack"
         :with_box_shadow="with_box_shadow"
+        :parent_dropdown_menu_with_type="width_type"
         @select-dropdown-option = "(value, in_dropdown_level) => handleSelectDropdownOption(value, in_dropdown_level)"
         @add-new-shown-nested-dropdown = "(target_item_props, trigger) => handleAddNewShownNestedDropdown(target_item_props, trigger)"
         @remove-shown-nested-dropdown = "(target_item_props) => handleRemoveShownNestedDropdown(target_item_props)"
@@ -22,6 +23,7 @@
         :size = "size"
         :nested_dropdown_history_stack = "dropdown_level == 0 ? nested_dropdown_history_stack : $attrs.outest_nested_dropdown_history_stack"
         :with_box_shadow="with_box_shadow"
+        :parent_dropdown_menu_with_type="width_type"
         @select-dropdown-option = "(value, in_dropdown_level) => handleSelectDropdownOption(value, in_dropdown_level)"
         @add-new-shown-nested-dropdown = "(target_item_props, trigger) => handleAddNewShownNestedDropdown(target_item_props, trigger)"
         @remove-shown-nested-dropdown = "(target_item_props) => handleRemoveShownNestedDropdown(target_item_props)"
@@ -31,7 +33,7 @@
 </template>
 
 <script setup>
-import DropdownMenuItem from './DropdownMenuItem.vue';
+import DropdownMenuItem from '@/devOnlyComponents/DropdownMenuItem.vue';
 import { ref, computed, watch, useAttrs, onMounted, onUnmounted } from 'vue';
 import { useWindowSize } from '@/composables/useWindowSize.js';
 
@@ -43,7 +45,7 @@ const props = defineProps({
     },
     options:{
         // ?: Optional
-        // Options structure:
+        // Options structure: see README DropdownMenu for full schema
         // [
         //     {
         //         value: String,
@@ -178,13 +180,6 @@ onUnmounted(() => {
 }
 .dropdown-menu.fit-content{
     width: fit-content;
-}
-.dropdown-menu.fill-whole :deep(.dropdown-menu-item .text){
-    white-space: wrap;
-    word-break: break-all;
-}
-.dropdown-menu.fit-content :deep(.dropdown-menu-item .text){
-    white-space: nowrap;
 }
 .dropdown-menu{
     padding: 8px 0px;
