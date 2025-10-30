@@ -634,7 +634,7 @@ Modern button with dynamic color logic and responsive behavior.
 | prefix_slot_raw_html_content | raw html for prefix (when not using named slot) | `string` | `''` |
 | suffix_slot_raw_html_content | raw html for suffix (when not using named slot) | `string` | `''` |
 | disabled | disable interaction | `boolean` | `false` |
-| size | size (Web/Tablet enum) | `'small' \| 'medium' \| 'large' \| 'xlarge'` | `'small'` |
+| size | size (Web/Tablet enum) | `'xsmall' \| 'small' \| 'medium' \| 'large' \| 'xlarge'` | `'small'` |
 
 ##### Events
 

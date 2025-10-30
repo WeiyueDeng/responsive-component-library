@@ -131,7 +131,14 @@ const props = defineProps({
     },
     size:{
         type: String,
-        // ENUM: small, medium, large, xlarge
+        // ENUM: xsmall, small, medium, large, xlarge
+        // NOTES: the ENUM is the size of the button in web version, we apply responsive rules to make it automatically adapt to mobile version
+        // Responsive Rules: 
+        // Web xsmall -> Mobile xsmall
+        // Web small -> Mobile xsmall
+        // Web medium -> Mobile small
+        // Web large -> Mobile medium
+        // Web xlarge -> Mobile large
         default: 'small'
     },
 });
@@ -424,6 +431,11 @@ defineExpose({
 }
 
 /* normal button .dynamic-color-responsive-button-content*/
+.xsmall .dynamic-color-responsive-button-content{
+    border-width: 1px;
+    padding: 5px 11px;
+    column-gap: 4px;
+}
 .small .dynamic-color-responsive-button-content{
     border-width: 1px;
     padding: 9px 15px;
@@ -445,6 +457,12 @@ defineExpose({
     column-gap: 16px;
 }
 /* default icon button .dynamic-color-responsive-button-content*/
+.xsmall.icon-button .dynamic-color-responsive-button-content{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
 .small.icon-button .dynamic-color-responsive-button-content{
     padding-top: 7px;
     padding-bottom: 7px;
@@ -470,6 +488,10 @@ defineExpose({
     padding-right: 46px;
 }
 /* narrow icon button .dynamic-color-responsive-button-content*/
+.xsmall.icon-button.narrow .dynamic-color-responsive-button-content{
+    padding-left: 3px;
+    padding-right: 3px;
+}
 .small.icon-button.narrow .dynamic-color-responsive-button-content{
     padding-left: 3px;
     padding-right: 3px;
@@ -487,6 +509,10 @@ defineExpose({
     padding-right: 30px;
 }
 /* wide icon button .dynamic-color-responsive-button-content*/
+.xsmall.icon-button.wide .dynamic-color-responsive-button-content{
+    padding-left: 9px;
+    padding-right: 9px;
+}
 .small.icon-button.wide .dynamic-color-responsive-button-content{
     padding-left: 13px;
     padding-right: 13px;
