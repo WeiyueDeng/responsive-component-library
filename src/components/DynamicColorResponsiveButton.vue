@@ -1,6 +1,7 @@
 <template>
     <div :class = "[
         'dynamic-color-responsive-button-container',
+        {'has-interaction-effect': has_interaction_effect},
         size,
         {'disabled':disabled},
         button_type,
@@ -45,6 +46,10 @@ import { computed, ref } from 'vue';
 import { parseColorToHsl, toHslString } from '@/utils/colorConvention.js';
 
 const props = defineProps({
+    has_interaction_effect:{
+        type: Boolean,
+        default: true
+    },
     button_type:{
         type: String,
         // ENUM: filled, outlined, text, elevated
@@ -131,14 +136,13 @@ const props = defineProps({
     },
     size:{
         type: String,
-        // ENUM: xsmall, small, medium, large, xlarge
+        // ENUM: small, medium, large, xlarge
         // NOTES: the ENUM is the size of the button in web version, we apply responsive rules to make it automatically adapt to mobile version
         // Responsive Rules: 
-        // Web xsmall -> Mobile xsmall
-        // Web small -> Mobile xsmall
-        // Web medium -> Mobile small
-        // Web large -> Mobile medium
-        // Web xlarge -> Mobile large
+        // Web small (figma size) -> Mobile xsmall (figma size)
+        // Web medium (figma size) -> Mobile small (figma size)
+        // Web large (figma size) -> Mobile medium (figma size)
+        // Web xlarge (figma size) -> Mobile large (figma size)
         default: 'small'
     },
 });
@@ -155,7 +159,14 @@ const is_icon_button = computed(() => {
 });
 const button_background_color_hsl_obj = computed(() => {
     if(props.disabled){
-        return parseColorToHsl('var(--disabled-button-background-color--)');
+        return is_icon_button.value 
+        ?  {
+            h:0,
+            s:0,
+            l:0,
+            a:0
+        }
+        : parseColorToHsl('var(--disabled-button-background-color--)');
     }
     if(props.button_type === 'elevated'){
     // elevated button has a fixed color
@@ -409,33 +420,28 @@ defineExpose({
     border-radius: var(--button-border-radius--) !important;
 }
 
-.dynamic-color-responsive-button:hover .dynamic-color-responsive-button-content{
+.has-interaction-effect .dynamic-color-responsive-button:hover .dynamic-color-responsive-button-content{
     background: color-mix(in srgb, var(--button-background-color--), var(--button-text-color--) 8%);
 }
-.dynamic-color-responsive-button.focus .dynamic-color-responsive-button-content{
+.has-interaction-effect .dynamic-color-responsive-button.focus .dynamic-color-responsive-button-content{
     background: color-mix(in srgb, var(--button-background-color--), var(--button-text-color--) 10%);
 }
-.dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
+.has-interaction-effect .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
     background: color-mix(in srgb, var(--button-background-color--), var(--button-text-color--) 16%);
 }
 
-.small .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
+.small.has-interaction-effect .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
     border-radius: 8px;
 }
-.medium .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
+.medium.has-interaction-effect .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
     border-radius: 12px;
 }
-.large .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content,
-.xlarge .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
+.large.has-interaction-effect .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content,
+.xlarge.has-interaction-effect .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
     border-radius: 16px;
 }
 
 /* normal button .dynamic-color-responsive-button-content*/
-.xsmall .dynamic-color-responsive-button-content{
-    border-width: 1px;
-    padding: 5px 11px;
-    column-gap: 4px;
-}
 .small .dynamic-color-responsive-button-content{
     border-width: 1px;
     padding: 9px 15px;
@@ -457,12 +463,6 @@ defineExpose({
     column-gap: 16px;
 }
 /* default icon button .dynamic-color-responsive-button-content*/
-.xsmall.icon-button .dynamic-color-responsive-button-content{
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-}
 .small.icon-button .dynamic-color-responsive-button-content{
     padding-top: 7px;
     padding-bottom: 7px;
@@ -488,10 +488,6 @@ defineExpose({
     padding-right: 46px;
 }
 /* narrow icon button .dynamic-color-responsive-button-content*/
-.xsmall.icon-button.narrow .dynamic-color-responsive-button-content{
-    padding-left: 3px;
-    padding-right: 3px;
-}
 .small.icon-button.narrow .dynamic-color-responsive-button-content{
     padding-left: 3px;
     padding-right: 3px;
@@ -509,10 +505,6 @@ defineExpose({
     padding-right: 30px;
 }
 /* wide icon button .dynamic-color-responsive-button-content*/
-.xsmall.icon-button.wide .dynamic-color-responsive-button-content{
-    padding-left: 9px;
-    padding-right: 9px;
-}
 .small.icon-button.wide .dynamic-color-responsive-button-content{
     padding-left: 13px;
     padding-right: 13px;
@@ -617,14 +609,14 @@ defineExpose({
 }
 
 @media only screen and (max-width: 767px){
-    .small .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content,
-    .medium .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
+    .small.has-interaction-effect .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content,
+    .medium.has-interaction-effect .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
         border-radius: 8px;
     }
-    .large .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
+    .large.has-interaction-effect .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
         border-radius: 12px;
     }
-    .xlarge .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
+    .xlarge.has-interaction-effect .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
         border-radius: 16px;
     }
 

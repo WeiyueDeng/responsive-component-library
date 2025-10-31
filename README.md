@@ -200,57 +200,87 @@ Legacy feature-rich button component superseded by `DynamicColorResponsiveButton
 ```
 
 #### InputBox
-Versatile input field component with validation and styling options.
+Versatile input field with clearable icon, inside/outside label, styled themes, and validation helpers. The component dynamically adjusts border/background/label colors based on state (hover, focus, disabled, alert, error) and supports prefix/suffix slots.
 
 ##### Attributes
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|------|---------|
-| v-model / modelValue | binding value - the current input text value | `string` | — |
-| type | input type | `string` | `'text'` |
+| v-model / modelValue | bound input value | `string` | `''` |
+| label | label text (optional) | `string` | `''` |
+| label_type | where to render the label | `'inside' \| 'outside'` | `'outside'` |
+| theme_type | visual styling theme | `'filled' \| 'outlined'` | `'filled'` |
+| customized_theme_color | focus/brand color used for focus border or underline; any valid CSS color or CSS var | `string` | `''` |
+| type | native input type | `string` | `'text'` |
 | placeholder | placeholder text | `string` | `'Enter'` |
-| clearable | whether to show clear button | `boolean` | `false` |
-| disabled | whether input is disabled | `boolean` | `false` |
-| autocomplete | autocomplete attribute for input, raw input tag values work | `string` | `'off'` |
+| clearable | show a clear icon when focused/hovered and value is non-empty | `boolean` | `false` |
+| required | show a required asterisk on the label. Visual-only; does not enforce validation | `boolean` | `false` |
+| disabled | disable the input | `boolean` | `false` |
+| autocomplete | native `autocomplete` | `string` | `'off'` |
+
+Behavior notes:
+
+- In `filled` theme, a bottom inset shadow emulates the underline. In `outlined` theme, an inset border is used. Colors are derived from:
+  - Focus: `customized_theme_color` (or `var(--Schemes-primary)` fallback)
+  - Hover: `#17181C`
+  - Disabled: `var(--disabled-color--)` and `var(--disabled-button-background-color--)`
+  - Alert/Error: `var(--semantic-alert-color--)` / `var(--semantic-error-color--)`
+- Inside label floats above the input content area and inherits a state color similar to the border color.
 
 ##### Events
 
 | Event | Description | Parameters |
 |-------|-------------|------------|
-| input | triggers when input value changes | `(value: string)` |
-| change | triggers when input value changes and loses focus | `(value: string)` |
-| focus | triggers when input is focused | `(event: FocusEvent)` |
-| blur | triggers when input is blurred | `(event: FocusEvent)` |
-| clear | triggers when clear button is clicked | — |
+| input | fires on each keystroke | `(value: string)` |
+| change | fires on Enter or blur | `(value: string)` |
+| focus | input focused | `()` |
+| blur | input blurred | `()` |
+| clear | clear button clicked | `()` |
 
 ##### Exposes
 
-| Method | Description | Type |
-|--------|-------------|------|
-| focus | focus the input | `() => void` |
-| blur | blur the input | `() => void` |
-| alert | show alert message | `(message: string) => void` |
-| error | show error message | `(message: string) => void` |
-| removeAlertOrErrorEffect | clear alert/error state | `() => void` |
+| Method | Description |
+|--------|-------------|
+| focus | programmatically focus the input |
+| blur | programmatically blur the input |
+| alert | show alert state with a message (yellow) |
+| error | show error state with a message (red) |
+| removeAlertOrErrorEffect | clear alert/error state |
 
 ##### Slots
 
 | Name | Description |
 |------|-------------|
-| prefix | content before input |
-| suffix | content after input |
+| prefix | content rendered before the input (e.g., an icon) |
+| suffix | content rendered after the input (e.g., an icon) |
+
+> Tip: For prefix/suffix icons, prefer inline SVG that uses `fill="currentColor"`. This way the icon color automatically follows the component state (hover/focus/disabled/alert/error). If you use `<img>` sources, they won't inherit color.
+
+##### Usage
 
 ```vue
-<InputBox 
-  v-model="value" 
-  type="text" 
-  placeholder="Enter text" 
-  clearable
->
-  <template #prefix>
-    <Icon name="search" />
-  </template>
-</InputBox>
+<template>
+  <InputBox
+    v-model="value"
+    label="Email"
+    label_type="inside"
+    theme_type="outlined"
+    customized_theme_color="var(--Schemes-primary)"
+    type="email"
+    placeholder="name@example.com"
+    clearable
+    autocomplete="email"
+  >
+    <template #prefix>
+      <img src="/icons/mail.svg" style="width:100%;height:100%"/>
+    </template>
+  </InputBox>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+const value = ref('')
+</script>
 ```
 
 #### SingleSelector
@@ -634,7 +664,8 @@ Modern button with dynamic color logic and responsive behavior.
 | prefix_slot_raw_html_content | raw html for prefix (when not using named slot) | `string` | `''` |
 | suffix_slot_raw_html_content | raw html for suffix (when not using named slot) | `string` | `''` |
 | disabled | disable interaction | `boolean` | `false` |
-| size | size (Web/Tablet enum) | `'xsmall' \| 'small' \| 'medium' \| 'large' \| 'xlarge'` | `'small'` |
+| has_interaction_effect | enable hover/focus/active visual effects (mask and slight radius changes). Set to `false` to keep the button static (useful when embedding purely for coloring icons/slots) | `boolean` | `true` |
+| size | size (Web/Tablet enum) | `'small' \| 'medium' \| 'large' \| 'xlarge'` | `'small'` |
 
 ##### Events
 
@@ -664,6 +695,7 @@ Modern button with dynamic color logic and responsive behavior.
     display_name="Save Changes"
     button_type="filled"
     built_in_theme="primary"
+    :has_interaction_effect="true"
     width_type="fit-content"
     @click-button="onSave"
   >

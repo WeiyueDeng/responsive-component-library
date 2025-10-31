@@ -15,7 +15,8 @@
   /* semantic colors */
   --semantic-success-color--: hsl(86, 52%, 48%);
   --semantic-error-color--: hsl(3, 71%, 40%);
-
+  --semantic-alert-color--: hsla(38, 100%, 40%);
+  
   /* disabled color */
   --disabled-color--: hsl(226, 8%, 60%);
   --disabled-button-background-color--: hsl(226, 8%, 92%);

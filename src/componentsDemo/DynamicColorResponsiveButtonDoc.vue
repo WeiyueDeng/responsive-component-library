@@ -39,7 +39,6 @@
             <div class="ctrl-group">
               <label>Size</label>
               <select v-model="play.size">
-                <option value="xsmall">xsmall</option>
                 <option value="small">small</option>
                 <option value="medium">medium</option>
                 <option value="large">large</option>
@@ -62,6 +61,10 @@
             <div class="ctrl-group">
               <label>Disabled</label>
               <input type="checkbox" v-model="play.disabled" />
+            </div>
+            <div class="ctrl-group">
+              <label>Has Interaction Effect</label>
+              <input type="checkbox" v-model="play.has_interaction_effect" />
             </div>
           </div>
           <div class="ctrl-group">
@@ -103,6 +106,7 @@
             :button_border_radius="play.radius"
             :display_name="play.display_name"
             :disabled="play.disabled"
+            :has_interaction_effect="play.has_interaction_effect"
             @click-button="onPlayClick"
             :prefix="play.prefixKind==='img' ? samples.prefixImg : ''"
             :suffix="play.suffixKind==='img' ? samples.suffixImg : ''"
@@ -146,12 +150,10 @@
     <DemoBlock id="dcrb-sizes" title="Sizes" :code="sizesCode">
       <div class="live col">
         <div class="note">
-          Figma defines 5 visual sizes: xsmall, small, medium, large, xlarge. In this component, the
-          <b>size prop represents Web/Tablet</b> and supports xsmall, small, medium, large, xlarge. On Mobile (≤767px), sizes map as:
-          xsmall → xsmall, small → xsmall, medium → small, large → medium, xlarge → large.
+          <b>size</b> represents Web/Tablet and supports: small, medium, large, xlarge. On Mobile (≤767px), sizes map as:
+          small → xsmall, medium → small, large → medium, xlarge → large.
         </div>
         <div class="row">
-          <DynamicColorResponsiveButton display_name="XS" size="xsmall" />
           <DynamicColorResponsiveButton display_name="S" size="small" />
           <DynamicColorResponsiveButton display_name="M" size="medium" />
           <DynamicColorResponsiveButton display_name="L" size="large" />
@@ -274,6 +276,7 @@ export default {
         radius:'100px',
         display_name:'Playground Button',
         disabled:false,
+        has_interaction_effect:true,
         prefixKind:'none',
         suffixKind:'none',
       },
@@ -325,6 +328,7 @@ export default {
       if(p.radius) attrs.push(`button_border_radius="${p.radius}"`)
       if(p.display_name) attrs.push(`display_name="${p.display_name}"`)
       if(p.disabled) attrs.push(`:disabled="true"`)
+      if(p.has_interaction_effect === false) attrs.push(`:has_interaction_effect="false"`)
       if(p.prefixKind==='img') attrs.push(`:prefix="redNotificationIcon"`)
       if(p.suffixKind==='img') attrs.push(`:suffix="blackMagnifyingGlassIcon"`)
       if(p.prefixKind==='raw') attrs.push(`:prefix_slot_raw_html_content="prefixRaw"`)
@@ -355,7 +359,7 @@ export default {
       return `<template>\n  <DynamicColorResponsiveButton display_name="Primary Filled" button_type="filled" built_in_theme="primary"/>\n  <DynamicColorResponsiveButton display_name="Primary Outlined" button_type="outlined" built_in_theme="primary"/>\n  <DynamicColorResponsiveButton display_name="Primary Text" button_type="text" built_in_theme="primary"/>\n  <DynamicColorResponsiveButton display_name="Elevated" button_type="elevated"/>\n</template>`
     },
     sizesCode(){
-      return `<template>\n  <!-- Web/Tablet sizes: xsmall, small, medium, large, xlarge. On Mobile (≤767px): xsmall→xsmall, small→xsmall, medium→small, large→medium, xlarge→large -->\n  <DynamicColorResponsiveButton display_name=\"XS\" size=\"xsmall\"/>\n  <DynamicColorResponsiveButton display_name=\"S\" size=\"small\"/>\n  <DynamicColorResponsiveButton display_name=\"M\" size=\"medium\"/>\n  <DynamicColorResponsiveButton display_name=\"L\" size=\"large\"/>\n  <DynamicColorResponsiveButton display_name=\"XL\" size=\"xlarge\"/>\n</template>`
+      return `<template>\n  <!-- Web/Tablet sizes: small, medium, large, xlarge. On Mobile (≤767px): small→xsmall, medium→small, large→medium, xlarge→large -->\n  <DynamicColorResponsiveButton display_name=\"S\" size=\"small\"/>\n  <DynamicColorResponsiveButton display_name=\"M\" size=\"medium\"/>\n  <DynamicColorResponsiveButton display_name=\"L\" size=\"large\"/>\n  <DynamicColorResponsiveButton display_name=\"XL\" size=\"xlarge\"/>\n</template>`
     },
     widthCode(){
       return `<template>\n  <DynamicColorResponsiveButton display_name="Fit Content" width_type="fit-content"/>\n  <DynamicColorResponsiveButton display_name="Fill Whole" width_type="fill-whole"/>\n</template>`
