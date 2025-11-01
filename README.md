@@ -226,6 +226,10 @@ Behavior notes:
   - Disabled: `var(--disabled-color--)` and `var(--disabled-button-background-color--)`
   - Alert/Error: `var(--semantic-alert-color--)` / `var(--semantic-error-color--)`
 - Inside label floats above the input content area and inherits a state color similar to the border color.
+- A message region appears below the field when either `#supportingText` slot has content or when alert/error is active with a message.
+- `#supportingText` is neutral and does not adopt alert/error colors; alert/error messages are colored separately.
+- Alert/Error messages are set via exposes: `alert(message)` / `error(message)`; call `removeAlertOrErrorEffect()` to clear.
+- Disabled state down-weights message colors.
 
 ##### Events
 
@@ -253,6 +257,7 @@ Behavior notes:
 |------|-------------|
 | prefix | content rendered before the input (e.g., an icon) |
 | suffix | content rendered after the input (e.g., an icon) |
+| supportingText | optional helper text rendered below the field (e.g., character counter like `0/100`). This is distinct from alert/error messages and uses a neutral color. When alert/error is active, their messages render alongside (with their own colors) |
 
 > Tip: For prefix/suffix icons, prefer inline SVG that uses `fill="currentColor"`. This way the icon color automatically follows the component state (hover/focus/disabled/alert/error). If you use `<img>` sources, they won't inherit color.
 

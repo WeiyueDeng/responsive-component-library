@@ -151,14 +151,22 @@
             </div>
             <!-- suffix part end -->
         </div>
+
         
-        <div v-if = "(show_alert || show_error) && message_notification_text" 
+        <div v-if = "$slots.supportingText || ((show_alert || show_error) && message_notification_text)" 
         :class = "[
             'message-container',
-            {'error': show_error},
-            {'alert': show_alert}
         ]">
-            {{ message_notification_text }}
+            <div v-if = "$slots.supportingText" 
+            class = "customized-supporting-text">
+                <slot name = "supportingText"></slot>
+            </div>
+            <div :class = "[
+                {'error': show_error},
+                {'alert': show_alert}
+            ]">
+                {{ message_notification_text }}
+            </div>
         </div>
     </div>
 </template>
@@ -550,44 +558,30 @@ export default{
 .message-container{
     width:100%;
     box-sizing: border-box;
+    padding: 0px 16px;
 
-    font-family: 'Roboto';
-    font-size: 16px;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
     font-weight: 400;
-    line-height: 19px;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: 0.4px;
 }
-.message-container.error{
-    color: #DE583F;
+.disabled .message-container{
+    color: var(--disabled-color--) !important;
 }
-.message-container.alert{
-    color: #E0961E;
+.message-container .customized-supporting-text{
+    color: #434956;
+}
+.message-container .error{
+    color: var(--semantic-error-color--);
+}
+.message-container .alert{
+    color: var(--semantic-alert-color--);
 }
 @media only screen and (max-width:767px){
     .input-box-unit{
         height: 56px;
-        padding:7px 11px;
-        column-gap: 8px;
-    }
-    .input-box-unit.has-prefix,
-    .input-box-unit.has-prefix.has-suffix{
-        padding: 7px 11px;
-    }
-    .input-box-unit.has-suffix{
-        padding-left: 13px;
-    }
-    .input-box{
-        font-size: 14px;
-        line-height: 20px; /* 142.857% */
-        letter-spacing: 0.25px;
-        height:20px;
-    }
-    .input-box::placeholder{
-        font-size: 14px;
-        line-height: 20px;
-        letter-spacing: 0.25px;
-    }
-    .input-box::-webkit-calendar-picker-indicator {
-        height:20px;
     }
     .message-container{
         font-size: 14px;
