@@ -583,9 +583,5 @@ export default{
     .input-box-unit{
         height: 56px;
     }
-    .message-container{
-        font-size: 14px;
-        line-height: 16px;
-    }
 }
 </style>
