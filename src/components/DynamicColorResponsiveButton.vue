@@ -701,8 +701,8 @@ defineExpose({
         padding-right: 46px;
     }
 
-    .small .prefix-wrapper,
-    .small .suffix-wrapper{
+    .small.icon-button .prefix-wrapper,
+    .small.icon-button .suffix-wrapper{
         width: 20px;
         height: 20px;
         padding: 1.67px;

@@ -162,7 +162,7 @@
       <div class="live-demo">
         <InputBox :type="hide_typed_password ? 'password' : 'text'" clearable v-model="input_password_value" placeholder="Enter your password">
           <template #suffix>
-            <img :src="dynamicPasswordSuffix" style="width:100%; height:100%;" @click="hide_typed_password = !hide_typed_password" />
+            <img src="@/assets/icons/eye_icon.svg" style="width:100%; height:100%;" @click="hide_typed_password = !hide_typed_password" />
           </template>
         </InputBox>
       </div>
