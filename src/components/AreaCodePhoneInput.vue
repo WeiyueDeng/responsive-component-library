@@ -333,6 +333,9 @@ watch(is_focus, (newVal) => {
 .phone-number-input-wrapper{
     flex: 1;
 }
+:deep(.single-selector-unit-wrapper){
+    --input-box-border-color--: transparent !important;
+}
 :deep(.single-selector.disabled:hover),
 :deep(.single-selector.has-prefix),
 :deep(.single-selector:hover),
@@ -377,6 +380,9 @@ watch(is_focus, (newVal) => {
 }
 .area-code-container.not-selected{
     color: #979797;
+}
+:deep(.input-box-unit){
+    --input-box-border-color--: transparent !important;
 }
 :deep(.input-box-unit.disabled:hover),
 :deep(.input-box-unit:hover),

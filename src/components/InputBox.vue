@@ -81,7 +81,6 @@
                 <!-- clear icon part -->    
                 <DynamicColorResponsiveButton
                 v-if = "show_clear_icon" 
-                :has_interaction_effect = "false"
                 button_type = "text"
                 :customized_theme_color = "regular_inline_svg_icon_color"
                 width_type = "fit-content"
@@ -104,7 +103,6 @@
                 :customized_theme_color = "'var(--semantic-error-color--)'"
                 width_type = "fit-content"
                 :disabled = "disabled"
-                @click="handleClearValue"
                 >
                     <template #prefix>
                         <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
@@ -122,7 +120,6 @@
                 :customized_theme_color = "'var(--semantic-alert-color--)'"
                 width_type = "fit-content"
                 :disabled = "disabled"
-                @click="handleClearValue"
                 >
                     <template #prefix>
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="19" viewBox="0 0 22 19" fill="none">
@@ -140,7 +137,6 @@
                 :customized_theme_color = "regular_inline_svg_icon_color"
                 width_type = "fit-content"
                 :disabled = "disabled"
-                @click="handleClearValue"
                 >
                     <template #prefix>
                         <!-- recommended: inline svg with currentColor, the color will inherit from the parent -->
@@ -208,7 +204,7 @@ export default{
         theme_type:{
             type: String,
             // ENUM: filled, outlined
-            default: "filled"
+            default: "outlined"
         },
         customized_theme_color:{
             type: String,
@@ -457,12 +453,10 @@ export default{
 .filled .input-box-unit{
     background: var(--input-box-background-color--);
     border-radius: 4px 4px 0px 0px;
-    /* border-bottom: 1px solid #434956; */
     box-shadow: inset 0 var(--input-box-border-width--) 0 var(--input-box-border-color--);
 }
 .outlined .input-box-unit{
     border-radius: 4px;
-    /* border: 1px solid #434956; */
     box-shadow: inset 0 0 0 var(--input-box-border-width--) var(--input-box-border-color--);
 }
 .input-box-unit.disabled{
@@ -524,6 +518,9 @@ export default{
     letter-spacing: 0.5px;
     height:24px;
 }
+.disabled .input-box{
+    color: var(--disabled-color--);
+}
 .input-box::placeholder{
     color: var(--disabled-color--);
 
@@ -581,7 +578,7 @@ export default{
 }
 @media only screen and (max-width:767px){
     .input-box-unit{
-        height: 56px;
+        height: 48px;
     }
 }
 </style>

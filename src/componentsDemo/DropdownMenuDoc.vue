@@ -17,7 +17,7 @@
                     :width_type="width_type"
                     :size="size"
                     @click-outside-dropdown-menu="handleClickOutsideDropdownMenu"
-                    @select-dropdown-option="(value, in_dropdown_level) => handleSelectDropdownOption(value, in_dropdown_level)"
+                    @select-dropdown-option="(value, label, in_dropdown_level) => handleSelectDropdownOption(value, label, in_dropdown_level)"
                 />
 
                 <div class="controls">
@@ -276,9 +276,9 @@ export default{
                 this.clickLogs = this.clickLogs.slice(0, 10);
             }
         },
-        handleSelectDropdownOption(value, in_dropdown_level){
+        handleSelectDropdownOption(value, label, in_dropdown_level){
             const timestamp = new Date().toLocaleTimeString();
-            this.clickLogs.unshift(`[${timestamp}] Selected option: ${value}, in_dropdown_level: ${in_dropdown_level}`);
+            this.clickLogs.unshift(`[${timestamp}] Selected option: ${value}, label: ${label}, in_dropdown_level: ${in_dropdown_level}`);
             // Keep only the last 10 log entries
             if (this.clickLogs.length > 10) {
                 this.clickLogs = this.clickLogs.slice(0, 10);

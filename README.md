@@ -209,7 +209,7 @@ Versatile input field with clearable icon, inside/outside label, styled themes, 
 | v-model / modelValue | bound input value | `string` | `''` |
 | label | label text (optional) | `string` | `''` |
 | label_type | where to render the label | `'inside' \| 'outside'` | `'outside'` |
-| theme_type | visual styling theme | `'filled' \| 'outlined'` | `'filled'` |
+| theme_type | visual styling theme | `'filled' \| 'outlined'` | `'outlined'` |
 | customized_theme_color | focus/brand color used for focus border or underline; any valid CSS color or CSS var | `string` | `''` |
 | type | native input type | `string` | `'text'` |
 | placeholder | placeholder text | `string` | `'Enter'` |
@@ -286,52 +286,58 @@ Behavior notes:
 import { ref } from 'vue'
 const value = ref('')
 </script>
-```
 
 #### SingleSelector
-Dropdown selector component with filtering and search capabilities.
+Dropdown selector with inside/outside label, themed styling, filtering, and optional remote search. Mirrors `InputBox` visual behavior (hover/focus/disabled/alert/error), and supports prefix/suffix slots plus a neutral `supportingText` message region.
 
 ##### Attributes
 
 | Attribute | Description | Type | Default |
 |-----------|-------------|------|---------|
-| v-model / modelValue | binding value - the `value` property of the selected option from the options array | `string \| number \| boolean \| object \| array` | — |
-| options | options array | `Array<{value: any, label: string}>` | `[]` |
-| filterable | whether to enable filtering | `boolean` | `false` |
-| remote_search | whether to enable remote search | `boolean` | `false` |
-| disabled | whether selector is disabled | `boolean` | `false` |
-| placeholder | placeholder text | `string` | `'Select'` |
-| clearable | whether to show clear button | `boolean` | `false` |
-| loading | loading state | `boolean` | `false` |
+| v-model / modelValue | binding value (selected option's `value`) | `string \| number \| boolean \| object \| array` |
+| label | label text | `string` | `''` |
+| label_type | label position | `'inside' \| 'outside'` | `'outside'` |
+| theme_type | visual theme | `'filled' \| 'outlined'` | `'outlined'` |
+| customized_theme_color | focus/brand color; any CSS color or CSS var | `string` | `''` |
+| required | show red asterisk next to label | `boolean` | `false` |
+| options | options array | `Array<{ value: string \| number \| boolean \| object, label: string, prefix?: string, suffix?: string, prefix_slot_raw_html_content?: string, suffix_slot_raw_html_content?: string, options?: Option[], has_divider?: boolean, disabled?: boolean, is_selected?: boolean }>` | `[]` |
+| filterable | enable client-side filter input | `boolean` | `false` |
+| remote_search | emit query outward instead of local filtering | `boolean` | `false` |
+| disabled | disable selector | `boolean` | `false` |
+| placeholder | placeholder when no value | `string` | `'Select'` |
+| clearable | show clear icon when there is a value and focused/hovered | `boolean` | `false` |
+| loading | loading state (mirrors dropdown's `is_loading`) | `boolean` | `false` |
 | loading_text | loading text | `string` | `'Loading'` |
-| no_data_text | no data text | `string` | `'No data'` |
-| filter_only_among_options_value | filter only among option values | `boolean` | `false` |
-| filter_only_among_options_label | filter only among option labels | `boolean` | `false` |
+| no_data_text | empty-state text | `string` | `'No data'` |
+| filter_only_among_options_value | filter against serialized `value` only | `boolean` | `false` |
+| filter_only_among_options_label | filter against `label` only | `boolean` | `false` |
 
-> **Note**: `filter_only_among_options_value` and `filter_only_among_options_label` cannot be true at the same time. If both are true, `filter_only_among_options_value=true` will override `filter_only_among_options_label`'s logic.
+Notes:
+
+- `filter_only_among_options_value` and `filter_only_among_options_label` cannot both be `true`. If both are `true`, filtering uses `value`.
+- Option `value` may be primitive or object; selection compares by `value` plus `label` for marking `is_selected` in lists.
 
 ##### Events
 
 | Event | Description | Parameters |
 |-------|-------------|------------|
 | change | triggers when the binding value changes | `(value: any)` |
-| remote-search | triggers when remote search is performed | `(query: string)` |
-| filter-change | triggers when filter text changes | `(query: string)` |
-| visible-change | triggers when dropdown visibility changes | `(visible: boolean)` |
-| focus | triggers when selector is focused | `(event: FocusEvent)` |
-| blur | triggers when selector is blurred | `(event: FocusEvent)` |
-| clear | triggers when clear button is clicked | — |
+| remote-search | triggers when `remote_search=true` and user types | `(query: string)` |
+| filter-change | triggers whenever filter text changes | `(query: string)` |
+| visible-change | dropdown visibility changes | `(visible: boolean)` |
+| focus | selector focused | `()` |
+| blur | selector blurred | `()` |
+| clear | clear button clicked | `()` |
 
 ##### Exposes
 
-| Method | Description | Type |
-|--------|-------------|------|
-| focus | focus the selector | `() => void` |
-| blur | blur the selector | `() => void` |
-| alert | show alert message | `(message: string) => void` |
-| error | show error message | `(message: string) => void` |
-| removeAlertOrErrorEffect | clear alert/error state | `() => void` |
-| setDropdownContentLoading | set loading state | `(loading: boolean) => void` |
+| Method | Description |
+|--------|-------------|
+| focus | programmatically focus the selector |
+| blur | programmatically blur the selector |
+| alert | show alert state with a message (yellow) |
+| error | show error state with a message (red) |
+| removeAlertOrErrorEffect | clear alert/error state |
 
 ##### Slots
 
@@ -339,11 +345,13 @@ Dropdown selector component with filtering and search capabilities.
 |------|-------------|
 | prefix | content before selector |
 | suffix | content after selector |
+| supportingText | neutral helper text under the field; alert/error messages render alongside in their own colors |
 
 ```vue
 <SingleSelector 
   v-model="selected"
   :options="options"
+{{ ... }}
   filterable
   clearable
   placeholder="Choose option"
@@ -351,8 +359,24 @@ Dropdown selector component with filtering and search capabilities.
   <template #prefix>
     <Icon name="search" />
   </template>
+  <template #supportingText>
+    <!-- e.g. instruction or character counter; neutral color -->
+    Pick one option
+  </template>
 </SingleSelector>
 ```
+
+##### DropdownMenu (dev-only)
+
+Used internally by components to render options lists.
+
+- Props: `width_type: 'fill-whole'|'fit-content'`, `options` (same schema as above), `size: 'small'|'medium'|'large'`, `with_box_shadow`, `is_loading`, `loading_text`, `no_data_text`.
+- Events:
+  - `select-dropdown-option(value, label, in_dropdown_level)`
+  - `add-new-shown-nested-dropdown(target_item_props, trigger)`
+  - `remove-shown-nested-dropdown(target_item_props)`
+  - `update-shown-nested-dropdown(target_item_props)`
+  - `click-outside-dropdown-menu(event)`
 
 #### Checkbox
 Customizable checkbox with multiple themes and validation support.

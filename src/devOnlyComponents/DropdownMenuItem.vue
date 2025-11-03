@@ -3,7 +3,12 @@
         <!-- show menu item itself, if:
         web version or first nested dropdown regarding to its own nested dropdown history stack (non-web version) -->
         <div v-if = "show_menu_item"
-        :class = "['dropdown-menu-item', {'disabled': disabled}, {'focus': show_dropdown && is_web_version}]" 
+        :class = "[
+            'dropdown-menu-item',
+            {'disabled': disabled},
+            {'focus': show_dropdown && is_web_version},
+            {'selected': is_selected}
+        ]" 
         @click = "handleClick()"
         @mouseenter = "handleMouseEnter()"
         ref = "dropdown_menu_item">
@@ -57,7 +62,7 @@
             :size = "size"
             :dropdown_level = "in_dropdown_level + 1"
             :outest_nested_dropdown_history_stack = "attrs.nested_dropdown_history_stack"
-            @select-dropdown-option = "(value, in_dropdown_level) => handleDropdownMenuSelect(value, in_dropdown_level)"
+            @select-dropdown-option = "(value, label, in_dropdown_level) => handleDropdownMenuSelect(value, label, in_dropdown_level)"
             @add-new-shown-nested-dropdown = "(targert_item_props, trigger) => handleAddNewShownNestedDropdown(targert_item_props, trigger)"
             @remove-shown-nested-dropdown = "(targert_item_props) => handleRemoveShownNestedDropdown(targert_item_props)"
             @update-shown-nested-dropdown = "(targert_item_props) => handleUpdateShownNestedDropdown(targert_item_props)"
@@ -73,6 +78,11 @@ import { useWindowSize } from '@/composables/useWindowSize.js';
 
 const props = defineProps({
     has_divider:{
+        type: Boolean,
+        default: false
+    },
+    is_selected:{
+        // ?: Optional
         type: Boolean,
         default: false
     },
@@ -97,7 +107,7 @@ const props = defineProps({
         default: ''
     },
     value:{
-        type: String,
+        type: [String, Number, Boolean, Object],
         default: ''
     },
     label:{
@@ -128,6 +138,9 @@ const props = defineProps({
         //         prefix_slot_raw_html_content?: String, -> To auto adapt the color change due to interaction state, recommended: inline svg content with currentColor 
         //         suffix_slot_raw_html_content?: String, -> To auto adapt the color change due to interaction state, recommended: inline svg content with currentColor
         //         options?: Array<Option>
+        //         is_selected?: Boolean,
+        //         has_divider?: Boolean,
+        //         disabled?: Boolean
         //     }
         // ]
         // where Option:
@@ -139,7 +152,10 @@ const props = defineProps({
         //     prefix_slot_raw_html_content?: String,
         //     suffix_slot_raw_html_content?: String,
         //     options?: Array<Option>
-        // }
+        //     is_selected?: Boolean,
+        //     has_divider?: Boolean,
+        //     disabled?: Boolean
+        //     }
         type: Array,
         default: () => [],
     },
@@ -241,7 +257,7 @@ const handleClick = () => {
         }        
     }else{
     // else emit select-dropdown-option event to notice parent component which option is selected and close the dropdown
-        emit('select-dropdown-option', props.value, props.in_dropdown_level);
+        emit('select-dropdown-option', props.value, props.label, props.in_dropdown_level);
     }
 }
 const handleMouseEnter = () => {
@@ -328,8 +344,8 @@ const getDropdownPositionData = () => {
     console.log(style_output);
     return style_output;
 }
-const handleDropdownMenuSelect = (value, in_dropdown_level) => {
-    emit('select-dropdown-option', value, in_dropdown_level);
+const handleDropdownMenuSelect = (value, label, in_dropdown_level) => {
+    emit('select-dropdown-option', value, label, in_dropdown_level);
 }
 const handleAddNewShownNestedDropdown = (target_item_props, trigger) => {
     emit('add-new-shown-nested-dropdown', target_item_props, trigger);
@@ -364,6 +380,11 @@ const handleUpdateShownNestedDropdown = (target_item_props) => {
     letter-spacing: 0.5px;  
     cursor: pointer; 
 }
+.dropdown-menu-item.selected{
+    color: #2E466B;
+    font-weight: 500;
+}
+    
 .small .dropdown-menu-item{
     min-height: 40px;
     height: fit-content;
