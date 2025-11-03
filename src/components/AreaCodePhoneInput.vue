@@ -292,8 +292,6 @@ watch(is_focus, (newVal) => {
     row-gap:8px;
 }
 .area-code-phone-input{
-    padding:1px 11px 1px 1px;
-
     display: flex;
     align-items: center;
     box-shadow: inset 0 0 0 1px #BCCCDC;
@@ -328,7 +326,7 @@ watch(is_focus, (newVal) => {
     cursor: not-allowed;
 }
 .country-area-code-selector-wrapper{
-    max-width: 114px;
+    max-width: 120px;
 }
 .phone-number-input-wrapper{
     flex: 1;
@@ -430,7 +428,7 @@ watch(is_focus, (newVal) => {
         row-gap:4px;
     }
     .country-area-code-selector-wrapper{
-        max-width: 89px;
+        max-width: 120px;
     }
     :deep(.single-selector.disabled:hover),
     :deep(.single-selector.has-prefix),
