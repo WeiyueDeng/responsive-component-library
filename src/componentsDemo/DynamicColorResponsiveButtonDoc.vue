@@ -18,7 +18,10 @@
               <option value="outlined">outlined</option>
               <option value="text">text</option>
               <option value="elevated">elevated</option>
+              <option value="narrow">narrow</option>
+              <option value="wide">wide</option>
             </select>
+            <div class="field-hint">* narrow / wide only works when there is only one icon and no display name or any other button content.</div>
           </div>
           <div class="ctrl-group">
             <label>Built-in Theme</label>
@@ -403,4 +406,5 @@ export default {
 .event-log{ width:100%; max-width: 100%; border:1px solid #e5e7eb; border-radius:6px; padding:8px; box-sizing:border-box; background:#fff; }
 .event-log-title{ font-weight:600; color:#374151; margin-bottom:6px; }
 .event-log ul{ margin:0; padding-left: 16px; max-height: 160px; overflow:auto; }
+.field-hint{ color:#374151; margin: 4px 0 8px; }
 </style>

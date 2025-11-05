@@ -375,17 +375,17 @@ defineExpose({
     cursor: not-allowed;
 }
 .small .dynamic-color-responsive-button{
-    min-height: 48px;
-    padding: 4px 0px;
+    min-height: 44px;
+    padding: 2px 0px;
 }
 .medium .dynamic-color-responsive-button{
-    min-height: 56px;
+    min-height: 44px;
 }
 .large .dynamic-color-responsive-button{
-    min-height: 96px;
+    min-height: 56px;
 }
 .xlarge .dynamic-color-responsive-button{
-    min-height: 136px;
+    min-height: 96px;
 }
 
 .fit-content .dynamic-color-responsive-button-content,
@@ -444,22 +444,22 @@ defineExpose({
 /* normal button .dynamic-color-responsive-button-content*/
 .small .dynamic-color-responsive-button-content{
     border-width: 1px;
-    padding: 9px 15px;
+    padding: 9px 13px;
     column-gap: 8px;
 }
 .medium .dynamic-color-responsive-button-content{
     border-width: 1px;
-    padding: 15px 23px;
+    padding: 9px 13px;
     column-gap: 8px;
 }
 .large .dynamic-color-responsive-button-content{
     border-width: 2px;
-    padding: 30px 46px;
+    padding: 14px 22px;
     column-gap: 12px;
 }
 .xlarge .dynamic-color-responsive-button-content{
     border-width: 2px;
-    padding: 46px 62px;
+    padding: 30px 46px;
     column-gap: 16px;
 }
 /* default icon button .dynamic-color-responsive-button-content*/
@@ -470,22 +470,22 @@ defineExpose({
     padding-right: 7px;
 }
 .medium.icon-button .dynamic-color-responsive-button-content{
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    padding-left: 9px;
+    padding-right: 9px;
 }
 .large.icon-button .dynamic-color-responsive-button-content{
-    padding-top: 30px;
-    padding-bottom: 30px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .xlarge.icon-button .dynamic-color-responsive-button-content{
-    padding-top: 46px;
-    padding-bottom: 46px;
-    padding-left: 46px;
-    padding-right: 46px;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    padding-left: 26px;
+    padding-right: 26px;
 }
 /* narrow icon button .dynamic-color-responsive-button-content*/
 .small.icon-button.narrow .dynamic-color-responsive-button-content{
@@ -493,16 +493,16 @@ defineExpose({
     padding-right: 3px;
 }
 .medium.icon-button.narrow .dynamic-color-responsive-button-content{
-    padding-left: 11px;
-    padding-right: 11px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 .large.icon-button.narrow .dynamic-color-responsive-button-content{
-    padding-left: 14px;
-    padding-right: 14px;
+    padding-left: 6px;
+    padding-right: 6px;
 }
 .xlarge.icon-button.narrow .dynamic-color-responsive-button-content{
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 /* wide icon button .dynamic-color-responsive-button-content*/
 .small.icon-button.wide .dynamic-color-responsive-button-content{
@@ -510,16 +510,16 @@ defineExpose({
     padding-right: 13px;
 }
 .medium.icon-button.wide .dynamic-color-responsive-button-content{
-    padding-left: 23px;
-    padding-right: 23px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .large.icon-button.wide .dynamic-color-responsive-button-content{
-    padding-left: 46px;
-    padding-right: 46px;
+    padding-left: 18px;
+    padding-right: 18px;
 }
 .xlarge.icon-button.wide .dynamic-color-responsive-button-content{
-    padding-left: 70px;
-    padding-right: 70px;
+    padding-left: 42%;
+    padding-right: 42px;
 }
 
 .prefix-raw-html-slot,
@@ -546,7 +546,7 @@ defineExpose({
 .small .suffix-wrapper{
     width: 20px;
     height: 20px;
-    padding: 1.67px;
+    padding:1.67px;
     box-sizing: border-box;
 }
 .small.icon-button .prefix-wrapper,
@@ -563,8 +563,22 @@ defineExpose({
     padding: 2px;
     box-sizing: border-box;
 }
+.medium.icon-button .prefix-wrapper,
+.medium.icon-button .suffix-wrapper{
+    width: 24px;
+    height: 24px;
+    padding: 2px;
+    box-sizing: border-box;
+}
 .large .prefix-wrapper,
 .large .suffix-wrapper{
+    width: 24px;
+    height: 24px;
+    padding: 2px;
+    box-sizing: border-box;
+}
+.large.icon-button .prefix-wrapper,
+.large.icon-button .suffix-wrapper{
     width: 32px;
     height: 32px;
     padding: 2.67px;
@@ -572,6 +586,13 @@ defineExpose({
 }
 .xlarge .prefix-wrapper,
 .xlarge .suffix-wrapper{
+    width: 32px;
+    height: 32px;
+    padding: 2.67px;
+    box-sizing: border-box;
+}
+.xlarge.icon-button .prefix-wrapper,
+.xlarge.icon-button .suffix-wrapper{
     width: 40px;
     height: 40px;
     padding: 3.33px;
@@ -583,6 +604,12 @@ defineExpose({
     font-family: 'Roboto';
     font-style: normal;
 }
+.small .button-name-wrapper{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0.1px;
+}
 .medium .button-name-wrapper{
     font-size: 16px;
     font-weight: 500;
@@ -590,15 +617,15 @@ defineExpose({
     letter-spacing: 0.15px;
 }
 .large .button-name-wrapper{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+}
+.xlarge .button-name-wrapper{
     font-size: 24px;
     font-weight: 400;
     line-height: 32px;
-    letter-spacing: 0;
-}
-.xlarge .button-name-wrapper{
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 40px;
     letter-spacing: 0;
 }
 .fit-content .dynamic-color-responsive-button-content .button-name-wrapper{
@@ -609,6 +636,21 @@ defineExpose({
 }
 
 @media only screen and (max-width: 767px){
+    .small .dynamic-color-responsive-button{
+        min-height: 44px;
+        padding: 4px 0px;
+    }
+    .medium .dynamic-color-responsive-button{
+        min-height: 44px;
+        padding: 2px 0px;
+    }
+    .large .dynamic-color-responsive-button{
+        min-height: 44px;
+    }
+    .xlarge .dynamic-color-responsive-button{
+        min-height: 56px;
+    }
+
     .small.has-interaction-effect .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content,
     .medium.has-interaction-effect .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
         border-radius: 8px;
@@ -623,30 +665,30 @@ defineExpose({
     /* normal button .dynamic-color-responsive-button-content*/
     .small .dynamic-color-responsive-button-content{
         border-width: 1px;
-        padding: 5px 11px;
-        column-gap: 4cqb;
+        padding: 7px 11px;
+        column-gap: 4px;
     }
     .medium .dynamic-color-responsive-button-content{
         border-width: 1px;
-        padding: 9px 15px;
+        padding: 9px 13px;
         column-gap: 8px;
     }
     .large .dynamic-color-responsive-button-content{
         border-width: 1px;
-        padding: 15px 23px;
+        padding: 9px 13px;
         column-gap: 8px;
     }
     .xlarge .dynamic-color-responsive-button-content{
         border-width: 2px;
-        padding: 30px 46px;
+        padding: 14px 22px;
         column-gap: 12px;
     }
     /* default icon button .dynamic-color-responsive-button-content*/
     .small.icon-button .dynamic-color-responsive-button-content{
-        padding-top: 5px;
-        padding-bottom: 5px;
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        padding-left: 7px;
+        padding-right: 7px;
     }
     .medium.icon-button .dynamic-color-responsive-button-content{
         padding-top: 7px;
@@ -655,52 +697,59 @@ defineExpose({
         padding-right: 7px;
     }
     .large.icon-button .dynamic-color-responsive-button-content{
-        padding-top: 15px;
-        padding-bottom: 15px;
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-top: 9px;
+        padding-bottom: 9px;
+        padding-left: 9px;
+        padding-right: 9px;
     }
     .xlarge.icon-button .dynamic-color-responsive-button-content{
-        padding-top: 30px;
-        padding-bottom: 30px;
-        padding-left: 30px;
-        padding-right: 30px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
     }
     /* narrow icon button .dynamic-color-responsive-button-content*/
     .small.icon-button.narrow .dynamic-color-responsive-button-content{
-        padding-left: 3px;
-        padding-right: 3px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
     .medium.icon-button.narrow .dynamic-color-responsive-button-content{
         padding-left: 3px;
         padding-right: 3px;
     }
     .large.icon-button.narrow .dynamic-color-responsive-button-content{
-        padding-left: 11px;
-        padding-right: 11px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
     .xlarge.icon-button.narrow .dynamic-color-responsive-button-content{
-        padding-left: 14px;
-        padding-right: 14px;
+        padding-left: 6px;
+        padding-right: 6px;
     }
     /* wide icon button .dynamic-color-responsive-button-content*/
     .small.icon-button.wide .dynamic-color-responsive-button-content{
-        padding-left: 9px;
-        padding-right: 9px;
+        padding-left: 11px;
+        padding-right: 11px;
     }
     .medium.icon-button.wide .dynamic-color-responsive-button-content{
         padding-left: 13px;
         padding-right: 13px;
     }
     .large.icon-button.wide .dynamic-color-responsive-button-content{
-        padding-left: 23px;
-        padding-right: 23px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
     .xlarge.icon-button.wide .dynamic-color-responsive-button-content{
-        padding-left: 46px;
-        padding-right: 46px;
+        padding-left: 18px;
+        padding-right: 18px;
     }
 
+    .small .prefix-wrapper,
+    .small .suffix-wrapper{
+        width: 20px;
+        height: 20px;
+        padding: 1.67px;
+        box-sizing: border-box;
+    }
     .small.icon-button .prefix-wrapper,
     .small.icon-button .suffix-wrapper{
         width: 20px;
@@ -729,8 +778,22 @@ defineExpose({
         padding: 2px;
         box-sizing: border-box;
     }
+    .large.icon-button .prefix-wrapper,
+    .large.icon-button .suffix-wrapper{
+        width: 24px;
+        height: 24px;
+        padding: 2px;
+        box-sizing: border-box;
+    }
     .xlarge .prefix-wrapper,
     .xlarge .suffix-wrapper{
+        width: 24px;
+        height: 24px;
+        padding: 2px;
+        box-sizing: border-box;
+    }
+    .xlarge.icon-button .prefix-wrapper,
+    .xlarge.icon-button .suffix-wrapper{
         width: 32px;
         height: 32px;
         padding: 2.67px;
@@ -751,10 +814,10 @@ defineExpose({
         letter-spacing: 0.15px;
     }
     .xlarge .button-name-wrapper{
-        font-size: 24px;
-        font-weight: 400;
-        line-height: 32px;
-        letter-spacing: 0;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+        letter-spacing: 0.15px;
     }
 }
 

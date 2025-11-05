@@ -1,5 +1,5 @@
 <template>
-    <div :class="['badge-wrapper', position_type]">
+    <div :class="['badge-wrapper', position_type]" :style="getBadgePositionStyle()">
         <slot></slot>
         <span 
             :class="[
@@ -41,6 +41,20 @@ export default {
             type: String,
             default: 'top-right'
         },
+        customized_top_distance: {
+            // OPTIONAL
+            // NOTES: Only works for top-right position type
+            // Can be any valid CSS length value
+            type: String,
+            default: ''
+        },
+        customized_right_distance: {
+            // OPTIONAL
+            // NOTES: Only works for top-right position type
+            // Can be any valid CSS length value
+            type: String,
+            default: ''
+        },
         built_in_theme: {
             // ENUM: primary, secondary
             // primary: red/error color
@@ -67,6 +81,19 @@ export default {
         }
     },
     methods: {
+        getBadgePositionStyle() {
+            const styles = {};
+            // if customized_top_distance or customized_right_distance is used, use it as the top and right distance
+            if(this.position_type === 'top-right') {
+                if(this.customized_top_distance) {
+                    styles['--top-distance--'] = this.customized_top_distance;
+                }
+                if(this.customized_right_distance) {
+                    styles['--right-distance--'] = this.customized_right_distance;
+                }
+            }
+            return styles;
+        },
         getBadgeThemeStyle() {
             if (this.customized_theme_color) {
                 try {
@@ -203,8 +230,8 @@ export default {
 
 /* Position transform for top-right only */
 .badge.top-right {
-    top: 0;
-    right: 0;
+    top: var(--top-distance--, 0);
+    right: var(--right-distance--, 0);
 }
 
 /* Theme colors */

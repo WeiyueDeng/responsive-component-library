@@ -594,6 +594,8 @@ Notification badge component with customizable size, position, themes, and conte
 | content | badge content (number or text) | `string \| number` | `''` |
 | size | badge size | `'small' \| 'medium' \| 'large'` | `'small'` |
 | position_type | badge position relative to content | `'top-right' \| 'center-right'` | `'top-right'` |
+| customized_top_distance | top offset for top-right position (CSS length) | `string` | `''` |
+| customized_right_distance | right offset for top-right position (CSS length) | `string` | `''` |
 | built_in_theme | color theme | `'primary' \| 'secondary'` | `'primary'` |
 | customized_theme_color | custom background color (any valid CSS color) | `string` | `''` |
 | customized_class | custom CSS class | `string` | `''` |
@@ -616,6 +618,19 @@ Notification badge component with customizable size, position, themes, and conte
 | center-right | Inline-flex aligned at right side with 4px gap |
 
 > **Note**: Use padding on the wrapper div to control badge position. The badge positions relative to the wrapper's content.
+
+Position customization (top-right only):
+
+- You can fine-tune the distance of a top-right badge using `customized_top_distance` and `customized_right_distance`. These map to internal CSS variables and only apply when `position_type="top-right"`.
+
+```vue
+<Badge position_type="top-right" customized_top_distance="8px" customized_right_distance="12px" content="3">
+  <div style="padding: 8px;">
+    <div>Icon</div>
+  </div>
+  
+</Badge>
+```
 
 ##### Built-in Themes
 

@@ -128,6 +128,14 @@
               </div>
             </Badge>
           </div>
+          <div>
+            <div style="margin-bottom: 8px; font-size: 14px; color: #6B7280;">top-right with offsets (8px, 12px)</div>
+            <Badge position_type="top-right" customized_top_distance="8px" customized_right_distance="12px" content="7">
+              <div style="padding: 8px;">
+                <div style="width: 40px; height: 40px; background: #E5E7EB; border-radius: 4px; display: flex; align-items: center; justify-content: center;">Icon</div>
+              </div>
+            </Badge>
+          </div>
         </div>
         <div class="note">Note: top-right positions badge at corner (0,0), center-right aligns badge inline with 4px gap. Use padding to control position.</div>
       </div>
@@ -382,6 +390,11 @@ import { Badge } from 'pns-component-library'
   <Badge position_type="center-right" content="5">
     <div style="padding: 8px;">
       <div style="width: 40px; height: 40px; background: #E5E7EB; border-radius: 4px; display: flex; align-items: center; justify-content: center;">Icon</div>
+    </div>
+  </Badge>
+  <Badge position_type=\"top-right\" customized_top_distance=\"8px\" customized_right_distance=\"12px\" content=\"7\">
+    <div style=\"padding: 8px;\">
+      <div style=\"width: 40px; height: 40px; background: #E5E7EB; border-radius: 4px; display: flex; align-items: center; justify-content: center;\">Icon</div>
     </div>
   </Badge>
 </template>
