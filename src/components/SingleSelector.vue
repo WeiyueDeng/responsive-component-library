@@ -643,7 +643,7 @@ export default{
     letter-spacing: 0.5px;
 }
 .single-selector{
-    height: 48px;
+    height: 44px;
     width: 100%;
     box-sizing: border-box;
     padding: 0px 16px;
@@ -841,7 +841,7 @@ export default{
 }
 @media only screen and (max-width:767px){
     .single-selector{
-        height: 48px;
+        height: 44px;
     }
 }
 </style>

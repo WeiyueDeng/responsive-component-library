@@ -353,7 +353,7 @@ defineExpose({
 }
 .dynamic-color-responsive-button-container.icon-button{
     width: fit-content;
-    min-width: 48px;
+    min-width: 44px;
 }
 
 .fill-whole .dynamic-color-responsive-button,
