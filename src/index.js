@@ -24,7 +24,7 @@ import { FloatingNotification } from "@/composables/FloatingNotification.js";
 import '@/style.css'; 
 
 // utils
-import { parseColorToHsl, toHslString, toHsl } from '@/utils/colorConversion.js';
+import { parseColorToHsl, toHslString, toHsl } from '@/utils/colorConvention.js';
 
 // Register components and directives for global usage
 const components = { SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio, WholePageErrorPopup, AreaCodePhoneInput, GroupCheckbox, DropdownMenu, Badge, FloatingActionButton, DynamicColorResponsiveButton };
