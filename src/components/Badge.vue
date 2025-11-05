@@ -1,7 +1,7 @@
 <template>
     <div :class="['badge-wrapper', position_type]" :style="getBadgePositionStyle()">
         <slot></slot>
-        <span 
+        <span v-if = "!disabled"
             :class="[
                 'badge',
                 size,
@@ -73,6 +73,10 @@ export default {
             // Used if user wants to define their own custom styles
             type: String,
             default: ''
+        },
+        disabled: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {

@@ -599,6 +599,7 @@ Notification badge component with customizable size, position, themes, and conte
 | built_in_theme | color theme | `'primary' \| 'secondary'` | `'primary'` |
 | customized_theme_color | custom background color (any valid CSS color) | `string` | `''` |
 | customized_class | custom CSS class | `string` | `''` |
+| disabled | hide the badge without affecting the wrapped content | `boolean` | `false` |
 
 ##### Size Specifications
 

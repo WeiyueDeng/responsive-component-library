@@ -86,6 +86,28 @@
       </div>
     </DemoBlock>
 
+    <DemoBlock id="badge-disabled" title="Disabled" :code="disabledCode">
+      <div class="live">
+        <label style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+          <input type="checkbox" v-model="disabledDemo"/>
+          <span>Disable badge</span>
+        </label>
+        <div style="display:flex; gap:40px; align-items:center;">
+          <Badge :disabled="disabledDemo" content="9">
+            <div style="padding: 8px;">
+              <div style="width: 40px; height: 40px; background: #E5E7EB; border-radius: 4px; display: flex; align-items: center; justify-content: center;">Icon</div>
+            </div>
+          </Badge>
+          <Badge :disabled="disabledDemo">
+            <div style="padding: 6px; border: 2px dashed #9CA3AF; border-radius: 4px;">
+              <div style="width: 40px; height: 40px; background: #E5E7EB; border-radius: 4px; display: flex; align-items: center; justify-content: center;">Icon</div>
+            </div>
+          </Badge>
+        </div>
+        <div class="note">When disabled, the wrapped content remains, but the red badge indicator is hidden.</div>
+      </div>
+    </DemoBlock>
+
     <DemoBlock id="badge-content" title="Badge with Content" :code="contentCode">
       <div class="live">
         <div style="display: flex; gap: 40px; align-items: center;">
@@ -297,6 +319,11 @@ export default {
   components: {
     Badge,
     DemoBlock
+  },
+  data(){
+    return {
+      disabledDemo: false,
+    }
   },
   computed: {
     basicCode() {
@@ -524,6 +551,26 @@ import { Badge } from 'pns-component-library'
 
 <script setup>
 import { Badge } from 'pns-component-library'
+<\/script>`
+    },
+    disabledCode(){
+      return `<template>
+  <label>
+    <input type="checkbox" v-model="disabled"/>
+    Disable badge
+  </label>
+
+  <Badge :disabled="disabled" content="9">
+    <div style="padding: 8px;">
+      <div style="width: 40px; height: 40px; background: #E5E7EB; border-radius: 4px; display: flex; align-items: center; justify-content: center;">Icon</div>
+    </div>
+  </Badge>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import { Badge } from 'pns-component-library'
+const disabled = ref(false)
 <\/script>`
     }
   }
