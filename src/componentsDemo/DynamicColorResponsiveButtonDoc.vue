@@ -336,8 +336,8 @@ export default {
       if(p.suffixKind==='img') attrs.push(`:suffix="blackMagnifyingGlassIcon"`)
       if(p.prefixKind==='raw') attrs.push(`:prefix_slot_raw_html_content="prefixRaw"`)
       if(p.suffixKind==='raw') attrs.push(`:suffix_slot_raw_html_content="suffixRaw"`)
-
-      const open = `<DynamicColorResponsiveButton ${attrs.join(' ')}>`
+      // Always demonstrate events and exposes via a ref
+      const open = `<DynamicColorResponsiveButton ref="btn" ${attrs.join(' ')} @click-button="onClick">`
       const lines = [open]
       if(p.prefixKind==='svg'){
         lines.push(`  <template #prefix>\n     <svg fill=\"currentColor\"><!-- icon --></svg>\n    </template>`)
@@ -346,6 +346,10 @@ export default {
         lines.push(`  <template #suffix>\n     <svg fill=\"currentColor\"><!-- icon --></svg>\n    </template>`)
       }
       lines.push(`</DynamicColorResponsiveButton>`)
+      // Exposes demo
+      lines.push(`\n  <!-- Exposed methods demo -->`)
+      lines.push(`  <button type=\"button\" @click=\"btn?.handleFocusButton?.()\">Focus (expose)</button>`)
+      lines.push(`  <button type=\"button\" @click=\"btn?.handleBlurButton?.()\">Blur (expose)</button>`)
       const importLines = []
       if(p.prefixKind==='img'){ importLines.push(`import redNotificationIcon from '@/assets/icons/red_notification_icon.svg'`) }
       if(p.suffixKind==='img'){ importLines.push(`import blackMagnifyingGlassIcon from '@/assets/icons/black_magnifying_glass_icon.svg'`) }
@@ -354,8 +358,15 @@ export default {
       if(p.prefixKind==='raw'){ constLines.push(`const prefixRaw = \`${s.prefixRaw.replace(/`/g,'\\`')}\``) }
       if(p.suffixKind==='raw'){ constLines.push(`const suffixRaw = \`${s.suffixRaw.replace(/`/g,'\\`')}\``) }
 
-      const scriptContent = [...importLines, ...constLines].join('\n')
-      const script = scriptContent ? `\n\n<script setup>\n${scriptContent}\n<\/script>` : ''
+      // Base script: ref + onClick handler, then optional imports and consts at the top
+      const baseScript = [
+        ...importLines,
+        `import { ref } from 'vue'`,
+        ...constLines,
+        `const btn = ref(null)`,
+        `function onClick(id, name){\n  console.log('click-button:', id, name)\n}`,
+      ].join('\n')
+      const script = `\n\n<script setup>\n${baseScript}\n<\/script>`
       return `<template>\n  ${lines.join('\n  ')}\n</template>${script}`
     },
     basicFitContentCode(){
