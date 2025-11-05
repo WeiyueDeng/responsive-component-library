@@ -382,7 +382,7 @@ const handleUpdateShownNestedDropdown = (target_item_props) => {
 }
 .dropdown-menu-item.selected{
     color: #2E466B;
-    font-weight: 500;
+    font-weight: 600;
 }
     
 .small .dropdown-menu-item{

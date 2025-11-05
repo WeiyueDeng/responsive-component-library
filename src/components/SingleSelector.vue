@@ -784,13 +784,29 @@ export default{
     height: fit-content;
     box-sizing: border-box;
 
-    /* max-height: 300px;
-    overflow: auto; */
+    max-height: 400px;
+    overflow-y: hidden;
 
     position: absolute;
     z-index: 1000;
     top: 100%;
     left: 0px;
+}
+.single-selector-dropdown:hover{
+    overflow-y: auto;
+}
+.single-selector-dropdown::-webkit-scrollbar{
+    width: 12px;
+}
+.single-selector-dropdown::-webkit-scrollbar-track{
+    background: transparent;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+.single-selector-dropdown::-webkit-scrollbar-thumb{
+    background: #79747E;
+    border-radius: 100px;
+    border: 4px solid #EEEFF1; 
 }
 .single-selector-dropdown.no-data{
     padding: 8px 12px;
