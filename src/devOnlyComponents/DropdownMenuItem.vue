@@ -38,7 +38,7 @@
                     <svg v-else-if = "has_dropdown && (is_web_version || (!is_web_version && !show_dropdown))" 
                     :class = "['dropdown-icon']" 
                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M10 17V7L15 12L10 17Z" fill="#434956"/>
+                        <path d="M10 17V7L15 12L10 17Z" fill="currentColor"/>
                     </svg>
                 </slot>
             </div>
@@ -403,11 +403,11 @@ const handleUpdateShownNestedDropdown = (target_item_props) => {
 
 .dropdown-menu-item:hover{
     background: var(--State-Layers-On-Surface-Opacity-08, rgba(23, 24, 28, 0.08));
-    color: #2E466B;
+    color: #17181C;
 }
 .dropdown-menu-item.focus{
     background: var(--State-Layers-On-Surface-Opacity-10, rgba(23, 24, 28, 0.10));
-    color: #2E466B;
+    color: #17181C;
 }
 .dropdown-menu-item:active{
     background: var(--Schemes-Secondary-Container, #DBE3F0);
@@ -428,20 +428,12 @@ const handleUpdateShownNestedDropdown = (target_item_props) => {
     white-space: nowrap;
 }
 .prefix-wrapper{
-    color: #434956;
     width: 24px;
     height: 24px;
-}
-.disabled .prefix-wrapper{
-    color: var(--disabled-color--) !important;
 }
 .suffix-wrapper{
-    color: #434956;
     width: 24px;
     height: 24px;
-}
-.disabled .suffix-wrapper{
-    color: var(--disabled-color--) !important;
 }
 .prefix-raw-html-slot,
 .suffix-raw-html-slot{
