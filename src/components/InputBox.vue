@@ -9,7 +9,9 @@
        '--input-box-border-color--': regular_border_color,
        '--input-box-border-width--': border_width_in_box_shadow,
        '--input-box-background-color--': background_color,
-       '--inside-label-color--': inside_label_color,
+       //    caret color is the same as the border color
+       '--caret-color--': regular_border_color,
+       '--inside-label-color--': inside_label_color
     }">
         <!-- outside label part -->
         <div v-if = "label && label_type == 'outside'" class = "label-outside">
@@ -308,6 +310,20 @@ export default{
             }
             return '#EEEFF1';
         },
+        caret_color(){
+            if(this.disabled){
+                return 'var(--disabled-color--)';
+            }else if(this.show_error){
+                return 'var(--semantic-error-color--)';
+            }else if(this.show_alert){
+                return 'var(--semantic-alert-color--)';
+            }else if(this.is_focus){
+                return this.customized_theme_color || 'var(--Schemes-primary)';
+            }else if (this.hovered){
+                return '#17181C';
+            }
+            return '#434956';
+        },
         inside_label_color(){
             if(this.disabled){
                 return 'var(--disabled-color--)';
@@ -319,7 +335,7 @@ export default{
                 return this.customized_theme_color || 'var(--Schemes-primary)';
             }
             return '#434956';
-        },
+        }
     },
     emits:[
         'update:modelValue', 
@@ -434,6 +450,7 @@ export default{
     width: 100%;
     box-sizing: border-box;
     padding: 0px 16px;
+    caret-color: var(--caret-color--);
     
     display: flex;
     align-items: center;

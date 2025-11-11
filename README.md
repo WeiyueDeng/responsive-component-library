@@ -210,7 +210,7 @@ Versatile input field with clearable icon, inside/outside label, styled themes, 
 | label | label text (optional) | `string` | `''` |
 | label_type | where to render the label | `'inside' \| 'outside'` | `'outside'` |
 | theme_type | visual styling theme | `'filled' \| 'outlined'` | `'outlined'` |
-| customized_theme_color | focus/brand color used for focus border or underline; any valid CSS color or CSS var | `string` | `''` |
+| customized_theme_color | focus/brand color used for caret color and focus border or underline; any valid CSS color or CSS var | `string` | `''` |
 | type | native input type | `string` | `'text'` |
 | placeholder | placeholder text | `string` | `'Enter'` |
 | clearable | show a clear icon when focused/hovered and value is non-empty | `boolean` | `false` |
@@ -298,7 +298,7 @@ Dropdown selector with inside/outside label, themed styling, filtering, and opti
 | label | label text | `string` | `''` |
 | label_type | label position | `'inside' \| 'outside'` | `'outside'` |
 | theme_type | visual theme | `'filled' \| 'outlined'` | `'outlined'` |
-| customized_theme_color | focus/brand color; any CSS color or CSS var | `string` | `''` |
+| customized_theme_color | caret color and focus/brand color; any CSS color or CSS var | `string` | `''` |
 | required | show red asterisk next to label | `boolean` | `false` |
 | options | options array | `Array<{ value: string \| number \| boolean \| object, label: string, prefix?: string, suffix?: string, prefix_slot_raw_html_content?: string, suffix_slot_raw_html_content?: string, options?: Option[], has_divider?: boolean, disabled?: boolean, is_selected?: boolean }>` | `[]` |
 | filterable | enable client-side filter input | `boolean` | `false` |

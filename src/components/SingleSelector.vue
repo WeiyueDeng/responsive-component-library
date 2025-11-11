@@ -9,6 +9,8 @@
         '--input-box-border-color--': regular_border_color,
         '--input-box-border-width--': border_width_in_box_shadow,
         '--input-box-background-color--': background_color,
+        //    caret color is the same as the border color
+        '--caret-color--': regular_border_color,
         '--inside-label-color--': inside_label_color,
     }">
         <!-- outside label part -->
@@ -753,6 +755,7 @@ export default{
     letter-spacing: 0.5px;
     height: 24px;
     padding:0px;
+    caret-color: var(--caret-color--);
 }
 .prefix-wrapper{
     flex-shrink:0;

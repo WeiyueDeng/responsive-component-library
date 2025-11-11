@@ -232,7 +232,7 @@ export default{
                 },
                 {
                     value: 'option3',
-                    label: 'Option 3',
+                    label: 'Option 312321312312312312312312312323124123432412412341234132413241234',
                     prefix_slot_raw_html_content: '<span>Pre</span>',
                     suffix_slot_raw_html_content: '<span>Suf</span>',
                 },
