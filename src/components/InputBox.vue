@@ -539,7 +539,7 @@ export default{
     color: var(--disabled-color--);
 }
 .input-box::placeholder{
-    color: var(--disabled-color--);
+    color: hsla(220, 12%, 60%, 1);
 
     font-family: 'Roboto';
     font-size: 16px;
