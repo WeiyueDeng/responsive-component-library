@@ -4,15 +4,15 @@ A comprehensive Vue 3 component library built with modern development practices,
 
 ## 🚀 Features
 
-- **11 Production-Ready Components** - Form controls, layout components, and utility components
-- **2 Powerful Composables** - Reusable logic for common patterns
+- **15 Production-Ready Components** - Form controls, layout components, and utility components
+- **3 Powerful Composables** - Reusable logic for common patterns
 - **2 Custom Directives** - Loading states and UI enhancements
 - **Vue 3 Composition API** - Modern, performant, and type-safe
 - **Fully Responsive UI & UX** - Components automatically adapt to all screen sizes with optimized mobile-first design and touch-friendly interactions
 - **Accessibility** - ARIA attributes and keyboard navigation support
 - **Customizable Themes** - Multiple built-in color schemes
 
-> Newly released public components: `DropdownMenu`, `Badge`, `FloatingActionButton`, `DynamicColorResponsiveButton`.
+> Newly released public components: `DropdownMenu`, `Badge`, `FloatingActionButton`, `DynamicColorResponsiveButton`, `Snackbar`.
 
 ## 🆕 What's New
 
@@ -884,6 +884,144 @@ Toast notification component for user feedback.
   :hide_after="3000"
   @close="handleClose"
 />
+```
+
+#### Snackbar
+Bottom-positioned snackbar component with optional action button, auto-dismiss, and responsive layout. Supports both static usage and programmatic creation via `FloatingSnackbar` composable.
+
+##### Attributes
+
+| Attribute | Description | Type | Default |
+|-----------|-------------|------|---------|
+| content | snackbar message text | `string` | — |
+| action | action button label (optional) | `string` | — |
+| padding_size | padding size | `'normal' \| 'large'` | `'normal'` |
+| with_close_icon | show close icon | `boolean` | `true` |
+| customized_class | custom CSS class | `string` | — |
+| mounted_programmatically | internal flag for programmatic mounting | `boolean` | `false` |
+| hide_after | auto-hide after milliseconds (0 = never, default: 3000) | `number` | `3000` |
+
+##### Events
+
+| Event | Description | Parameters |
+|-------|-------------|------------|
+| close | triggers when snackbar is closed | — |
+| action | triggers when action button is clicked | — |
+
+##### Slots
+
+| Name | Description |
+|------|-------------|
+| default | custom snackbar content (overrides `content` prop) |
+
+##### Layout Behavior
+
+- **Row Layout** (default): Content on left, action button + close icon on right
+  - Used when action button text is ≤10 characters
+- **Stacked Layout** (column): Content above, action button + close icon below (right-aligned)
+  - Automatically triggered when action button text is >10 characters
+  - Prevents text overflow and maintains readability
+
+##### Padding Specifications
+
+| Size | Top/Bottom | Left | Right |
+|------|-----------|------|-------|
+| normal | 0px | 16px | 0px |
+| large | 10px | 16px | 0px |
+
+> **Note**: Text content has internal padding of 14px top/bottom and 14px right for proper spacing.
+
+##### Usage
+
+```vue
+<template>
+  <!-- Basic snackbar with action -->
+  <Snackbar 
+    content="File deleted successfully"
+    action="Undo"
+    :with_close_icon="true"
+  />
+
+  <!-- Snackbar without action button -->
+  <Snackbar 
+    content="Changes saved"
+    :with_close_icon="true"
+  />
+
+  <!-- Snackbar with larger padding -->
+  <Snackbar 
+    content="Snackbar with larger padding"
+    action="Action"
+    padding_size="large"
+  />
+
+  <!-- Snackbar with long action text (auto stacked layout) -->
+  <Snackbar 
+    content="This will use column layout"
+    action="Long Action Button"
+  />
+
+  <!-- Disable auto-hide -->
+  <Snackbar 
+    content="This will not auto-hide"
+    action="Dismiss"
+    :hide_after="0"
+  />
+
+  <!-- With event handlers -->
+  <Snackbar 
+    content="Click action to see event"
+    action="Click Me"
+    @action="handleAction"
+    @close="handleClose"
+  />
+</template>
+
+<script setup>
+function handleAction() {
+  console.log('Action clicked')
+}
+
+function handleClose() {
+  console.log('Snackbar closed')
+}
+</script>
+```
+
+##### FloatingSnackbar Composable
+
+For programmatic snackbar creation (recommended approach):
+
+```javascript
+import { FloatingSnackbar } from 'pns-component-library'
+
+// Basic usage
+FloatingSnackbar({
+  content: 'File deleted successfully',
+  action: 'Undo',
+  with_close_icon: true,
+  onAction: () => {
+    console.log('Undo clicked')
+  },
+  onClose: () => {
+    console.log('Snackbar closed')
+  }
+})
+
+// Without auto-hide
+FloatingSnackbar({
+  content: 'This will not auto-hide',
+  action: 'Dismiss',
+  hide_after: 0
+})
+
+// With custom slot content
+FloatingSnackbar({
+  action: 'Action',
+  with_close_icon: true
+}, {
+  default: () => h('div', { style: { fontWeight: 'bold' } }, 'Custom content')
+})
 ```
 
 #### WholePageErrorPopup

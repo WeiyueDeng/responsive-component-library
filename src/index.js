@@ -12,6 +12,7 @@ import DropdownMenu from '@/components/DropdownMenu.vue';
 import Badge from '@/components/Badge.vue';
 import FloatingActionButton from '@/components/FloatingActionButton.vue';
 import DynamicColorResponsiveButton from '@/components/DynamicColorResponsiveButton.vue';
+import Snackbar from '@/components/Snackbar.vue';
 
 // directives
 import component_loading from "@/directives/component_loading.js";
@@ -20,6 +21,7 @@ import whole_page_loading from '@/directives/whole_page_loading.js';
 //composables (functions)
 import { useWindowSize } from '@/composables/useWindowSize.js';
 import { FloatingNotification } from "@/composables/FloatingNotification.js";
+import { FloatingSnackbar } from '@/composables/FloatingSnackbar.js';
 
 import '@/style.css'; 
 
@@ -27,7 +29,7 @@ import '@/style.css';
 import { parseColorToHsl, toHslString, toHsl } from '@/utils/colorConvention.js';
 
 // Register components and directives for global usage
-const components = { SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio, WholePageErrorPopup, AreaCodePhoneInput, GroupCheckbox, DropdownMenu, Badge, FloatingActionButton, DynamicColorResponsiveButton };
+const components = { SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio, WholePageErrorPopup, AreaCodePhoneInput, GroupCheckbox, DropdownMenu, Badge, FloatingActionButton, DynamicColorResponsiveButton, Snackbar };
 const directives = {
   'component-loading': component_loading,
   'whole-page-loading': whole_page_loading,
@@ -58,12 +60,12 @@ for (const path in icons) {
 // Named exports for individual component imports
 export { 
   //components
-  SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio, WholePageErrorPopup, AreaCodePhoneInput, GroupCheckbox, DropdownMenu, Badge, FloatingActionButton, DynamicColorResponsiveButton,
+  SimplifiedNotification, ResponsiveButton, InputBox, SingleSelector, Checkbox, Radio, WholePageErrorPopup, AreaCodePhoneInput, GroupCheckbox, DropdownMenu, Badge, FloatingActionButton, DynamicColorResponsiveButton, Snackbar,
   //directives
   component_loading ,
   whole_page_loading,
   //composables
-  useWindowSize, FloatingNotification,
+  useWindowSize, FloatingNotification, FloatingSnackbar,
   //utils
   parseColorToHsl, toHslString, toHsl,
   //all icons

@@ -148,6 +148,16 @@
         <FloatingActionButtonDoc />
       </section>
 
+      <!-- Snackbar -->
+      <section id="snackbar" class="doc-section" data-title="Snackbar">
+        <h2>Snackbar</h2>
+        <p class="section-desc">
+          Bottom-positioned snackbar with action buttons, auto-dismiss, and responsive layout. Primarily designed for mobile devices.
+          Use the composable <code>FloatingSnackbar</code> for programmatic triggers.
+        </p>
+        <SnackbarDoc />
+      </section>
+
       
     </main>
   </div>
@@ -167,6 +177,7 @@ import BadgeDoc from "@/componentsDemo/BadgeDoc.vue";
 import WholePageErrorPopupDoc from "@/componentsDemo/WholePageErrorPopupDoc.vue";
 import FloatingActionButtonDoc from "@/componentsDemo/FloatingActionButtonDoc.vue";
 import ComposablesDoc from "@/componentsDemo/ComposablesDoc.vue";
+import SnackbarDoc from "@/componentsDemo/SnackbarDoc.vue";
 
 export default{
   components: {
@@ -183,6 +194,7 @@ export default{
     WholePageErrorPopupDoc,
     FloatingActionButtonDoc,
     ComposablesDoc,
+    SnackbarDoc,
   },
   data(){
     return{
@@ -200,6 +212,7 @@ export default{
         { id: 'composables', title: 'Composables' },
         { id: 'whole-page-error-popup', title: 'WholePageErrorPopup' },
         { id: 'floating-action-button', title: 'FloatingActionButton' },
+        { id: 'snackbar', title: 'Snackbar' },
       ],
       activeSection: 'simplified-notification'
     }
