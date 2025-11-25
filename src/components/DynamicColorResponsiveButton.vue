@@ -159,7 +159,7 @@ const is_icon_button = computed(() => {
 });
 const button_background_color_hsl_obj = computed(() => {
     if(props.disabled){
-        return is_icon_button.value 
+        return props.button_type === 'text' 
         ?  {
             h:0,
             s:0,
@@ -313,12 +313,12 @@ const button_border_color_hsl_obj = computed(() => {
             }
         }
     }
-    if(props.button_type == 'elevated'){
+    if(props.button_type == 'elevated' && !props.disabled){
         return {
-            h: 0,
-            s: 0,
-            l: 0,
-            a: 0
+            h: 226,
+            s: 8,
+            l: 96,
+            a: 1
         }
     }
     return button_background_color_hsl_obj.value;
@@ -400,7 +400,8 @@ defineExpose({
     align-items: center;
     justify-content: center;
 
-    background: var(--button-background-color--);
+    background-color: var(--button-background-color--);
+    background-clip: padding-box;
     color: var(--button-text-color--);
     border-radius: var(--button-border-radius--);
     border-style: solid;
@@ -416,18 +417,22 @@ defineExpose({
 .disabled .dynamic-color-responsive-button:hover .dynamic-color-responsive-button-content,
 .disabled .dynamic-color-responsive-button.focus .dynamic-color-responsive-button-content,
 .disabled .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
-    background: var(--button-background-color--) !important;
+    background-color: var(--button-background-color--) !important;
     border-radius: var(--button-border-radius--) !important;
+    border-color: var(--button-border-color--) !important;
 }
 
 .has-interaction-effect .dynamic-color-responsive-button:hover .dynamic-color-responsive-button-content{
-    background: color-mix(in srgb, var(--button-background-color--), var(--button-text-color--) 8%);
+    background-color: color-mix(in srgb, var(--button-background-color--), var(--button-text-color--) 8%);
+    border-color: color-mix(in srgb, var(--button-border-color--), var(--button-text-color--) 8%);
 }
 .has-interaction-effect .dynamic-color-responsive-button.focus .dynamic-color-responsive-button-content{
-    background: color-mix(in srgb, var(--button-background-color--), var(--button-text-color--) 10%);
+    background-color: color-mix(in srgb, var(--button-background-color--), var(--button-text-color--) 10%);
+    border-color: color-mix(in srgb, var(--button-border-color--), var(--button-text-color--) 10%);
 }
 .has-interaction-effect .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
-    background: color-mix(in srgb, var(--button-background-color--), var(--button-text-color--) 16%);
+    background-color: color-mix(in srgb, var(--button-background-color--), var(--button-text-color--) 16%);
+    border-color: color-mix(in srgb, var(--button-border-color--), var(--button-text-color--) 16%);
 }
 
 .small.has-interaction-effect .dynamic-color-responsive-button:active .dynamic-color-responsive-button-content{
