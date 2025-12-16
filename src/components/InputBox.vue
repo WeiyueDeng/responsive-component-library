@@ -262,7 +262,7 @@ export default{
     },
     computed:{
         show_clear_icon(){
-            return this.clearable && this.value && !this.disabled && (this.hovered || this.is_focus);
+            return this.clearable && this.value !== '' && this.value !== null && this.value !== undefined && !this.disabled && (this.hovered || this.is_focus);
         },
         has_prefix(){
             return this.prefix_wrapper;
