@@ -681,6 +681,7 @@ export default{
 .selected-content-wrapper{
     flex: 1;
     padding:4px 0px;
+    min-width: 0;
 }
 .label-inside{
     width:fit-content; 
