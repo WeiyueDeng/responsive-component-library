@@ -331,16 +331,16 @@ const handleClickButton = () => {
     }
 }
 
-const handleFocusButton = () => {
+const focus = () => {
     is_focused.value = true;
 }
-const handleBlurButton = () => {
+const blur = () => {
     is_focused.value = false;
 }
 
 defineExpose({
-    handleFocusButton,
-    handleBlurButton
+    focus,
+    blur
 })
 </script>
 

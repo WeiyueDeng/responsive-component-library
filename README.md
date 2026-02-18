@@ -722,8 +722,8 @@ Modern button with dynamic color logic and responsive behavior.
 
 | Method | Description | Type |
 |--------|-------------|------|
-| handleFocusButton | programmatically apply focus style | `() => void` |
-| handleBlurButton | remove focus style | `() => void` |
+| focus | programmatically apply focus style | `() => void` |
+| blur | remove focus style | `() => void` |
 
 ##### Slots
 

@@ -300,12 +300,12 @@ export default {
     },
     onPlayFocus(){
       // call exposed focus method from DynamicColorResponsiveButton
-      this.$refs.playRef?.handleFocusButton?.()
+      this.$refs.playRef?.focus?.()
       this.pushLog('focus')
     },
     onPlayBlur(){
       // call exposed blur method from DynamicColorResponsiveButton
-      this.$refs.playRef?.handleBlurButton?.()
+      this.$refs.playRef?.blur?.()
       this.pushLog('blur')
     },
     onPlayClick(id, name){
@@ -348,8 +348,8 @@ export default {
       lines.push(`</DynamicColorResponsiveButton>`)
       // Exposes demo
       lines.push(`\n  <!-- Exposed methods demo -->`)
-      lines.push(`  <button type=\"button\" @click=\"btn?.handleFocusButton?.()\">Focus (expose)</button>`)
-      lines.push(`  <button type=\"button\" @click=\"btn?.handleBlurButton?.()\">Blur (expose)</button>`)
+      lines.push(`  <button type=\"button\" @click=\"btn?.focus?.()\">Focus (expose)</button>`)
+      lines.push(`  <button type=\"button\" @click=\"btn?.blur?.()\">Blur (expose)</button>`)
       const importLines = []
       if(p.prefixKind==='img'){ importLines.push(`import redNotificationIcon from '@/assets/icons/red_notification_icon.svg'`) }
       if(p.suffixKind==='img'){ importLines.push(`import blackMagnifyingGlassIcon from '@/assets/icons/black_magnifying_glass_icon.svg'`) }
