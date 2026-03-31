@@ -109,14 +109,20 @@
     </DemoBlock>
     <DemoBlock id="inputbox-basic" title="Basic" :code="basicCode">
       <div class="live-demo stack">
+        <InputBox type="text" clearable v-model="input_value" placeholder="Please input your words" />
+      </div>
+    </DemoBlock>
+
+    <DemoBlock id="inputbox-exposed-methods" title="Exposed Methods" :code="exposedMethodsCode">
+      <div class="live-demo stack">
         <div class="actions">
-          <button @click="(e)=>{$refs['target-input-box'].focus(); e.stopPropagation()}">Focus</button>
-          <button @click="(e)=>{$refs['target-input-box'].blur(); e.stopPropagation()}">Blur</button>
-          <button @click="$refs['target-input-box'].alert('Please check this value')">Show Alert</button>
-          <button @click="$refs['target-input-box'].error('Invalid input')">Show Error</button>
-          <button @click="$refs['target-input-box'].removeAlertOrErrorEffect()">Clear Messages</button>
+          <button @click="$refs['exposed-demo'].focus()">focus()</button>
+          <button @click="$refs['exposed-demo'].blur()">blur()</button>
+          <button @click="$refs['exposed-demo'].alert('Please check this value')">alert(message)</button>
+          <button @click="$refs['exposed-demo'].error('Invalid input')">error(message)</button>
+          <button @click="$refs['exposed-demo'].removeAlertOrErrorEffect()">removeAlertOrErrorEffect()</button>
         </div>
-        <InputBox ref="target-input-box" type="text" clearable v-model="input_value" placeholder="Please input your words" />
+        <InputBox ref="exposed-demo" type="text" clearable v-model="exposed_demo_value" placeholder="Test exposed methods" />
       </div>
     </DemoBlock>
 
@@ -219,6 +225,7 @@ export default{
       },
       logs:[],
       input_value: "123",
+      exposed_demo_value: '',
       input_date_value:'',
       input_password_value:'',
       hide_typed_password:true,
@@ -256,7 +263,10 @@ export default{
       return `<template>\n  ${lines.join('\n  ')}\n</template>\n\n<script setup>\nimport { ref } from 'vue'\nconst value = ref('')\n<\/script>`
     },
     basicCode(){
-      return `<template>\n  <InputBox ref=\"input\" type=\"text\" clearable v-model=\"value\" placeholder=\"Please input your words\" />\n</template>\n\n<script setup>\nimport { ref } from 'vue'\nconst value = ref('')\n<\/script>`
+      return `<template>\n  <InputBox type=\"text\" clearable v-model=\"value\" placeholder=\"Please input your words\" />\n</template>\n\n<script setup>\nimport { ref } from 'vue'\nconst value = ref('')\n<\/script>`
+    },
+    exposedMethodsCode(){
+      return `<template>\n  <div>\n    <button @click=\"$refs.inputRef.focus()\">focus()</button>\n    <button @click=\"$refs.inputRef.blur()\">blur()</button>\n    <button @click=\"$refs.inputRef.alert('Please check this value')\">alert(message)</button>\n    <button @click=\"$refs.inputRef.error('Invalid input')\">error(message)</button>\n    <button @click=\"$refs.inputRef.removeAlertOrErrorEffect()\">removeAlertOrErrorEffect()</button>\n    <InputBox ref=\"inputRef\" type=\"text\" clearable v-model=\"value\" placeholder=\"Test exposed methods\" />\n  </div>\n</template>\n\n<script setup>\nimport { ref } from 'vue'\nconst value = ref('')\nconst inputRef = ref(null)\n\n// You can also call these methods programmatically:\n// inputRef.value.focus()\n// inputRef.value.blur()\n// inputRef.value.alert('Custom alert message')\n// inputRef.value.error('Custom error message')\n// inputRef.value.removeAlertOrErrorEffect()\n<\/script>`
     },
     prefixCode(){
       return `<template>\n  <InputBox type=\"text\" clearable v-model=\"value\" placeholder=\"Please input your words\">\n    <template #prefix>\n      <img src=\"/path/to/icon.svg\" style=\"width:100%; height:100%;\" />\n    </template>\n  </InputBox>\n</template>`
