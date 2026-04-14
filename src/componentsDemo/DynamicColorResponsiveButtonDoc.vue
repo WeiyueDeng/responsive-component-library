@@ -18,10 +18,7 @@
               <option value="outlined">outlined</option>
               <option value="text">text</option>
               <option value="elevated">elevated</option>
-              <option value="narrow">narrow</option>
-              <option value="wide">wide</option>
             </select>
-            <div class="field-hint">* narrow / wide only works when there is only one icon and no display name or any other button content.</div>
           </div>
           <div class="ctrl-group">
             <label>Built-in Theme</label>
@@ -53,7 +50,10 @@
               <select v-model="play.width">
                 <option value="fit-content">fit-content</option>
                 <option value="fill-whole">fill-whole</option>
+                <option value="narrow">narrow</option>
+                <option value="wide">wide</option>
               </select>
+              <div class="field-hint">* narrow / wide only works when there is only one icon and no display name or any other button content.</div>
             </div>
           </div>
           <div class="ctrl-row">
