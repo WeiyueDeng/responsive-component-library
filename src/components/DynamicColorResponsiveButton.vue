@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { parseColorToHsl, toHslString } from '@/utils/colorConvention.js';
 
 const props = defineProps({
@@ -145,13 +145,17 @@ const props = defineProps({
         // Web xlarge (figma size) -> Mobile large (figma size)
         default: 'small'
     },
+    hold_focus:{
+        type: Boolean,
+        default: false
+    }
 });
 const emit = defineEmits(['click-button']);
 
 const prefix_wrapper = ref(null);
 const button_name_wrapper = ref(null);
 const suffix_wrapper = ref(null);
-const is_focused = ref(false);
+const is_focused = ref(props.hold_focus);
 
 const is_icon_button = computed(() => {
     //if only have one icon (either prefix or suffix) and no text, then it is an icon button
@@ -337,6 +341,11 @@ const focus = () => {
 const blur = () => {
     is_focused.value = false;
 }
+
+// Watch for hold_focus prop changes
+watch(() => props.hold_focus, (newVal) => {
+    is_focused.value = newVal;
+});
 
 defineExpose({
     focus,

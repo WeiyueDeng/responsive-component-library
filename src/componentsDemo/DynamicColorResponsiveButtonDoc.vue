@@ -69,6 +69,10 @@
               <label>Has Interaction Effect</label>
               <input type="checkbox" v-model="play.has_interaction_effect" />
             </div>
+            <div class="ctrl-group">
+              <label>Hold Focus</label>
+              <input type="checkbox" v-model="play.hold_focus" />
+            </div>
           </div>
           <div class="ctrl-group">
             <label>Display Name</label>
@@ -110,6 +114,7 @@
             :display_name="play.display_name"
             :disabled="play.disabled"
             :has_interaction_effect="play.has_interaction_effect"
+            :hold_focus="play.hold_focus"
             @click-button="onPlayClick"
             :prefix="play.prefixKind==='img' ? samples.prefixImg : ''"
             :suffix="play.suffixKind==='img' ? samples.suffixImg : ''"
@@ -280,6 +285,7 @@ export default {
         display_name:'Playground Button',
         disabled:false,
         has_interaction_effect:true,
+        hold_focus:false,
         prefixKind:'none',
         suffixKind:'none',
       },
@@ -332,6 +338,7 @@ export default {
       if(p.display_name) attrs.push(`display_name="${p.display_name}"`)
       if(p.disabled) attrs.push(`:disabled="true"`)
       if(p.has_interaction_effect === false) attrs.push(`:has_interaction_effect="false"`)
+      if(p.hold_focus) attrs.push(`:hold_focus="true"`)
       if(p.prefixKind==='img') attrs.push(`:prefix="redNotificationIcon"`)
       if(p.suffixKind==='img') attrs.push(`:suffix="blackMagnifyingGlassIcon"`)
       if(p.prefixKind==='raw') attrs.push(`:prefix_slot_raw_html_content="prefixRaw"`)

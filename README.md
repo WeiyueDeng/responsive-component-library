@@ -701,9 +701,9 @@ Modern button with dynamic color logic and responsive behavior.
 | built_in_theme | built-in color theme | `'primary' \| 'secondary' \| 'tertiary' \| 'primary-container' \| 'secondary-container' \| 'tertiary-container'` | `'primary'` |
 | customized_theme_color | overrides built_in_theme with any CSS color (e.g., `#3d5c8f`, `rgb(...)`, `hsl(...)`, `var(--Schemes-primary)`) | `string` | `''` |
 | customized_class | custom CSS class for outer container | `string` | `''` |
-| width_type | width mode | `'fill-whole' \| 'fit-content'` (auto-handles icon-only with `narrow`/`wide`) | `'fit-content'` |
+| width_type | width mode | `'fill-whole' \| 'fit-content' \| 'narrow' \| 'wide'` — `narrow`/`wide` only apply when the button is icon-only (single icon slot, no text); they adjust horizontal padding to be tighter or wider respectively | `'fit-content'` |
 | button_id | explicit id used in emitted event; falls back to `display_name` | `string` | `''` |
-| display_name | button text (used when default slot empty) | `string` | `'button name'` |
+| display_name | button text (used when default slot empty) | `string` | `''` |
 | prefix | image url for prefix when not using slot | `string` | `''` |
 | suffix | image url for suffix when not using slot | `string` | `''` |
 | prefix_slot_raw_html_content | raw html for prefix (when not using named slot) | `string` | `''` |
@@ -711,6 +711,7 @@ Modern button with dynamic color logic and responsive behavior.
 | disabled | disable interaction | `boolean` | `false` |
 | has_interaction_effect | enable hover/focus/active visual effects (mask and slight radius changes). Set to `false` to keep the button static (useful when embedding purely for coloring icons/slots) | `boolean` | `true` |
 | size | size (Web/Tablet enum) | `'small' \| 'medium' \| 'large' \| 'xlarge'` | `'small'` |
+| hold_focus | when `true`, programmatically applies and holds the focus style (equivalent to calling `focus()` and keeping it until set back to `false` or `blur()` is called). Reactive — toggling it calls `focus()`/`blur()` internally | `boolean` | `false` |
 
 ##### Events
 
